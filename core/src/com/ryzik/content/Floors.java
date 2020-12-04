@@ -15,37 +15,37 @@ public class Floors implements ContentList {
 
     @Override
     public void load() {
-        air = new Floor() {
+        air = new Floor("air") {
             {
 
             }
         };
 
-        grass = new Floor() {
+        grass = new Floor("grass") {
             {
 
             }
         };
 
-        stone = new Floor() {
+        stone = new Floor("stone") {
             {
 
             }
         };
 
-        brick = new Floor() {
+        brick = new Floor("brick") {
             {
 
             }
         };
 
-        woodenPlank = new Floor() {
+        woodenPlank = new Floor("woodenPlank") {
             {
 
             }
         };
 
-        sandBrick = new Floor() {
+        sandBrick = new Floor("sandBrick") {
             {
 
             }
