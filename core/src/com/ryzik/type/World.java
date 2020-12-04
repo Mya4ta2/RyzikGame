@@ -1,5 +1,6 @@
 package com.ryzik.type;
 
+import com.badlogic.gdx.math.Vector2;
 import com.ryzik.content.Blocks;
 import com.ryzik.content.Floors;
 
@@ -21,6 +22,7 @@ public class World {
     // just debug
     public void test() {
         player = new Player();
+        player.setPosition(new Vector2(15/2, 15/2));
     }
 
     public Tiles getTiles() {
