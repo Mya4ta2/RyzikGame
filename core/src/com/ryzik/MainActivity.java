@@ -29,7 +29,9 @@ public class MainActivity extends Game {
                 Vars.TILE_SIZE,
                 Vars.TILE_SIZE);
 
-        Blocks.test.setTexture(textureRegions[1][0]);
+        Blocks.woodPlank.setTexture(textureRegions[1][0]);
+        Blocks.sandBrick.setTexture(textureRegions[2][0]);
+        Blocks.brick.setTexture(textureRegions[2][1]);
         Floors.sandBrick.setTexture(textureRegions[3][0]);
 
         gameScreen.getWorld().getPlayer().setLeftTexture(textureRegions[0][0]);

@@ -56,7 +56,7 @@ public class MapReader {
                                 world.getTiles().get(
                                         blockPositions[i][0],
                                         blockPositions[i][1]
-                                ).setBlock(Blocks.test);
+                                ).setBlock(Blocks.sandBrick);
                             }
                         } else if (contentTypeMatcher.group(0).contains("Floors")) {
                             for (int i = 0; i < blockPositions.length; i++) {
