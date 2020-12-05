@@ -22,20 +22,22 @@ public class WorldController {
 
     public void processInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            world.getPlayer().getVelocity().y += world.getPlayer().getSpeed();
+            world.getPlayer().getVelocity().y += world.getPlayer().getCurrentSpeed();
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            world.getPlayer().getVelocity().y -= world.getPlayer().getSpeed();
+            world.getPlayer().getVelocity().y -= world.getPlayer().getCurrentSpeed();
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            world.getPlayer().getVelocity().x += world.getPlayer().getSpeed();
+            world.getPlayer().getVelocity().x += world.getPlayer().getCurrentSpeed();
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            world.getPlayer().getVelocity().x -= world.getPlayer().getSpeed();
+            world.getPlayer().getVelocity().x -= world.getPlayer().getCurrentSpeed();
         }
+
+        world.getPlayer().setSprint(Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT));
     }
 
     public void processCollisions() {

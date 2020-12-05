@@ -24,6 +24,9 @@ public class Player implements MappableContent {
     private boolean walkLeft = false;
 
     private float speed = 8;
+    private float sprintSpeed = 12;
+    private float currentSpeed = speed;
+    private boolean sprint;
 
     public Player() {
         this.position = Vector2.Zero;
@@ -51,6 +54,10 @@ public class Player implements MappableContent {
 
         bounds.x = position.x;
         bounds.y = position.y;
+
+        if (sprint) currentSpeed = sprintSpeed;
+        else currentSpeed = speed;
+
     }
 
     @Override
@@ -110,12 +117,17 @@ public class Player implements MappableContent {
     public void setVelocity(Vector2 velocity) {
         this.velocity = velocity;
     }
-    public float getSpeed() {
-        return speed;
+
+    public float getCurrentSpeed() {
+        return currentSpeed;
     }
 
-    public void setSpeed(float speed) {
-        this.speed = speed;
+    public boolean isSprint() {
+        return sprint;
+    }
+
+    public void setSprint(boolean sprint) {
+        this.sprint = sprint;
     }
 
     public Vector2 getOldPosition() {
