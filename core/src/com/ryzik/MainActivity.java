@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.ryzik.content.Blocks;
 import com.ryzik.content.Floors;
+import com.ryzik.content.Items;
 import com.ryzik.screen.GameScreen;
 
 public class MainActivity extends Game {
@@ -16,6 +17,7 @@ public class MainActivity extends Game {
     public void create() {
         new Blocks().load();
         new Floors().load();
+        new Items().load();
 
         gameScreen = new GameScreen();
         setScreen(gameScreen);
