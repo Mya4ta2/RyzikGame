@@ -36,6 +36,8 @@ public class MainActivity extends Game {
         Blocks.brick.setTexture(textureRegions[2][1]);
         Floors.sandBrick.setTexture(textureRegions[3][0]);
 
+        Items.test.setTexture(textureRegions[2][1]);
+
         gameScreen.getWorld().getPlayer().setLeftTexture(textureRegions[0][0]);
         gameScreen.getWorld().getPlayer().setRigthTexture(textureRegions[0][1]);
     }

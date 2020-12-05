@@ -3,9 +3,11 @@ package com.ryzik.type;
 import com.badlogic.gdx.math.Vector2;
 import com.ryzik.content.Blocks;
 import com.ryzik.content.Floors;
+import com.ryzik.content.Items;
 
 public class World {
     private Tiles tiles;
+    private DroppedItems droppedItems;
 
     private Player player;
 
@@ -15,6 +17,7 @@ public class World {
         this.width = width;
         this.height = height;
         tiles = new Tiles(width,height);
+        droppedItems = new DroppedItems();
 
         test();
     }
@@ -23,6 +26,8 @@ public class World {
     public void test() {
         player = new Player();
         player.setPosition(new Vector2(15/2, 15/2));
+
+        new DroppedItem(this, Items.test,5,10.3f);
     }
 
     public Tiles getTiles() {
@@ -43,5 +48,9 @@ public class World {
 
     public int getHeight() {
         return height;
+    }
+
+    public DroppedItems getDroppedItems() {
+        return droppedItems;
     }
 }
