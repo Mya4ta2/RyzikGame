@@ -12,6 +12,8 @@ public class DesktopLauncher {
 			{
 				config.title = "Ryzik";
 				config.addIcon("icon.png", Files.FileType.Internal);
+				config.height = 480;
+				config.width = 640;
 			}
 		};
 	}
