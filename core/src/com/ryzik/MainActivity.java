@@ -15,6 +15,8 @@ public class MainActivity extends Game {
 
     @Override
     public void create() {
+        Vars.ERROR_TEXTURE = new TextureRegion(new Texture("error.png"));
+
         new Blocks().load();
         new Floors().load();
         new Items().load();
@@ -36,7 +38,7 @@ public class MainActivity extends Game {
         Blocks.brick.setTexture(textureRegions[2][1]);
         Floors.sandBrick.setTexture(textureRegions[3][0]);
 
-        Items.test.setTexture(textureRegions[2][1]);
+        //Items.test.setTexture(textureRegions[2][1]);
 
         gameScreen.getWorld().getPlayer().setLeftTexture(textureRegions[0][0]);
         gameScreen.getWorld().getPlayer().setRigthTexture(textureRegions[0][1]);

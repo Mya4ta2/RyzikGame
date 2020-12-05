@@ -7,7 +7,7 @@ import com.ryzik.content.Floors;
 import com.ryzik.ctype.MappableContent;
 
 public class Floor implements MappableContent {
-    private TextureRegion texture;
+    private TextureRegion texture = Vars.ERROR_TEXTURE;
     private String name;
 
     private float width = 1, height = 1;

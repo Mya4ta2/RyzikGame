@@ -9,7 +9,7 @@ import com.ryzik.content.Blocks;
 import com.ryzik.ctype.MappableContent;
 
 public class Block implements MappableContent {
-    private TextureRegion texture;
+    private TextureRegion texture = Vars.ERROR_TEXTURE;
 
     private float width = 1, height = 1;
 

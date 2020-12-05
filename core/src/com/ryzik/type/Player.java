@@ -16,8 +16,8 @@ public class Player implements MappableContent {
     private Vector2 oldPosition = new Vector2();
     private Vector2 velocity = new Vector2();
     private Rectangle bounds = new Rectangle();
-    private TextureRegion rigthTexture;
-    private TextureRegion leftTexture;
+    private TextureRegion rigthTexture = Vars.ERROR_TEXTURE;
+    private TextureRegion leftTexture = Vars.ERROR_TEXTURE;
 
     private int MaxHealth = 100;
     private int health;
