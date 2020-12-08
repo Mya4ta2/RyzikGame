@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -16,6 +18,7 @@ import com.ryzik.ui.TextButton;
 public class UIRenderer implements Renderer {
     private Stage gameStage;
     private Stage resumeStage;
+    private Stage settingsStage;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
@@ -39,6 +42,7 @@ public class UIRenderer implements Renderer {
 
         gameStage = new Stage();
         resumeStage = new Stage();
+        settingsStage = new Stage();
         currentStage = gameStage;
         gameStage.setViewport(viewport);
         resumeStage.setViewport(viewport);
@@ -80,16 +84,37 @@ public class UIRenderer implements Renderer {
         resumeButton.setHeight(50);
         resumeButton.setWidth(150);
         resumeButton.setText("resume");
+        resumeButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                currentStage = gameStage;
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
 
         settingsButton = new TextButton(buttonUp,buttonDown,font);
         settingsButton.setHeight(50);
         settingsButton.setWidth(150);
         settingsButton.setText("settings");
+        settingsButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                currentStage = settingsStage;
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
 
         exitButton = new TextButton(buttonUp, buttonDown, font);
         exitButton.setHeight(50);
         exitButton.setWidth(150);
         exitButton.setText("exit");
+        exitButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.exit();
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
 
         resumeStage.addActor(resumeButton);
         resumeStage.addActor(settingsButton);
