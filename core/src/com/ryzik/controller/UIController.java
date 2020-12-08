@@ -18,7 +18,11 @@ public class UIController {
 
     public void processInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            uiRenderer.setCurrentStage(uiRenderer.getResumeStage());
+            if (uiRenderer.getCurrentStage() == uiRenderer.getResumeStage()) {
+                uiRenderer.setCurrentStage(uiRenderer.getGameStage());
+            } else {
+                uiRenderer.setCurrentStage(uiRenderer.getResumeStage());
+            }
         }
     }
 }

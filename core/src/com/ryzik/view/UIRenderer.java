@@ -3,6 +3,7 @@ package com.ryzik.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ryzik.ctype.Renderer;
+import com.ryzik.ui.TextButton;
 
 public class UIRenderer implements Renderer {
     private Stage gameStage;
@@ -20,6 +22,11 @@ public class UIRenderer implements Renderer {
     private BitmapFont font;
     private Stage currentStage;
 
+    //resume stage
+    private TextButton resumeButton;
+    private TextButton settingsButton;
+    private TextButton exitButton;
+
     private float pixelX;
     private float pixelY;
 
@@ -27,21 +34,21 @@ public class UIRenderer implements Renderer {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         viewport = new ScreenViewport(camera);
+        font = new BitmapFont();
+        font.setColor(Color.BLACK);
+
         gameStage = new Stage();
         resumeStage = new Stage();
         currentStage = gameStage;
-        font = new BitmapFont();
-        font.setColor(Color.BLACK);
+        gameStage.setViewport(viewport);
+        resumeStage.setViewport(viewport);
+        initStages();
     }
 
     @Override
     public void render(float delta) {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        font.draw(batch,"1", pixelX,pixelY * 25);
-        font.draw(batch,"2", pixelX,pixelY * 1080);
-        font.draw(batch,"3", pixelX * 1900,pixelY * 25);
-        font.draw(batch,"4", pixelX * 1900,pixelY * 1080);
         batch.end();
 
         currentStage.act();
@@ -57,7 +64,36 @@ public class UIRenderer implements Renderer {
         pixelX = Gdx.graphics.getWidth() / 1920f;
         pixelY = Gdx.graphics.getHeight() / 1080f;
 
+        resumeButton.setPosition(pixelX * 960-150/2, pixelY * 650 + 10);
+        settingsButton.setPosition(pixelX * 960-150/2, pixelY * 540);
+        exitButton.setPosition(pixelX * 960-150/2, pixelY * 430 - 10);
+
         camera.position.set(width/2,height/2, 0);
+    }
+
+    //i make this for first time, maybe i after remake it =(
+    public void initStages() {
+        Texture buttonUp = new Texture("buttonUp.png");
+        Texture buttonDown = new Texture("buttonDown.png");
+
+        resumeButton = new TextButton(buttonUp,buttonDown,font);
+        resumeButton.setHeight(50);
+        resumeButton.setWidth(150);
+        resumeButton.setText("resume");
+
+        settingsButton = new TextButton(buttonUp,buttonDown,font);
+        settingsButton.setHeight(50);
+        settingsButton.setWidth(150);
+        settingsButton.setText("settings");
+
+        exitButton = new TextButton(buttonUp, buttonDown, font);
+        exitButton.setHeight(50);
+        exitButton.setWidth(150);
+        exitButton.setText("exit");
+
+        resumeStage.addActor(resumeButton);
+        resumeStage.addActor(settingsButton);
+        resumeStage.addActor(exitButton);
     }
 
     public Stage getCurrentStage() {

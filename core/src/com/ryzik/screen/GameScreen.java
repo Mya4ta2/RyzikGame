@@ -42,6 +42,8 @@ public class GameScreen implements Screen {
         controller.update(delta);
         uiRenderer.render(delta);
         uiController.update(delta);
+
+        Gdx.input.setInputProcessor(uiRenderer.getCurrentStage());
     }
 
     @Override
