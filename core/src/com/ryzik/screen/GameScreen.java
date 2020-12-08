@@ -30,7 +30,7 @@ public class GameScreen implements Screen {
         renderer = new WorldRenderer(world);
         controller = new WorldController(world);
         uiRenderer = new UIRenderer();
-        uiController = new UIController();
+        uiController = new UIController(uiRenderer);
     }
 
     @Override

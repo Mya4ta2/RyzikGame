@@ -12,11 +12,13 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ryzik.ctype.Renderer;
 
 public class UIRenderer implements Renderer {
-    private Stage stage;
+    private Stage gameStage;
+    private Stage resumeStage;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
     private BitmapFont font;
+    private Stage currentStage;
 
     private float pixelX;
     private float pixelY;
@@ -25,7 +27,9 @@ public class UIRenderer implements Renderer {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         viewport = new ScreenViewport(camera);
-        stage = new Stage();
+        gameStage = new Stage();
+        resumeStage = new Stage();
+        currentStage = gameStage;
         font = new BitmapFont();
         font.setColor(Color.BLACK);
     }
@@ -40,6 +44,9 @@ public class UIRenderer implements Renderer {
         font.draw(batch,"4", pixelX * 1900,pixelY * 1080);
         batch.end();
 
+        currentStage.act();
+        currentStage.draw();
+
         camera.update();
         viewport.apply();
     }
@@ -51,5 +58,21 @@ public class UIRenderer implements Renderer {
         pixelY = Gdx.graphics.getHeight() / 1080f;
 
         camera.position.set(width/2,height/2, 0);
+    }
+
+    public Stage getCurrentStage() {
+        return currentStage;
+    }
+
+    public void setCurrentStage(Stage currentStage) {
+        this.currentStage = currentStage;
+    }
+
+    public Stage getGameStage() {
+        return gameStage;
+    }
+
+    public Stage getResumeStage() {
+        return resumeStage;
     }
 }
