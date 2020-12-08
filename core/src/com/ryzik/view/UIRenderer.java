@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -33,11 +34,10 @@ public class UIRenderer implements Renderer {
     public void render(float delta) {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-
-        font.draw(batch,"oh 1", pixelX,pixelY * 16);
-        font.draw(batch,"oh 2", pixelX,pixelY * 480);
-        font.draw(batch,"oh 3", pixelX * 457,pixelY * 16);
-        font.draw(batch,"oh 4", pixelX * 457,pixelY * 480);
+        font.draw(batch,"1", pixelX,pixelY * 25);
+        font.draw(batch,"2", pixelX,pixelY * 1080);
+        font.draw(batch,"3", pixelX * 1900,pixelY * 25);
+        font.draw(batch,"4", pixelX * 1900,pixelY * 1080);
         batch.end();
 
         camera.update();
@@ -47,9 +47,9 @@ public class UIRenderer implements Renderer {
     @Override
     public void resize(int width, int height) {
         viewport.update(width,height);
-        camera.position.set(width / 2, height / 2,0);
+        pixelX = Gdx.graphics.getWidth() / 1920f;
+        pixelY = Gdx.graphics.getHeight() / 1080f;
 
-        pixelX = Gdx.graphics.getWidth() / 480f;
-        pixelY = Gdx.graphics.getHeight() / 480f;
+        camera.position.set(width/2,height/2, 0);
     }
 }

@@ -3,6 +3,7 @@ package com.ryzik.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.ryzik.controller.UIController;
 import com.ryzik.controller.WorldController;
 import com.ryzik.save.MapReader;
 import com.ryzik.type.World;
@@ -17,6 +18,7 @@ public class GameScreen implements Screen {
     private WorldRenderer renderer;
     private WorldController controller;
     private UIRenderer uiRenderer;
+    private UIController uiController;
 
     @Override
     public void show() {
@@ -28,6 +30,7 @@ public class GameScreen implements Screen {
         renderer = new WorldRenderer(world);
         controller = new WorldController(world);
         uiRenderer = new UIRenderer();
+        uiController = new UIController();
     }
 
     @Override
@@ -38,6 +41,7 @@ public class GameScreen implements Screen {
         renderer.render(delta);
         controller.update(delta);
         uiRenderer.render(delta);
+        uiController.update(delta);
     }
 
     @Override
