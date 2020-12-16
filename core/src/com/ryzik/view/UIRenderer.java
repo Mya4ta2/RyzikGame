@@ -1,6 +1,7 @@
 package com.ryzik.view;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -88,8 +89,9 @@ public class UIRenderer implements Renderer {
     public void initStages() {
         Texture buttonUp = new Texture("buttonUp.png");
         Texture buttonDown = new Texture("buttonDown.png");
+        Sound buttonSound = Gdx.audio.newSound(Gdx.files.internal("minecraft_click.wav"));
 
-        resumeButton = new TextButton(buttonUp,buttonDown,font);
+        resumeButton = new TextButton(buttonUp,buttonDown, buttonSound, font);
         resumeButton.setHeight(50);
         resumeButton.setWidth(150);
         resumeButton.setText("resume");
@@ -101,7 +103,7 @@ public class UIRenderer implements Renderer {
             }
         });
 
-        settingsButton = new TextButton(buttonUp,buttonDown,font);
+        settingsButton = new TextButton(buttonUp,buttonDown, buttonSound, font);
         settingsButton.setHeight(50);
         settingsButton.setWidth(150);
         settingsButton.setText("settings");
@@ -113,7 +115,7 @@ public class UIRenderer implements Renderer {
             }
         });
 
-        exitButton = new TextButton(buttonUp, buttonDown, font);
+        exitButton = new TextButton(buttonUp, buttonDown, buttonSound, font);
         exitButton.setHeight(50);
         exitButton.setWidth(150);
         exitButton.setText("exit");

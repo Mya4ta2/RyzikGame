@@ -4,6 +4,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.ryzik.Vars;
 
 public class Button extends Actor {
 
@@ -49,7 +50,7 @@ public class Button extends Actor {
     public void press() {
         pressed = true;
         if (useSound) {
-            pressSound.play();
+            pressSound.play(Vars.UI_VOLUME);
         }
     }
 
