@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ryzik.ctype.Renderer;
+import com.ryzik.ui.Separator;
 import com.ryzik.ui.TextButton;
 
 public class UIRenderer implements Renderer {
@@ -126,8 +127,12 @@ public class UIRenderer implements Renderer {
 
         table.center().add(resumeButton);
         table.center().row();
+        table.add(new Separator(10));
+        table.row();
         table.center().add(settingsButton);
         table.center().row();
+        table.add(new Separator(10));
+        table.row();
         table.center().add(exitButton);
 
         resumeStage.addActor(table);
