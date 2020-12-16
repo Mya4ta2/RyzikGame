@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ryzik.ctype.Renderer;
@@ -30,6 +31,8 @@ public class UIRenderer implements Renderer {
     private TextButton settingsButton;
     private TextButton exitButton;
 
+    private Table table;
+
     private float pixelX;
     private float pixelY;
 
@@ -46,6 +49,9 @@ public class UIRenderer implements Renderer {
         currentStage = gameStage;
         gameStage.setViewport(viewport);
         resumeStage.setViewport(viewport);
+
+        table = new Table();
+
         initStages();
     }
 
@@ -71,6 +77,8 @@ public class UIRenderer implements Renderer {
         resumeButton.setPosition(pixelX * 960-150/2, pixelY * 540 + 65);
         settingsButton.setPosition(pixelX * 960-150/2, pixelY * 540);
         exitButton.setPosition(pixelX * 960-150/2, pixelY * 540 - 65);
+
+        table.setSize(width,height);
 
         camera.position.set(width/2,height/2, 0);
     }
@@ -116,9 +124,13 @@ public class UIRenderer implements Renderer {
             }
         });
 
-        resumeStage.addActor(resumeButton);
-        resumeStage.addActor(settingsButton);
-        resumeStage.addActor(exitButton);
+        table.center().add(resumeButton);
+        table.center().row();
+        table.center().add(settingsButton);
+        table.center().row();
+        table.center().add(exitButton);
+
+        resumeStage.addActor(table);
     }
 
     public Stage getCurrentStage() {
