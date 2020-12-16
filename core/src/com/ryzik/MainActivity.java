@@ -9,6 +9,7 @@ import com.ryzik.content.Floors;
 import com.ryzik.content.Items;
 import com.ryzik.content.Weapons;
 import com.ryzik.screen.GameScreen;
+import com.ryzik.screen.MenuScreen;
 
 public class MainActivity extends Game {
 
@@ -23,8 +24,9 @@ public class MainActivity extends Game {
         new Items().load();
         new Weapons().load();
 
-        gameScreen = new GameScreen();
-        setScreen(gameScreen);
+        gameScreen = new GameScreen(this);
+        setScreen(gameScreen); // init games screen
+        setScreen(new MenuScreen(this));
 
         loadTextures();
     }
@@ -44,5 +46,9 @@ public class MainActivity extends Game {
 
         gameScreen.getWorld().getPlayer().setLeftTexture(textureRegions[0][0]);
         gameScreen.getWorld().getPlayer().setRigthTexture(textureRegions[0][1]);
+    }
+
+    public GameScreen getGameScreen() {
+        return gameScreen;
     }
 }

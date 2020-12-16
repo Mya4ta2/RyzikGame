@@ -1,8 +1,10 @@
 package com.ryzik.screen;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.ryzik.MainActivity;
 import com.ryzik.controller.UIController;
 import com.ryzik.controller.WorldController;
 import com.ryzik.save.MapReader;
@@ -14,11 +16,17 @@ import java.io.FileNotFoundException;
 
 public class GameScreen implements Screen {
 
+    private MainActivity game;
+
     private World world;
     private WorldRenderer renderer;
     private WorldController controller;
     private UIRenderer uiRenderer;
     private UIController uiController;
+
+    public GameScreen(MainActivity game) {
+        this.game = game;
+    }
 
     @Override
     public void show() {

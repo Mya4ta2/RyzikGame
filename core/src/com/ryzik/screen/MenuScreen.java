@@ -1,8 +1,11 @@
-package com.ryzik.view;
+package com.ryzik.screen;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -13,99 +16,103 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.ryzik.ctype.Renderer;
+import com.ryzik.MainActivity;
 import com.ryzik.ui.Separator;
 import com.ryzik.ui.TextButton;
 
-public class UIRenderer implements Renderer {
-    private Stage gameStage;
-    private Stage resumeStage;
-    private Stage settingsStage;
+public class MenuScreen implements Screen {
+
+    private MainActivity game;
+
+    private Stage stage;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
     private BitmapFont font;
     private Stage currentStage;
 
-    //resume stage
-    private TextButton resumeButton;
-    private TextButton settingsButton;
+    private TextButton singleplayerButton;
+    private TextButton multiplayerButton;
     private TextButton exitButton;
 
     private Table table;
 
-    public UIRenderer() {
+    public MenuScreen(MainActivity game) {
+        this.game = game;
+    }
+
+    @Override
+    public void show() {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         viewport = new ScreenViewport(camera);
         font = new BitmapFont();
         font.setColor(Color.BLACK);
 
-        gameStage = new Stage();
-        resumeStage = new Stage();
-        settingsStage = new Stage();
-        currentStage = gameStage;
-        gameStage.setViewport(viewport);
-        resumeStage.setViewport(viewport);
+        stage = new Stage();
+        stage.setViewport(viewport);
+        currentStage = stage;
 
         table = new Table();
 
+        Gdx.input.setInputProcessor(stage);
         initStages();
     }
 
     @Override
     public void render(float delta) {
-        batch.setProjectionMatrix(camera.combined);
-        batch.begin();
-        batch.end();
+        Gdx.gl20.glClearColor(1,1,1,1);
+        Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         currentStage.act();
         currentStage.draw();
 
-        camera.update();
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+
+        batch.end();
+
         viewport.apply();
+        camera.update();
     }
 
     @Override
     public void resize(int width, int height) {
         viewport.update(width,height);
-
         table.setSize(width,height);
-
         camera.position.set(width/2,height/2, 0);
     }
 
-    //i make this for first time, maybe i after remake it =(
     public void initStages() {
         Texture buttonUp = new Texture("buttonUp.png");
         Texture buttonDown = new Texture("buttonDown.png");
         Sound buttonSound = Gdx.audio.newSound(Gdx.files.internal("minecraft_click.wav"));
 
-        resumeButton = new TextButton(buttonUp,buttonDown, buttonSound, font);
-        resumeButton.setHeight(50);
-        resumeButton.setWidth(150);
-        resumeButton.setText("resume");
-        resumeButton.addListener(new InputListener(){
+        singleplayerButton = new com.ryzik.ui.TextButton(buttonUp,buttonDown, buttonSound, font);
+        singleplayerButton.setHeight(50);
+        singleplayerButton.setWidth(150);
+        singleplayerButton.setText("single player");
+        singleplayerButton.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                currentStage = gameStage;
+                game.setScreen(game.getGameScreen());
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
 
-        settingsButton = new TextButton(buttonUp,buttonDown, buttonSound, font);
-        settingsButton.setHeight(50);
-        settingsButton.setWidth(150);
-        settingsButton.setText("settings");
-        settingsButton.addListener(new InputListener(){
+        multiplayerButton = new com.ryzik.ui.TextButton(buttonUp,buttonDown, buttonSound, font);
+        multiplayerButton.setHeight(50);
+        multiplayerButton.setWidth(150);
+        multiplayerButton.setText("multi player (none)");
+        multiplayerButton.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                currentStage = settingsStage;
+                //none =)
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
 
-        exitButton = new TextButton(buttonUp, buttonDown, buttonSound, font);
+        exitButton = new com.ryzik.ui.TextButton(buttonUp,buttonDown, buttonSound, font);
         exitButton.setHeight(50);
         exitButton.setWidth(150);
         exitButton.setText("exit");
@@ -117,32 +124,37 @@ public class UIRenderer implements Renderer {
             }
         });
 
-        table.center().add(resumeButton);
+        table.center().add(singleplayerButton);
         table.center().row();
         table.add(new Separator(10));
         table.row();
-        table.center().add(settingsButton);
+        table.center().add(multiplayerButton);
         table.center().row();
         table.add(new Separator(10));
         table.row();
         table.center().add(exitButton);
+        table.center().row();
 
-        resumeStage.addActor(table);
+        stage.addActor(table);
     }
 
-    public Stage getCurrentStage() {
-        return currentStage;
+    @Override
+    public void pause() {
+
     }
 
-    public void setCurrentStage(Stage currentStage) {
-        this.currentStage = currentStage;
+    @Override
+    public void resume() {
+
     }
 
-    public Stage getGameStage() {
-        return gameStage;
+    @Override
+    public void hide() {
+
     }
 
-    public Stage getResumeStage() {
-        return resumeStage;
+    @Override
+    public void dispose() {
+
     }
 }
