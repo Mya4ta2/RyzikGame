@@ -68,9 +68,9 @@ public class UIRenderer implements Renderer {
         pixelX = Gdx.graphics.getWidth() / 1920f;
         pixelY = Gdx.graphics.getHeight() / 1080f;
 
-        resumeButton.setPosition(pixelX * 960-150/2, pixelY * 650 + 10);
+        resumeButton.setPosition(pixelX * 960-150/2, pixelY * 540 + 65);
         settingsButton.setPosition(pixelX * 960-150/2, pixelY * 540);
-        exitButton.setPosition(pixelX * 960-150/2, pixelY * 430 - 10);
+        exitButton.setPosition(pixelX * 960-150/2, pixelY * 540 - 65);
 
         camera.position.set(width/2,height/2, 0);
     }
