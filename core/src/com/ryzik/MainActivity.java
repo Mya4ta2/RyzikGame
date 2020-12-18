@@ -14,6 +14,7 @@ import com.ryzik.screen.MenuScreen;
 public class MainActivity extends Game {
 
     private GameScreen gameScreen;
+    private MenuScreen menuScreen;
 
     @Override
     public void create() {
@@ -25,8 +26,9 @@ public class MainActivity extends Game {
         new Weapons().load();
 
         gameScreen = new GameScreen(this);
-        setScreen(gameScreen); // init games screen
-        setScreen(new MenuScreen(this));
+        menuScreen = new MenuScreen(this);
+        setScreen(gameScreen); // init game screen
+        setScreen(menuScreen);
 
         loadTextures();
     }
@@ -50,5 +52,9 @@ public class MainActivity extends Game {
 
     public GameScreen getGameScreen() {
         return gameScreen;
+    }
+
+    public MenuScreen getMenuScreen() {
+        return menuScreen;
     }
 }

@@ -37,7 +37,7 @@ public class GameScreen implements Screen {
         }
         renderer = new WorldRenderer(world);
         controller = new WorldController(world);
-        uiRenderer = new UIRenderer();
+        uiRenderer = new UIRenderer(game);
         uiController = new UIController(uiRenderer);
     }
 

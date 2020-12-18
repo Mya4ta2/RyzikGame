@@ -1,5 +1,6 @@
 package com.ryzik.view;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.ryzik.MainActivity;
 import com.ryzik.ctype.Renderer;
 import com.ryzik.ui.Separator;
 import com.ryzik.ui.TextButton;
@@ -33,8 +35,10 @@ public class UIRenderer implements Renderer {
     private TextButton exitButton;
 
     private Table table;
+    private MainActivity game;
 
-    public UIRenderer() {
+    public UIRenderer(MainActivity game) {
+        this.game = game;
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         viewport = new ScreenViewport(camera);
@@ -112,7 +116,7 @@ public class UIRenderer implements Renderer {
         exitButton.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.exit();
+                game.setScreen(game.getMenuScreen());
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
