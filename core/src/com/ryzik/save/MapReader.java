@@ -3,6 +3,8 @@ package com.ryzik.save;
 import com.badlogic.gdx.files.FileHandle;
 import com.ryzik.content.Blocks;
 import com.ryzik.content.Floors;
+import com.ryzik.ctype.MappableContent;
+import com.ryzik.type.Block;
 import com.ryzik.type.Floor;
 import com.ryzik.type.World;
 
@@ -51,19 +53,39 @@ public class MapReader {
                     );
 
                     if (contentTypeMatcher.find()) {
-                        if (contentTypeMatcher.group(0).contains("Blocks")) {
-                            for (int i = 0; i < blockPositions.length; i++) {
-                                world.getTiles().get(
-                                        blockPositions[i][0],
-                                        blockPositions[i][1]
-                                ).setBlock(Blocks.sandBrick);
+                        String[] contentTypes = contentTypeMatcher.group(0).replace("([", " ").trim().split("\\.");
+                        String contentType = contentTypes[0];
+                        String contentName = contentTypes[1];
+                        MappableContent contentTypeObj = null;
+
+                        if (contentType.equals("Blocks")) {
+                            for (Block block : Blocks.blocks) {
+                                if (block.getName().equals(contentName)) {
+                                    contentTypeObj = block;
+                                }
                             }
-                        } else if (contentTypeMatcher.group(0).contains("Floors")) {
+
+                            if (contentTypeObj == null) throw new Exception("error find block" + contentName);
+
                             for (int i = 0; i < blockPositions.length; i++) {
                                 world.getTiles().get(
                                         blockPositions[i][0],
                                         blockPositions[i][1]
-                                ).setFloor(Floors.sandBrick);
+                                ).setBlock((Block) contentTypeObj);
+                            }
+                        } else if (contentType.equals("Floors")) {
+                            for (Floor floor : Floors.floors) {
+                                if (floor.getName().equals(contentName)) {
+                                    contentTypeObj = floor;
+                                }
+                            }
+
+                            if (contentTypeObj == null) throw new Exception("error find floor " + contentName);
+                            for (int i = 0; i < blockPositions.length; i++) {
+                                world.getTiles().get(
+                                        blockPositions[i][0],
+                                        blockPositions[i][1]
+                                ).setFloor((Floor) contentTypeObj);
                             }
                         }
                     }

@@ -10,11 +10,12 @@ import com.ryzik.ctype.MappableContent;
 
 public class Block implements MappableContent {
     private TextureRegion texture = Vars.ERROR_TEXTURE;
+    private final String name;
 
     private float width = 1, height = 1;
 
     public Block(String name) {
-
+        this.name = name;
         Blocks.blocks.add(this);
     }
 
@@ -51,5 +52,9 @@ public class Block implements MappableContent {
                 width * Vars.TILE_SIZE,
                 height * Vars.TILE_SIZE
         );
+    }
+
+    public String getName() {
+        return name;
     }
 }

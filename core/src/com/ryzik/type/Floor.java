@@ -51,4 +51,8 @@ public class Floor implements MappableContent {
                 height * Vars.TILE_SIZE
         );
     }
+
+    public String getName() {
+        return name;
+    }
 }
