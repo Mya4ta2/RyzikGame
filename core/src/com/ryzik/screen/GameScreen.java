@@ -51,6 +51,11 @@ public class GameScreen implements Screen {
         uiRenderer.render(delta);
         uiController.update(delta);
 
+        if (uiRenderer.getChatField().isFocus()) {
+            uiRenderer.getCurrentStage().setKeyboardFocus(uiRenderer.getChatField());
+        } else {
+            uiRenderer.getCurrentStage().unfocusAll();
+        }
         Gdx.input.setInputProcessor(uiRenderer.getCurrentStage());
     }
 

@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ryzik.MainActivity;
 import com.ryzik.ctype.Renderer;
+import com.ryzik.type.TextField;
 import com.ryzik.ui.Separator;
 import com.ryzik.ui.TextButton;
 
@@ -33,8 +35,10 @@ public class UIRenderer implements Renderer {
     private TextButton resumeButton;
     private TextButton settingsButton;
     private TextButton exitButton;
+    private TextField chatField;
 
     private Table table;
+    private Table gameTable;
     private MainActivity game;
 
     public UIRenderer(MainActivity game) {
@@ -51,8 +55,10 @@ public class UIRenderer implements Renderer {
         currentStage = gameStage;
         gameStage.setViewport(viewport);
         resumeStage.setViewport(viewport);
+        chatField = new TextField(new TextureRegion(new Texture("chatBackground.png")));
 
         table = new Table();
+        gameTable = new Table();
 
         initStages();
     }
@@ -75,6 +81,7 @@ public class UIRenderer implements Renderer {
         viewport.update(width,height);
 
         table.setSize(width,height);
+        gameTable.setSize(width,height);
 
         camera.position.set(width/2,height/2, 0);
     }
@@ -131,7 +138,11 @@ public class UIRenderer implements Renderer {
         table.row();
         table.center().add(exitButton);
 
+        gameTable.bottom().left().add(chatField);
+        gameTable.bottom().left().row();
+
         resumeStage.addActor(table);
+        gameStage.addActor(gameTable);
     }
 
     public Stage getCurrentStage() {
@@ -148,5 +159,9 @@ public class UIRenderer implements Renderer {
 
     public Stage getResumeStage() {
         return resumeStage;
+    }
+
+    public TextField getChatField() {
+        return chatField;
     }
 }
