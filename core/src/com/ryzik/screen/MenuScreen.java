@@ -17,8 +17,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ryzik.MainActivity;
+import com.ryzik.save.MapReader;
+import com.ryzik.type.World;
 import com.ryzik.ui.Separator;
 import com.ryzik.ui.TextButton;
+import com.ryzik.view.MenuBackgroundRenderer;
 
 public class MenuScreen implements Screen {
 
@@ -34,6 +37,9 @@ public class MenuScreen implements Screen {
     private TextButton singleplayerButton;
     private TextButton multiplayerButton;
     private TextButton exitButton;
+
+    private World backgroundWorld;
+    private MenuBackgroundRenderer backgroundRenderer;
 
     private Table table;
 
@@ -53,6 +59,14 @@ public class MenuScreen implements Screen {
         stage.setViewport(viewport);
         currentStage = stage;
 
+        try {
+            backgroundWorld = MapReader.getWorldFromFile(Gdx.files.internal("backgroundMap.rsav"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        backgroundRenderer = new MenuBackgroundRenderer(backgroundWorld);
+
         table = new Table();
 
         Gdx.input.setInputProcessor(stage);
@@ -64,13 +78,16 @@ public class MenuScreen implements Screen {
         Gdx.gl20.glClearColor(1,1,1,1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        backgroundRenderer.render(delta);
+
         currentStage.act();
         currentStage.draw();
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-
         batch.end();
+
+        backgroundWorld.getPlayer().getVelocity().add(1f,1f);
 
         viewport.apply();
         camera.update();
@@ -81,6 +98,7 @@ public class MenuScreen implements Screen {
         viewport.update(width,height);
         table.setSize(width,height);
         camera.position.set(width/2,height/2, 0);
+        backgroundRenderer.resize(width,height);
     }
 
     public void initStages() {
