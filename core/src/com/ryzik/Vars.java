@@ -11,4 +11,8 @@ public class Vars {
     public static float SOUND_VOLUME = 1f;
     public static float MUSIC_VOLUME = 1f;
     public static float UI_VOLUME = 1f;
+
+    //oh no...
+    public static TextureRegion PLAYER_LEFT_TEXTURE;
+    public static TextureRegion PLAYER_RIGHT_TEXTURE;
 }

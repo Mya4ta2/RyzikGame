@@ -1,6 +1,5 @@
 package com.ryzik.type;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -16,8 +15,8 @@ public class Player implements MappableContent {
     private Vector2 oldPosition = new Vector2();
     private Vector2 velocity = new Vector2();
     private Rectangle bounds = new Rectangle();
-    private TextureRegion rigthTexture = Vars.ERROR_TEXTURE;
-    private TextureRegion leftTexture = Vars.ERROR_TEXTURE;
+    private TextureRegion rightTexture = Vars.PLAYER_RIGHT_TEXTURE != null ? Vars.PLAYER_RIGHT_TEXTURE : Vars.ERROR_TEXTURE;
+    private TextureRegion leftTexture = Vars.PLAYER_LEFT_TEXTURE != null ? Vars.PLAYER_LEFT_TEXTURE : Vars.ERROR_TEXTURE;
 
     private int MaxHealth = 100;
     private int health;
@@ -62,8 +61,7 @@ public class Player implements MappableContent {
 
     @Override
     public void draw(SpriteBatch batch, int x, int y) {
-
-        if (velocity.x > 0) walkLeft = false; else walkLeft = true;
+        if (velocity.x > 1) walkLeft = false; else walkLeft = true;
 
         if (walkLeft) {
             batch.draw(
@@ -74,7 +72,7 @@ public class Player implements MappableContent {
                     HEIGHT * Vars.TILE_SIZE);
         } else {
             batch.draw(
-                    rigthTexture,
+                    rightTexture,
                     position.x * Vars.TILE_SIZE,
                     position.y * Vars.TILE_SIZE,
                     WIDTH * Vars.TILE_SIZE,
@@ -163,12 +161,12 @@ public class Player implements MappableContent {
         this.health = health;
     }
 
-    public TextureRegion getRigthTexture() {
-        return rigthTexture;
+    public TextureRegion getRightTexture() {
+        return rightTexture;
     }
 
-    public void setRigthTexture(TextureRegion rigthTexture) {
-        this.rigthTexture = rigthTexture;
+    public void setRightTexture(TextureRegion rightTexture) {
+        this.rightTexture = rightTexture;
     }
 
     public TextureRegion getLeftTexture() {

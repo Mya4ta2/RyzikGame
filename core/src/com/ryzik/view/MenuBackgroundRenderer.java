@@ -34,8 +34,8 @@ public class MenuBackgroundRenderer implements Renderer {
         viewport = new ScreenViewport(camera);
 
         camera.position.set(
-                world.getPlayer().getPosition().x * Vars.TILE_SIZE + Vars.TILE_SIZE/2f,
-                world.getPlayer().getPosition().y * Vars.TILE_SIZE + Vars.TILE_SIZE/2f, 0);
+                world.getPlayer().getPosition().x * Vars.TILE_SIZE + Vars.TILE_SIZE,
+                world.getPlayer().getPosition().y * Vars.TILE_SIZE + Vars.TILE_SIZE, 0);
     }
 
     @Override

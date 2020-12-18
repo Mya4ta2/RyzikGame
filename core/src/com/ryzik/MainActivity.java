@@ -28,9 +28,9 @@ public class MainActivity extends Game {
         gameScreen = new GameScreen(this);
         menuScreen = new MenuScreen(this);
         setScreen(gameScreen); // init game screen
-        setScreen(menuScreen);
-
         loadTextures();
+
+        setScreen(menuScreen);
     }
 
     public void loadTextures() {
@@ -47,8 +47,8 @@ public class MainActivity extends Game {
 
         Items.test.setTexture(textureRegions[2][1]);
 
-        gameScreen.getWorld().getPlayer().setLeftTexture(textureRegions[0][0]);
-        gameScreen.getWorld().getPlayer().setRigthTexture(textureRegions[0][1]);
+        Vars.PLAYER_LEFT_TEXTURE = textureRegions[0][0];
+        Vars.PLAYER_RIGHT_TEXTURE = textureRegions[0][1];
     }
 
     public GameScreen getGameScreen() {
