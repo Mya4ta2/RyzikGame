@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,6 +20,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ryzik.MainActivity;
 import com.ryzik.save.MapReader;
 import com.ryzik.type.World;
+import com.ryzik.ui.Image;
 import com.ryzik.ui.Separator;
 import com.ryzik.ui.TextButton;
 import com.ryzik.view.MenuBackgroundRenderer;
@@ -37,6 +39,7 @@ public class MenuScreen implements Screen {
     private TextButton singleplayerButton;
     private TextButton multiplayerButton;
     private TextButton exitButton;
+    private Image logo;
 
     private World backgroundWorld;
     private MenuBackgroundRenderer backgroundRenderer;
@@ -142,6 +145,11 @@ public class MenuScreen implements Screen {
             }
         });
 
+        TextureRegion logoTexture = new TextureRegion(new Texture("logo.png"));
+        logo = new Image(logoTexture);
+
+        table.center().add(logo);
+        table.center().row();
         table.center().add(singleplayerButton);
         table.center().row();
         table.add(new Separator(10));
