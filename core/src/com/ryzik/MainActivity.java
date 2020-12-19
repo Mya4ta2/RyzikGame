@@ -40,10 +40,14 @@ public class MainActivity extends Game {
                 Vars.TILE_SIZE);
 
         Blocks.woodPlank.setTexture(textureRegions[1][0]);
+        Floors.stone.setTexture(textureRegions[0][2]);
+        Floors.brick.setTexture(textureRegions[0][3]);
+        Blocks.woodPlank.setTexture(textureRegions[1][0]);
+        Floors.woodenPlank.setTexture(textureRegions[1][1]);
         Blocks.sandBrick.setTexture(textureRegions[2][0]);
         Blocks.brick.setTexture(textureRegions[2][1]);
+        Floors.grass.setTexture(textureRegions[2][2]);
         Floors.sandBrick.setTexture(textureRegions[3][0]);
-        Floors.woodenPlank.setTexture(textureRegions[1][1]);
 
         Items.test.setTexture(textureRegions[2][1]);
 

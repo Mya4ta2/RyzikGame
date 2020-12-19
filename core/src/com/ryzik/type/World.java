@@ -25,7 +25,7 @@ public class World {
     // just debug
     public void test() {
         player = new Player();
-        player.setPosition(new Vector2(15/2, 15/2));
+        player.setPosition(new Vector2(width/2, height/2));
 
         new DroppedItem(this, Items.test,5,10.3f);
     }
