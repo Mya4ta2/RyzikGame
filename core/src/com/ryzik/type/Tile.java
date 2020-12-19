@@ -15,8 +15,8 @@ public class Tile {
     private Rectangle bounds = new Rectangle();
 
     public void draw(SpriteBatch batch) {
-        if (block != Blocks.air) block.draw(batch,x,y);
         if (floor != Floors.air) floor.draw(batch,x,y);
+        if (block != Blocks.air) block.draw(batch,x,y);
     }
 
     public Tile(int x, int y) {
