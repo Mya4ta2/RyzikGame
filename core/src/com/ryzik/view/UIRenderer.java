@@ -138,8 +138,8 @@ public class UIRenderer implements Renderer {
         table.row();
         table.center().add(exitButton);
 
-        gameTable.bottom().left().add(chatField);
-        gameTable.bottom().left().row();
+//        gameTable.bottom().left().add(chatField);
+//        gameTable.bottom().left().row();
 
         resumeStage.addActor(table);
         gameStage.addActor(gameTable);
