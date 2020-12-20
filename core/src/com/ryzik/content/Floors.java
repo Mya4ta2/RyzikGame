@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Floors implements ContentList {
-    public static Floor air, grass, stone, brick, woodenPlank, sandBrick;
+    public static Floor air, grass, sand, stone, brick, woodenPlank, sandBrick;
 
     public static List<Floor> floors = new ArrayList<>();
 
@@ -28,6 +28,12 @@ public class Floors implements ContentList {
         };
 
         stone = new Floor("stone") {
+            {
+
+            }
+        };
+
+        sand = new Floor("sand") {
             {
 
             }
