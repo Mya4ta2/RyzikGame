@@ -33,7 +33,7 @@ public class MapReader {
             Matcher worldSizeMatcher = worldSizePattern.matcher(strings[0]);
 
             if (worldSizeMatcher.find()) {
-                world = new World(Integer.parseInt(worldSizeMatcher.group(1)), Integer.parseInt(worldSizeMatcher.group(2)));
+                world = new World(Integer.parseInt(worldSizeMatcher.group(1)), Integer.parseInt(worldSizeMatcher.group(2)), mapFileHandle.nameWithoutExtension());
             } else {
                 throw new Exception("MapReader can't find world size on first line");
             }

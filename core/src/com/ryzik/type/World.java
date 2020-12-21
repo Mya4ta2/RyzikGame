@@ -8,12 +8,14 @@ import com.ryzik.content.Items;
 public class World {
     private Tiles tiles;
     private DroppedItems droppedItems;
+    private String name;
 
     private Player player;
 
     private final int width, height;
 
-    public World(int width, int height) {
+    public World(int width, int height, String name) {
+        this.name = name;
         this.width = width;
         this.height = height;
         tiles = new Tiles(width,height);
@@ -52,5 +54,9 @@ public class World {
 
     public DroppedItems getDroppedItems() {
         return droppedItems;
+    }
+
+    public String getName() {
+        return name;
     }
 }

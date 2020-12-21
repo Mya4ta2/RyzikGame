@@ -208,7 +208,7 @@ public class MenuScreen implements Screen {
             worldButton.add(new TextButton(buttonUp, buttonDown, buttonSound, font));
             worldButton.get(worldButton.size-1).setHeight(50);
             worldButton.get(worldButton.size-1).setWidth(150);
-            worldButton.get(worldButton.size-1).setText("world" + i);
+            worldButton.get(worldButton.size-1).setText(availableWorlds[i].getName());
             final int finalI = i;
             worldButton.get(worldButton.size-1).addListener(new InputListener(){
                 @Override
