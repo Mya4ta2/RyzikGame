@@ -11,6 +11,7 @@ import com.ryzik.ctype.MappableContent;
 public class Block implements MappableContent {
     private TextureRegion texture = Vars.ERROR_TEXTURE;
     private final String name;
+    private int health;
 
     private float width = 1, height = 1;
 
@@ -56,5 +57,13 @@ public class Block implements MappableContent {
 
     public String getName() {
         return name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 }

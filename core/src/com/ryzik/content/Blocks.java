@@ -16,43 +16,43 @@ public class Blocks implements ContentList {
     public void load() {
         air = new Block("air") {
             {
-
+                // lol, air not have health =(
             }
         };
 
         stone = new Block("stone") {
             {
-
+                setHealth(100);
             }
         };
 
         grass = new Block("grass") {
             {
-
+                setHealth(100);
             }
         };
 
         sand = new Block("sand") {
             {
-
+                setHealth(100);
             }
         };
 
         woodPlank = new Block("woodPlank") {
             {
-
+                setHealth(100);
             }
         };
 
         sandBrick = new Block("sandBrick") {
             {
-
+                setHealth(100);
             }
         };
 
         brick = new Block("brick") {
             {
-
+                setHealth(100);
             }
         };
     }
