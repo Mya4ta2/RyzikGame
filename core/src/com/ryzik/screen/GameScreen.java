@@ -30,11 +30,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        try {
-            world = MapReader.getWorldFromFile(Gdx.files.internal("testOh.rsav"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         renderer = new WorldRenderer(world);
         controller = new WorldController(world);
         uiRenderer = new UIRenderer(game);

@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ryzik.MainActivity;
@@ -25,26 +26,36 @@ import com.ryzik.ui.Separator;
 import com.ryzik.ui.TextButton;
 import com.ryzik.view.MenuBackgroundRenderer;
 
+import java.util.Arrays;
+
 public class MenuScreen implements Screen {
 
     private MainActivity game;
 
-    private Stage stage;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
     private BitmapFont font;
     private Stage currentStage;
 
+    //main menu
+    private Stage stage;
     private TextButton singleplayerButton;
     private TextButton multiplayerButton;
     private TextButton exitButton;
     private Image logo;
 
+    //world select menu
+    private Stage worldSelectStage;
+    private TextButton backButton;
+    private Array<TextButton> worldButton = new Array<>();
+    private World[] availableWorlds;
+
     private World backgroundWorld;
     private MenuBackgroundRenderer backgroundRenderer;
 
     private Table table;
+    private Table worldSelectTable;
 
     public MenuScreen(MainActivity game) {
         this.game = game;
@@ -62,17 +73,31 @@ public class MenuScreen implements Screen {
         stage.setViewport(viewport);
         currentStage = stage;
 
+        worldSelectStage = new Stage();
+        worldSelectStage.setViewport(viewport);
+
         try {
             backgroundWorld = MapReader.getWorldFromFile(Gdx.files.internal("backgroundMap.rsav"));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        try {
+            availableWorlds = new World[]{
+                    MapReader.getWorldFromFile(Gdx.files.internal("backgroundMap.rsav")),
+                    MapReader.getWorldFromFile(Gdx.files.internal("testOh.rsav")),
+                    MapReader.getWorldFromFile(Gdx.files.internal("testmap.rsav"))
+            };
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         backgroundRenderer = new MenuBackgroundRenderer(backgroundWorld);
 
         table = new Table();
+        worldSelectTable = new Table();
 
-        Gdx.input.setInputProcessor(stage);
         initStages();
     }
 
@@ -94,12 +119,15 @@ public class MenuScreen implements Screen {
 
         viewport.apply();
         camera.update();
+
+        Gdx.input.setInputProcessor(currentStage);
     }
 
     @Override
     public void resize(int width, int height) {
         viewport.update(width,height);
         table.setSize(width,height);
+        worldSelectTable.setSize(width,height);
         camera.position.set(width/2,height/2, 0);
         backgroundRenderer.resize(width,height);
     }
@@ -116,7 +144,7 @@ public class MenuScreen implements Screen {
         singleplayerButton.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(game.getGameScreen());
+                currentStage = worldSelectStage;
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
@@ -161,7 +189,44 @@ public class MenuScreen implements Screen {
         table.center().add(exitButton);
         table.center().row();
 
+        backButton = new com.ryzik.ui.TextButton(buttonUp,buttonDown, buttonSound, font);
+        backButton.setHeight(50);
+        backButton.setWidth(150);
+        backButton.setText("back");
+        backButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                currentStage = stage;
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+        worldSelectTable.center().add(backButton).row();
+        worldSelectTable.add(new Separator(10));
+        worldSelectTable.row();
+
+        for (int i = 0; i < availableWorlds.length; i++) {
+            worldButton.add(new TextButton(buttonUp, buttonDown, buttonSound, font));
+            worldButton.get(worldButton.size-1).setHeight(50);
+            worldButton.get(worldButton.size-1).setWidth(150);
+            worldButton.get(worldButton.size-1).setText("world" + i);
+            final int finalI = i;
+            worldButton.get(worldButton.size-1).addListener(new InputListener(){
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    GameScreen gameScreen = new GameScreen(game);
+                    gameScreen.setWorld(availableWorlds[finalI]);
+                    game.setScreen(gameScreen);
+                    return super.touchDown(event, x, y, pointer, button);
+                }
+            });
+            worldSelectTable.add(worldButton.get(worldButton.size-1));
+            worldSelectTable.row();
+            worldSelectTable.add(new Separator(10));
+            worldSelectTable.row();
+        }
+
         stage.addActor(table);
+        worldSelectStage.addActor(worldSelectTable);
     }
 
     @Override
