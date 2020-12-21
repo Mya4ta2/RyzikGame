@@ -12,6 +12,9 @@ public class Vars {
     public static float MUSIC_VOLUME = 1f;
     public static float UI_VOLUME = 1f;
 
+    //content folders
+    public static final String worldFolder = "world";
+
     //oh no...
     public static TextureRegion PLAYER_LEFT_TEXTURE;
     public static TextureRegion PLAYER_RIGHT_TEXTURE;

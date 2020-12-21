@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ryzik.MainActivity;
+import com.ryzik.Vars;
 import com.ryzik.save.MapReader;
 import com.ryzik.type.World;
 import com.ryzik.ui.Image;
@@ -49,7 +50,7 @@ public class MenuScreen implements Screen {
     private Stage worldSelectStage;
     private TextButton backButton;
     private Array<TextButton> worldButton = new Array<>();
-    private World[] availableWorlds;
+    private Array<World> availableWorlds = new Array<>();
 
     private World backgroundWorld;
     private MenuBackgroundRenderer backgroundRenderer;
@@ -83,11 +84,9 @@ public class MenuScreen implements Screen {
         }
 
         try {
-            availableWorlds = new World[]{
-                    MapReader.getWorldFromFile(Gdx.files.internal("backgroundMap.rsav")),
-                    MapReader.getWorldFromFile(Gdx.files.internal("testOh.rsav")),
-                    MapReader.getWorldFromFile(Gdx.files.internal("testmap.rsav"))
-            };
+            for (int i = 0; i < Gdx.files.internal(Vars.worldFolder).list().length; i++) {
+                availableWorlds.add(MapReader.getWorldFromFile(Gdx.files.internal(Vars.worldFolder).list()[i]));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -204,17 +203,17 @@ public class MenuScreen implements Screen {
         worldSelectTable.add(new Separator(10));
         worldSelectTable.row();
 
-        for (int i = 0; i < availableWorlds.length; i++) {
+        for (int i = 0; i < availableWorlds.size; i++) {
             worldButton.add(new TextButton(buttonUp, buttonDown, buttonSound, font));
             worldButton.get(worldButton.size-1).setHeight(50);
             worldButton.get(worldButton.size-1).setWidth(150);
-            worldButton.get(worldButton.size-1).setText(availableWorlds[i].getName());
+            worldButton.get(worldButton.size-1).setText(availableWorlds.get(i).getName());
             final int finalI = i;
             worldButton.get(worldButton.size-1).addListener(new InputListener(){
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     GameScreen gameScreen = new GameScreen(game);
-                    gameScreen.setWorld(availableWorlds[finalI]);
+                    gameScreen.setWorld(availableWorlds.get(finalI));
                     game.setScreen(gameScreen);
                     return super.touchDown(event, x, y, pointer, button);
                 }
