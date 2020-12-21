@@ -38,6 +38,7 @@ public class MenuScreen implements Screen {
     private Viewport viewport;
     private BitmapFont font;
     private Stage currentStage;
+    private boolean worldLoaded = false;
 
     //main menu
     private Stage stage;
@@ -83,12 +84,16 @@ public class MenuScreen implements Screen {
             e.printStackTrace();
         }
 
-        try {
-            for (int i = 0; i < Gdx.files.internal(Vars.worldFolder).list().length; i++) {
-                availableWorlds.add(MapReader.getWorldFromFile(Gdx.files.internal(Vars.worldFolder).list()[i]));
+        if (!worldLoaded) {
+            try {
+                for (int i = 0; i < Gdx.files.internal(Vars.worldFolder).list().length; i++) {
+                    availableWorlds.add(MapReader.getWorldFromFile(Gdx.files.internal(Vars.worldFolder).list()[i]));
+                }
+
+                worldLoaded = true;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
 
