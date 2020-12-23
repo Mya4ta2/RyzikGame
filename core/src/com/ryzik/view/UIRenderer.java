@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ryzik.MainActivity;
 import com.ryzik.ctype.Renderer;
 import com.ryzik.type.TextField;
+import com.ryzik.ui.HotBar;
 import com.ryzik.ui.Separator;
 import com.ryzik.ui.TextButton;
 
@@ -140,6 +141,11 @@ public class UIRenderer implements Renderer {
 
 //        gameTable.bottom().left().add(chatField);
 //        gameTable.bottom().left().row();
+
+        gameTable.top().add(new Separator(35)).row();
+        HotBar hotBar = new HotBar(10, buttonUp, buttonDown);
+        gameTable.top().left().add(hotBar);
+
 
         resumeStage.addActor(table);
         gameStage.addActor(gameTable);
