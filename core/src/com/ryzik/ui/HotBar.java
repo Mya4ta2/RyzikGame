@@ -65,8 +65,8 @@ public class HotBar extends Actor {
 
             float x = (getX() + slots[0].getWidth() * slots.length / 2); // center position on slots
 
-            font.draw(batch,String.valueOf(slots[selectedSlot].getItem()),
-                    x - (getWidth() - glyphLayout.width) / 2,
+            font.draw(batch,String.valueOf(slots[selectedSlot].getItem().getName()),
+                    x + (glyphLayout.width / 2),
                     slots[slots.length-1].getTop() + (getHeight() - glyphLayout.height));
         }
     }
@@ -97,7 +97,7 @@ public class HotBar extends Actor {
         }
 
         setSelectedSlot(selectedSlot);
-        glyphLayout.setText(font, slots[selectedSlot].getItem() + "");
+        glyphLayout.setText(font, slots[selectedSlot].getItem().getName());
         setSlotsPosition();
     }
 

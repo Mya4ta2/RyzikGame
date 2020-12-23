@@ -21,4 +21,8 @@ public class Item {
     public void setTexture(TextureRegion texture) {
         this.texture = texture;
     }
+
+    public String getName() {
+        return name;
+    }
 }
