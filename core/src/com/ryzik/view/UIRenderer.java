@@ -36,7 +36,7 @@ public class UIRenderer implements Renderer {
     private BitmapFont font;
     private Stage currentStage;
 
-    //resume stage
+    //resume stage //no, its pause stage, need remake =(
     private TextButton resumeButton;
     private TextButton settingsButton;
     private TextButton exitButton;
@@ -47,6 +47,12 @@ public class UIRenderer implements Renderer {
     private MainActivity game;
     private ItemSlotPanel itemSlotPanel;
     private HotBar hotBar;
+
+    //inventory stage
+    private Stage inventoryStage;
+    private Table inventoryTable;
+    private HotBar inventoryHotBar;
+    private TextButton openResumeButton;
 
     public UIRenderer(MainActivity game) {
         this.game = game;
@@ -63,6 +69,10 @@ public class UIRenderer implements Renderer {
         gameStage.setViewport(viewport);
         resumeStage.setViewport(viewport);
         chatField = new TextField(new TextureRegion(new Texture("chatBackground.png")));
+
+        inventoryTable = new Table();
+        inventoryStage = new Stage();
+        inventoryStage.setViewport(viewport);
 
         table = new Table();
         gameTable = new Table();
@@ -86,10 +96,11 @@ public class UIRenderer implements Renderer {
             for (int x = 0; x < Vars.INVENTORY_WIDTH; x++) {
                 if (y > Vars.INVENTORY_HEIGHT-2) {
                     hotBar.getSlots()[x].setItemStack(Vars.world.getPlayer().getInventory().getHotBar()[x]);
+                    //oh no
+                    inventoryHotBar.getSlots()[x].setItemStack(Vars.world.getPlayer().getInventory().getHotBar()[x]);
                 }
 
                 itemSlotPanel.getSlots()[x][y].setItemStack(Vars.world.getPlayer().getInventory().getInventory()[x][y]);
-
             }
         }
     }
@@ -100,6 +111,7 @@ public class UIRenderer implements Renderer {
 
         table.setSize(width,height);
         gameTable.setSize(width,height);
+        inventoryTable.setSize(width,height);
 
         camera.position.set(width/2,height/2, 0);
     }
@@ -161,13 +173,30 @@ public class UIRenderer implements Renderer {
 
         gameTable.top().add(new Separator(35)).row();
         hotBar = new HotBar(Vars.INVENTORY_WIDTH, buttonUp, buttonDown);
+        inventoryHotBar = new HotBar(Vars.INVENTORY_WIDTH, buttonUp, buttonDown);
         itemSlotPanel = new ItemSlotPanel(Vars.INVENTORY_WIDTH, Vars.INVENTORY_HEIGHT,buttonUp,buttonDown);
         gameTable.top().left().add(hotBar).row();
-        gameTable.top().left().add(itemSlotPanel).row();
+
+        openResumeButton = new TextButton(buttonUp, buttonDown, buttonSound, font);
+        openResumeButton.setHeight(50);
+        openResumeButton.setWidth(150);
+        openResumeButton.setText("settings"); // terraria 0_0
+        openResumeButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                currentStage = resumeStage;
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+        inventoryTable.top().add(new Separator(35)).row();
+        inventoryTable.top().left().add(inventoryHotBar).row();
+        inventoryTable.top().left().add(itemSlotPanel).row();
+        inventoryTable.add(openResumeButton).row();
 
         hotBar.getSlots()[0].setItemStack(new ItemStack(Items.test, 120));
         resumeStage.addActor(table);
         gameStage.addActor(gameTable);
+        inventoryStage.addActor(inventoryTable);
     }
 
     public Stage getCurrentStage() {
@@ -188,5 +217,9 @@ public class UIRenderer implements Renderer {
 
     public TextField getChatField() {
         return chatField;
+    }
+
+    public Stage getInventoryStage() {
+        return inventoryStage;
     }
 }

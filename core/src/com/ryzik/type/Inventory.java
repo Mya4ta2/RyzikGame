@@ -22,12 +22,12 @@ public class Inventory {
 
     public void fill() {
         for (int i = 0; i < hotBar.length; i++) {
-            hotBar[i] = new ItemStack(Items.test,228);
+            hotBar[i] = new ItemStack(Items.air,128);
         }
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                inventory[j][i] = new ItemStack(Items.test, 999);
+                inventory[j][i] = new ItemStack(Items.air, 128);
             }
         }
     }

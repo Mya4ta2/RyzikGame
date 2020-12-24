@@ -6,7 +6,7 @@ import com.ryzik.view.UIRenderer;
 
 public class UIController {
 
-    private UIRenderer uiRenderer; // oh...
+    private UIRenderer uiRenderer; // oh... but nothing
 
     public UIController(UIRenderer uiRenderer) {
         this.uiRenderer = uiRenderer;
@@ -18,10 +18,10 @@ public class UIController {
 
     public void processInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            if (uiRenderer.getCurrentStage() == uiRenderer.getResumeStage()) {
+            if (uiRenderer.getCurrentStage() == uiRenderer.getInventoryStage()) {
                 uiRenderer.setCurrentStage(uiRenderer.getGameStage());
             } else {
-                uiRenderer.setCurrentStage(uiRenderer.getResumeStage());
+                uiRenderer.setCurrentStage(uiRenderer.getInventoryStage());
             }
         }
     }
