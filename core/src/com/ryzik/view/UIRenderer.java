@@ -16,7 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ryzik.MainActivity;
+import com.ryzik.Vars;
+import com.ryzik.content.Items;
 import com.ryzik.ctype.Renderer;
+import com.ryzik.type.ItemStack;
 import com.ryzik.type.TextField;
 import com.ryzik.ui.HotBar;
 import com.ryzik.ui.ItemSlotPanel;
@@ -42,6 +45,8 @@ public class UIRenderer implements Renderer {
     private Table table;
     private Table gameTable;
     private MainActivity game;
+    private ItemSlotPanel itemSlotPanel;
+    private HotBar hotBar;
 
     public UIRenderer(MainActivity game) {
         this.game = game;
@@ -76,6 +81,17 @@ public class UIRenderer implements Renderer {
 
         camera.update();
         viewport.apply();
+
+        for (int y = 0; y < Vars.INVENTORY_HEIGHT; y++) {
+            for (int x = 0; x < Vars.INVENTORY_WIDTH; x++) {
+                if (y > Vars.INVENTORY_HEIGHT-2) {
+                    hotBar.getSlots()[x].setItemStack(Vars.world.getPlayer().getInventory().getHotBar()[x]);
+                }
+
+                itemSlotPanel.getSlots()[x][y].setItemStack(Vars.world.getPlayer().getInventory().getInventory()[x][y]);
+
+            }
+        }
     }
 
     @Override
@@ -144,11 +160,12 @@ public class UIRenderer implements Renderer {
 //        gameTable.bottom().left().row();
 
         gameTable.top().add(new Separator(35)).row();
-        HotBar hotBar = new HotBar(6, buttonUp, buttonDown);
-        ItemSlotPanel itemSlotPanel = new ItemSlotPanel(6,5,buttonUp,buttonDown);
+        hotBar = new HotBar(Vars.INVENTORY_WIDTH, buttonUp, buttonDown);
+        itemSlotPanel = new ItemSlotPanel(Vars.INVENTORY_WIDTH, Vars.INVENTORY_HEIGHT,buttonUp,buttonDown);
         gameTable.top().left().add(hotBar).row();
         gameTable.top().left().add(itemSlotPanel).row();
 
+        hotBar.getSlots()[0].setItemStack(new ItemStack(Items.test, 120));
         resumeStage.addActor(table);
         gameStage.addActor(gameTable);
     }

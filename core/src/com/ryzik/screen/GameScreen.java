@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.ryzik.MainActivity;
+import com.ryzik.Vars;
 import com.ryzik.controller.UIController;
 import com.ryzik.controller.WorldController;
 import com.ryzik.save.MapReader;
@@ -85,6 +86,7 @@ public class GameScreen implements Screen {
     }
 
     public void setWorld(World world) {
+        Vars.world = world;
         this.world = world;
     }
 

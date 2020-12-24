@@ -15,6 +15,7 @@ public class Player implements MappableContent {
     private Vector2 oldPosition = new Vector2();
     private Vector2 velocity = new Vector2();
     private Rectangle bounds = new Rectangle();
+    private Inventory inventory = new Inventory(Vars.INVENTORY_WIDTH, Vars.INVENTORY_HEIGHT);
     private TextureRegion rightTexture = Vars.PLAYER_RIGHT_TEXTURE != null ? Vars.PLAYER_RIGHT_TEXTURE : Vars.ERROR_TEXTURE;
     private TextureRegion leftTexture = Vars.PLAYER_LEFT_TEXTURE != null ? Vars.PLAYER_LEFT_TEXTURE : Vars.ERROR_TEXTURE;
 
@@ -179,5 +180,13 @@ public class Player implements MappableContent {
 
     public void setPosition(Vector2 position) {
         this.position = position;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 }
