@@ -19,6 +19,7 @@ import com.ryzik.MainActivity;
 import com.ryzik.ctype.Renderer;
 import com.ryzik.type.TextField;
 import com.ryzik.ui.HotBar;
+import com.ryzik.ui.ItemSlotPanel;
 import com.ryzik.ui.Separator;
 import com.ryzik.ui.TextButton;
 
@@ -143,9 +144,10 @@ public class UIRenderer implements Renderer {
 //        gameTable.bottom().left().row();
 
         gameTable.top().add(new Separator(35)).row();
-        HotBar hotBar = new HotBar(10, buttonUp, buttonDown);
-        gameTable.top().left().add(hotBar);
-
+        HotBar hotBar = new HotBar(6, buttonUp, buttonDown);
+        ItemSlotPanel itemSlotPanel = new ItemSlotPanel(6,5,buttonUp,buttonDown);
+        gameTable.top().left().add(hotBar).row();
+        gameTable.top().left().add(itemSlotPanel).row();
 
         resumeStage.addActor(table);
         gameStage.addActor(gameTable);
