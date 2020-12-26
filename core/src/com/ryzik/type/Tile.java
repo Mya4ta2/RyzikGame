@@ -12,11 +12,13 @@ public class Tile {
 
     private Block block = Blocks.air;
     private Floor floor = Floors.air;
+    private Building building;
     private Rectangle bounds = new Rectangle();
 
     public void draw(SpriteBatch batch) {
         if (floor != Floors.air) floor.draw(batch,x,y);
         if (block != Blocks.air) block.draw(batch,x,y);
+        if (building != null) building.draw(batch);
     }
 
     public Tile(int x, int y) {
@@ -69,5 +71,13 @@ public class Tile {
 
     public void setBounds(Rectangle bounds) {
         this.bounds = bounds;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 }
