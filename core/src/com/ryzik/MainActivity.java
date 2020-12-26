@@ -58,6 +58,7 @@ public class MainActivity extends Game {
         Floors.sandBrick.setTexture(textureRegions[3][0]);
 
         Items.test.setTexture(textureRegions[2][1]);
+        Items.stick.setTexture(new TextureRegion(new Texture("stick.png")));
 
         Vars.PLAYER_LEFT_TEXTURE = textureRegions[0][0];
         Vars.PLAYER_RIGHT_TEXTURE = textureRegions[0][1];

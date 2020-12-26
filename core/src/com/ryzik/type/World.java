@@ -35,7 +35,8 @@ public class World {
 //            }
 //        }
 
-        new DroppedItem(this, new ItemStack(Items.test,10), 10, 10);
+        new DroppedItem(this, new ItemStack(Items.stick,1), 10, 10);
+        new DroppedItem(this, new ItemStack(Items.test,1),15,15);
     }
 
     public Tiles getTiles() {

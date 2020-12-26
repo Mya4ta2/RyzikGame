@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Items implements ContentList {
 
-    public static Item air, test;
+    public static Item air, test, stick;
 
     public static List<Item> items = new ArrayList<>();
 
@@ -21,6 +21,12 @@ public class Items implements ContentList {
         };
 
         test = new Item("test") {
+            {
+
+            }
+        };
+
+        stick = new Item("stick") {
             {
 
             }
