@@ -44,7 +44,6 @@ public class Block implements MappableContent {
         this.height = height;
     }
 
-    @Override
     public void draw(SpriteBatch batch, int x, int y) {
         batch.draw(
                 texture,
