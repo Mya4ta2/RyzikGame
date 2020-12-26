@@ -7,11 +7,11 @@ import com.ryzik.content.Items;
 import com.ryzik.ctype.MappableContent;
 
 public class DroppedItem implements Entity, Draw {
-    private Item item;
+    private ItemStack item;
     private float x,y;
     private Rectangle bounds;
 
-    public DroppedItem(World world, Item item, float x, float y) {
+    public DroppedItem(World world, ItemStack item, float x, float y) {
         this.item = item;
         this.x = x;
         this.y = y;
@@ -27,8 +27,8 @@ public class DroppedItem implements Entity, Draw {
 
     @Override
     public void draw(SpriteBatch batch) {
-        if (item != Items.air)
-            batch.draw(item.getTexture(), this.x * Vars.TILE_SIZE, this.y * Vars.TILE_SIZE);
+        if (item.getItem() != Items.air)
+            batch.draw(item.getItem().getTexture(), this.x * Vars.TILE_SIZE, this.y * Vars.TILE_SIZE);
     }
 
     @Override
@@ -37,10 +37,18 @@ public class DroppedItem implements Entity, Draw {
     }
 
     public Item getItem() {
-        return item;
+        return item.getItem();
     }
 
     public Rectangle getBounds() {
         return bounds;
+    }
+
+    public int getAmount() {
+        return item.getAmount();
+    }
+
+    public void setItem(ItemStack item) {
+        this.item = item;
     }
 }

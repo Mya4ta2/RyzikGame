@@ -23,21 +23,21 @@ public class Inventory {
 
     public void fill() {
         for (int i = 0; i < hotBar.length; i++) {
-            hotBar[i] = new ItemStack(Items.air,128);
+            hotBar[i] = new ItemStack(Items.air,0);
         }
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                inventory[j][i] = new ItemStack(Items.air, 128);
+                inventory[j][i] = new ItemStack(Items.air, 0);
             }
         }
     }
 
     public void raiseItem(DroppedItem item) {
         inventory[0][0].setItem(item.getItem());
+        inventory[0][0].setAmount(item.getAmount());
         Vars.world.getDroppedItems().getArray().removeValue(item,true);
     }
-
     public ItemStack[] getHotBar() {
         return hotBar;
     }
