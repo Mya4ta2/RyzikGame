@@ -41,4 +41,12 @@ public class Building implements Entity, Draw {
         y = tile.getY();
         this.tile = tile;
     }
+
+    public float getHealth() {
+        return health;
+    }
+
+    public void setHealth(float health) {
+        this.health = health;
+    }
 }

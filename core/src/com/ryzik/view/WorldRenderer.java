@@ -41,6 +41,7 @@ public class WorldRenderer implements Renderer {
 
         //test building
         building.setTile(world.getTiles().get(15,15));
+        building.setHealth(building.getHealth()-1);
         world.getTiles().get(15,15).setBuilding(building);
 
         camera.position.set(

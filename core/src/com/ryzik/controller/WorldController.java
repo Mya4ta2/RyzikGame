@@ -18,6 +18,7 @@ public class WorldController {
 
         processInput();
         processCollisions();
+        updateBuildings(delta);
     }
 
     public void processInput() {
@@ -54,6 +55,14 @@ public class WorldController {
                         world.getPlayer().getPosition().set(world.getPlayer().getOldPosition());
                     }
                 }
+            }
+        }
+    }
+
+    public void updateBuildings(float delta) {
+        for (int i = 0; i < world.getTiles().getArray().length; i++) {
+            if (world.getTiles().getArray()[i].getBuilding() != null) {
+                world.getTiles().getArray()[i].getBuilding().update(delta);
             }
         }
     }
