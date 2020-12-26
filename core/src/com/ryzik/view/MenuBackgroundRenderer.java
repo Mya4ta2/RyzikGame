@@ -81,7 +81,7 @@ public class MenuBackgroundRenderer implements Renderer {
             world.getDroppedItems().getArray().get(i).draw(batch,0,0); // x,y ignored
         }
 
-        world.getPlayer().draw(batch, 0,0); // x, y ignored
+        world.getPlayer().draw(batch); // x, y ignored
     }
 
     // i so lazy for make controller =)

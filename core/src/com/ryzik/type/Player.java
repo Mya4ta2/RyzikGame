@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.ryzik.Vars;
 import com.ryzik.ctype.MappableContent;
 
-public class Player implements MappableContent {
+public class Player implements Entity, Draw {
     private float WIDTH = 1.5f;
     private float HEIGHT = 1.5f;
 
@@ -48,6 +48,7 @@ public class Player implements MappableContent {
         heal();
     }
 
+    @Override
     public void update(float delta) {
         oldPosition.set(position);
         position.add(velocity.scl(delta));
@@ -58,27 +59,6 @@ public class Player implements MappableContent {
         if (sprint) currentSpeed = sprintSpeed;
         else currentSpeed = speed;
 
-    }
-
-    @Override
-    public void draw(SpriteBatch batch, int x, int y) {
-        if (velocity.x > 1) walkLeft = false; else walkLeft = true;
-
-        if (walkLeft) {
-            batch.draw(
-                    leftTexture,
-                    position.x * Vars.TILE_SIZE,
-                    position.y * Vars.TILE_SIZE,
-                    WIDTH * Vars.TILE_SIZE,
-                    HEIGHT * Vars.TILE_SIZE);
-        } else {
-            batch.draw(
-                    rightTexture,
-                    position.x * Vars.TILE_SIZE,
-                    position.y * Vars.TILE_SIZE,
-                    WIDTH * Vars.TILE_SIZE,
-                    HEIGHT * Vars.TILE_SIZE);
-        }
     }
 
     public Vector2 getPosition() {
@@ -188,5 +168,26 @@ public class Player implements MappableContent {
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    @Override
+    public void draw(SpriteBatch batch) {
+        if (velocity.x > 1) walkLeft = false; else walkLeft = true;
+
+        if (walkLeft) {
+            batch.draw(
+                    leftTexture,
+                    position.x * Vars.TILE_SIZE,
+                    position.y * Vars.TILE_SIZE,
+                    WIDTH * Vars.TILE_SIZE,
+                    HEIGHT * Vars.TILE_SIZE);
+        } else {
+            batch.draw(
+                    rightTexture,
+                    position.x * Vars.TILE_SIZE,
+                    position.y * Vars.TILE_SIZE,
+                    WIDTH * Vars.TILE_SIZE,
+                    HEIGHT * Vars.TILE_SIZE);
+        }
     }
 }
