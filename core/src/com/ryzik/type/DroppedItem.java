@@ -5,7 +5,7 @@ import com.ryzik.Vars;
 import com.ryzik.content.Items;
 import com.ryzik.ctype.MappableContent;
 
-public class DroppedItem implements MappableContent {
+public class DroppedItem implements Entity, Draw {
     private Item item;
     private float x,y;
 
@@ -16,8 +16,14 @@ public class DroppedItem implements MappableContent {
         world.getDroppedItems().getArray().add(this);
     }
 
-    public void draw(SpriteBatch batch, int x, int y) {
+    @Override
+    public void draw(SpriteBatch batch) {
         if (item != Items.air)
             batch.draw(item.getTexture(), this.x * Vars.TILE_SIZE, this.y * Vars.TILE_SIZE);
+    }
+
+    @Override
+    public void update(float delta) {
+
     }
 }
