@@ -6,7 +6,9 @@ import com.ryzik.type.World;
 public class Vars {
     public static final int TILE_SIZE = 32;
 
+    //textures
     public static TextureRegion ERROR_TEXTURE;
+    public static TextureRegion[] breakTextures;
 
     //sound settings
     public static float SOUND_VOLUME = 1f;

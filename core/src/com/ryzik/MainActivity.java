@@ -60,6 +60,11 @@ public class MainActivity extends Game {
         Items.test.setTexture(textureRegions[2][1]);
         Items.stick.setTexture(new TextureRegion(new Texture("stick.png")));
 
+        Vars.breakTextures = new TextureRegion[4];
+        for (int i = 0; i < Vars.breakTextures.length; i++) {
+            Vars.breakTextures[i] = new TextureRegion(new Texture("break" + (i + 1) + ".png"));
+        }
+
         Vars.PLAYER_LEFT_TEXTURE = textureRegions[0][0];
         Vars.PLAYER_RIGHT_TEXTURE = textureRegions[0][1];
     }

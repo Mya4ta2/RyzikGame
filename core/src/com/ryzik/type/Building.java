@@ -1,6 +1,7 @@
 package com.ryzik.type;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.ryzik.Vars;
 
 public class Building implements Entity, Draw {
     private int x;
@@ -17,11 +18,33 @@ public class Building implements Entity, Draw {
     @Override
     public void draw(SpriteBatch batch) {
         block.draw(batch, x, y);
+
+        int healthPercent = (int) (health/block.getHealth() * 100);
+
+        if (healthPercent > 99) {
+            batch.draw(Vars.breakTextures[0], x * Vars.TILE_SIZE, y * Vars.TILE_SIZE);
+        }
+
+        if (healthPercent > 50) {
+            batch.draw(Vars.breakTextures[1], x * Vars.TILE_SIZE, y * Vars.TILE_SIZE);
+        }
+
+        if (healthPercent > 5) {
+            batch.draw(Vars.breakTextures[2], x * Vars.TILE_SIZE, y * Vars.TILE_SIZE);
+        }
+
+        if (healthPercent <= 5) {
+            batch.draw(Vars.breakTextures[3], x * Vars.TILE_SIZE, y * Vars.TILE_SIZE);
+        }
     }
 
     @Override
     public void update(float delta) {
+        if (health <= 0) destroy();
+    }
 
+    public void destroy() {
+        tile.setBuilding(null);
     }
 
     public Block getBlock() {

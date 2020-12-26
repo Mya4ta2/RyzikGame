@@ -26,7 +26,7 @@ public class WorldRenderer implements Renderer {
         camera = new OrthographicCamera();
         viewport = new ScreenViewport(camera);
         //test building
-        building = new Building(Blocks.sand);
+        building = new Building(Blocks.woodPlank);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class WorldRenderer implements Renderer {
 
         //test building
         building.setTile(world.getTiles().get(15,15));
-        building.setHealth(building.getHealth()-1);
+        building.setHealth(building.getHealth()-0.5f);
         world.getTiles().get(15,15).setBuilding(building);
 
         camera.position.set(
