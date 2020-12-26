@@ -1,5 +1,6 @@
 package com.ryzik.type;
 
+import com.ryzik.Vars;
 import com.ryzik.content.Items;
 
 public class Inventory {
@@ -30,6 +31,11 @@ public class Inventory {
                 inventory[j][i] = new ItemStack(Items.air, 128);
             }
         }
+    }
+
+    public void raiseItem(DroppedItem item) {
+        inventory[0][0].setItem(item.getItem());
+        Vars.world.getDroppedItems().getArray().removeValue(item,true);
     }
 
     public ItemStack[] getHotBar() {

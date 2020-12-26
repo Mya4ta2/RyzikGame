@@ -29,7 +29,7 @@ public class World {
         player = new Player();
         player.setPosition(new Vector2(width/2, height/2));
 
-        new DroppedItem(this, Items.test,5,10.3f);
+        new DroppedItem(this, Items.test,10,10.5f);
     }
 
     public Tiles getTiles() {

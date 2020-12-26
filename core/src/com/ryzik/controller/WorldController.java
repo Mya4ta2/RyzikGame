@@ -57,6 +57,12 @@ public class WorldController {
                 }
             }
         }
+
+        for (int i = 0; i < world.getDroppedItems().getArray().size; i++) {
+            if (world.getPlayer().getBounds().overlaps(world.getDroppedItems().getArray().get(i).getBounds())){
+                world.getPlayer().getInventory().raiseItem(world.getDroppedItems().getArray().get(i));
+            }
+        }
     }
 
     public void updateBuildings(float delta) {
