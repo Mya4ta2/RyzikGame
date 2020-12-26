@@ -24,4 +24,5 @@ public class Vars {
     public static World world;
     public static final int INVENTORY_WIDTH = 6;
     public static final int INVENTORY_HEIGHT = 5;
+    public static final int STACK_SIZE = 100;
 }
