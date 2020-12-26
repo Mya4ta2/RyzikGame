@@ -16,7 +16,6 @@ public class DroppedItem implements MappableContent {
         world.getDroppedItems().getArray().add(this);
     }
 
-    @Override
     public void draw(SpriteBatch batch, int x, int y) {
         if (item != Items.air)
             batch.draw(item.getTexture(), this.x * Vars.TILE_SIZE, this.y * Vars.TILE_SIZE);
