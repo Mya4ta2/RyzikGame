@@ -6,6 +6,7 @@ import com.ryzik.content.Items;
 
 public class Item {
     private final String name;
+    private int maxStackSize = Vars.STACK_SIZE;
 
     private TextureRegion texture = Vars.ERROR_TEXTURE;
 
@@ -24,5 +25,13 @@ public class Item {
 
     public String getName() {
         return name;
+    }
+
+    public int getMaxStackSize() {
+        return maxStackSize;
+    }
+
+    public void setMaxStackSize(int maxStackSize) {
+        this.maxStackSize = maxStackSize;
     }
 }

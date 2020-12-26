@@ -99,7 +99,7 @@ public class Inventory {
 
     public ItemStack findHotBarSimilarItemSlot(Item item) {
         for (int i = 0; i < hotBar.length; i++) {
-            if (hotBar[i].getItem() == item && hotBar[i].getAmount() < Vars.STACK_SIZE) {
+            if (hotBar[i].getItem() == item && hotBar[i].getAmount() < item.getMaxStackSize()) {
                 return hotBar[i];
             }
         }
@@ -109,7 +109,7 @@ public class Inventory {
     public ItemStack findInventorySimilarItemSlot(Item item) {
         for (int i = 0; i < inventory.length; i++) {
             for (int j = 0; j < inventory[i].length; j++) {
-                if (inventory[i][j].getItem() == item && inventory[i][j].getAmount() < Vars.STACK_SIZE) {
+                if (inventory[i][j].getItem() == item && inventory[i][j].getAmount() < item.getMaxStackSize()) {
                     return inventory[i][j];
                 }
             }
