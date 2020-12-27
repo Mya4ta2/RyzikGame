@@ -193,7 +193,7 @@ public class UIRenderer implements Renderer {
         inventoryTable.top().left().add(itemSlotPanel).row();
         inventoryTable.add(openResumeButton).row();
 
-        hotBar.getSlots()[0].setItemStack(new ItemStack(Items.test, 120));
+        hotBar.getSlots()[0].setItemStack(new ItemStack(Items.brick, 120));
         resumeStage.addActor(table);
         gameStage.addActor(gameTable);
         inventoryStage.addActor(inventoryTable);

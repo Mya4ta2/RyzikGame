@@ -51,7 +51,7 @@ public class HotBar extends Actor {
         setDefaultPos();
         setDefaultSize();
 
-        slots[0].setItem(Items.test);
+        slots[0].setItem(Items.air);
         setSelectedSlot(0);
     }
 

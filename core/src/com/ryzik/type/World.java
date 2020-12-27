@@ -29,8 +29,9 @@ public class World {
         player = new Player();
         player.setPosition(new Vector2(width/2, height/2));
 
-        new DroppedItem(this, new ItemStack(Items.stick,1), 10, 10);
-        new DroppedItem(this, new ItemStack(Items.test,1),15,15);
+        for (int i = 0; i < Items.items.size(); i++) {
+            new DroppedItem(this, new ItemStack(Items.items.get(i),1),15 + i,15);
+        }
     }
 
     public Tiles getTiles() {

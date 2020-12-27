@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Items implements ContentList {
 
-    public static Item air, test, stick;
+    public static Item air, stick, stone, sand, grass, woodPlank, sandBrick, brick;
 
     public static List<Item> items = new ArrayList<>();
 
@@ -20,13 +20,43 @@ public class Items implements ContentList {
             }
         };
 
-        test = new Item("test") {
+        stick = new Item("stick") {
             {
 
             }
         };
 
-        stick = new Item("stick") {
+        stone = new Item("stone") {
+            {
+
+            }
+        };
+
+        sand = new Item("sand") {
+            {
+
+            }
+        };
+
+        grass = new Item("grass") {
+            {
+
+            }
+        };
+
+        woodPlank = new Item("woodPlank") {
+            {
+
+            }
+        };
+
+        sandBrick = new Item("sandBrick") {
+            {
+
+            }
+        };
+
+        brick = new Item("brick") {
             {
 
             }

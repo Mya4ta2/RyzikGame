@@ -57,7 +57,13 @@ public class MainActivity extends Game {
         Blocks.sandBrick.setTexture(textureRegions[2][0]);
         Floors.sandBrick.setTexture(textureRegions[3][0]);
 
-        Items.test.setTexture(textureRegions[2][1]);
+        Items.stone.setTexture(Blocks.stone.getTexture());
+        Items.sand.setTexture(Blocks.sand.getTexture());
+        Items.grass.setTexture(Blocks.grass.getTexture());
+        Items.woodPlank.setTexture(Blocks.woodPlank.getTexture());
+        Items.sandBrick.setTexture(Blocks.sandBrick.getTexture());
+        Items.brick.setTexture(Blocks.brick.getTexture());
+
         Items.stick.setTexture(new TextureRegion(new Texture("stick.png")));
 
         Vars.breakTextures = new TextureRegion[4];
