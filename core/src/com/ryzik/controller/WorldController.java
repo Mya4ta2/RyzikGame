@@ -73,8 +73,9 @@ public class WorldController {
             if (world.getTiles().getArray()[i].getBuilding() != null) {
                 if (world.getTiles().getArray()[i].getBuilding().getBounds().contains(Cursor.worldX/32, Cursor.worldY/32) &&
                         Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-
+                    world.getTiles().getArray()[i].getBuilding().touchDown();
                 }
+
                 world.getTiles().getArray()[i].getBuilding().update(delta);
             }
         }

@@ -54,6 +54,10 @@ public class Block implements MappableContent {
         );
     }
 
+    public void touchDown() {
+        System.out.println("oh");
+    }
+
     public String getName() {
         return name;
     }

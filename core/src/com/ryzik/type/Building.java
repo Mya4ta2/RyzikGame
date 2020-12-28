@@ -43,6 +43,10 @@ public class Building implements Entity, Draw {
         if (health <= 0) destroy();
     }
 
+    public void touchDown() {
+        block.touchDown();
+    }
+
     public void destroy() {
         tile.setBuilding(null);
     }
