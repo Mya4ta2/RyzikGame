@@ -5,7 +5,12 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.ryzik.content.Items;
+
+import java.util.Arrays;
+
 /*
 need refactor, make slots position setting with Table
  */
@@ -53,6 +58,14 @@ public class HotBar extends Actor {
 
         slots[0].setItem(Items.air);
         setSelectedSlot(0);
+
+        addListener(new InputListener(){
+            @Override
+            public boolean scrolled(InputEvent event, float x, float y, float amountX, float amountY) {
+                scroll = amountY;
+                return super.scrolled(event, x, y, amountX, amountY);
+            }
+        });
     }
 
     @Override

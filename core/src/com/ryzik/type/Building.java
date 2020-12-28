@@ -21,19 +21,14 @@ public class Building implements Entity, Draw {
 
         int healthPercent = (int) (health/block.getHealth() * 100);
 
-        if (healthPercent > 99) {
+
+        if (healthPercent <= 99 && healthPercent > 50) {
             batch.draw(Vars.breakTextures[0], x * Vars.TILE_SIZE, y * Vars.TILE_SIZE);
-        }
-
-        if (healthPercent > 50) {
+        } else if (healthPercent < 50 && healthPercent > 5) {
             batch.draw(Vars.breakTextures[1], x * Vars.TILE_SIZE, y * Vars.TILE_SIZE);
-        }
-
-        if (healthPercent > 5) {
+        } else if (healthPercent > 5 && healthPercent < 100) {
             batch.draw(Vars.breakTextures[2], x * Vars.TILE_SIZE, y * Vars.TILE_SIZE);
-        }
-
-        if (healthPercent <= 5) {
+        } else if (healthPercent < 5){
             batch.draw(Vars.breakTextures[3], x * Vars.TILE_SIZE, y * Vars.TILE_SIZE);
         }
     }

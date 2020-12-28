@@ -51,6 +51,9 @@ public class MainActivity extends Game {
         Floors.brick.setTexture(textureRegions[3][1]);
         Blocks.brick.setTexture(textureRegions[2][1]);
 
+        Blocks.furnace.setTexture(textureRegions[3][3]);
+        Blocks.craftingTable.setTexture(textureRegions[2][3]);
+
         Blocks.woodPlank.setTexture(textureRegions[1][0]);
         Blocks.woodPlank.setTexture(textureRegions[1][0]);
         Floors.woodenPlank.setTexture(textureRegions[1][1]);

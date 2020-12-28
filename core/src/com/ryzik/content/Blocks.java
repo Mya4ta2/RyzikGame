@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Blocks implements ContentList {
-    public static Block air, stone, sand, grass, woodPlank, sandBrick, brick;
+    public static Block air, stone, sand, grass, woodPlank, sandBrick, brick, craftingTable, furnace;
 
     public static List<Block> blocks = new ArrayList<>();
 
@@ -51,6 +51,18 @@ public class Blocks implements ContentList {
         };
 
         brick = new Block("brick") {
+            {
+                setHealth(100);
+            }
+        };
+
+        craftingTable = new Block("craftingTable") {
+            {
+                setHealth(100);
+            }
+        };
+
+        furnace = new Block("furnace") {
             {
                 setHealth(100);
             }

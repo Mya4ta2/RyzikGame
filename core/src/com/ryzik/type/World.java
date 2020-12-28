@@ -29,6 +29,15 @@ public class World {
         player = new Player();
         player.setPosition(new Vector2(width/2, height/2));
 
+        Building furnace = new Building(Blocks.furnace);
+        Building craftingTable = new Building(Blocks.craftingTable);
+
+        furnace.setTile(tiles.get(width/2, height/2-1));
+        craftingTable.setTile(tiles.get(width/2-1, height/2-1));
+
+        tiles.get(width/2, height/2-1).setBuilding(furnace);
+        tiles.get(width/2-1, height/2-1).setBuilding(craftingTable);
+
         for (int i = 0; i < Items.items.size(); i++) {
             new DroppedItem(this, new ItemStack(Items.items.get(i),1),15 + i,15);
         }

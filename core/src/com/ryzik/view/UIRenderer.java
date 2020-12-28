@@ -86,11 +86,19 @@ public class UIRenderer implements Renderer {
         batch.begin();
         batch.end();
 
+        gameStage.setScrollFocus(hotBar);
+
         currentStage.act();
         currentStage.draw();
 
         camera.update();
         viewport.apply();
+
+        if (currentStage == inventoryStage) currentStage.setScrollFocus(inventoryHotBar);
+        else currentStage.unfocus(inventoryHotBar);
+
+        if (currentStage == gameStage) currentStage.setScrollFocus(hotBar);
+        else currentStage.unfocus(hotBar);
 
         for (int y = 0; y < Vars.INVENTORY_HEIGHT; y++) {
             for (int x = 0; x < Vars.INVENTORY_WIDTH; x++) {
@@ -167,9 +175,6 @@ public class UIRenderer implements Renderer {
         table.add(new Separator(10));
         table.row();
         table.center().add(exitButton);
-
-//        gameTable.bottom().left().add(chatField);
-//        gameTable.bottom().left().row();
 
         gameTable.top().add(new Separator(35)).row();
         hotBar = new HotBar(Vars.INVENTORY_WIDTH, buttonUp, buttonDown);
