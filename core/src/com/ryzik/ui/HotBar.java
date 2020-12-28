@@ -65,6 +65,11 @@ public class HotBar extends Actor {
                 scroll = amountY;
                 return super.scrolled(event, x, y, amountX, amountY);
             }
+
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return super.touchDown(event, x, y, pointer, button);
+            }
         });
     }
 

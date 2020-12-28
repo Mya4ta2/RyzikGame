@@ -25,7 +25,7 @@ public class ItemSlot extends Actor {
         setDefaultPos();
         setDefaultSize();
 
-        //addListener(new ItemSlotInputListener(this));
+        addListener(new ItemSlotInputListener(this));
     }
 
     public void setDefaultPos() {

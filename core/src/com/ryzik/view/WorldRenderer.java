@@ -1,9 +1,11 @@
 package com.ryzik.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.ryzik.Cursor;
 import com.ryzik.Vars;
 import com.ryzik.content.Blocks;
 import com.ryzik.ctype.Renderer;
@@ -48,6 +50,16 @@ public class WorldRenderer implements Renderer {
                 world.getPlayer().getPosition().x * Vars.TILE_SIZE + Vars.TILE_SIZE/2f,
                 world.getPlayer().getPosition().y * Vars.TILE_SIZE + Vars.TILE_SIZE/2f
                 ,0);
+
+        setCursor();
+    }
+
+    public void setCursor() {
+        Cursor.x = (int)(Gdx.input.getX() + (Gdx.graphics.getWidth() / 2));
+        Cursor.y = (int)(camera.viewportHeight - Gdx.input.getY() + (Gdx.graphics.getHeight() / 2));
+
+        Cursor.worldX = (int) (camera.position.x + Cursor.x - Gdx.graphics.getWidth());
+        Cursor.worldY = (int) (camera.position.y + Cursor.y - Gdx.graphics.getHeight());
     }
 
     @Override

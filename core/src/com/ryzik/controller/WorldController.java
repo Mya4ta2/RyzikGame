@@ -2,6 +2,9 @@ package com.ryzik.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
+import com.ryzik.Cursor;
 import com.ryzik.content.Blocks;
 import com.ryzik.type.Tile;
 import com.ryzik.type.World;
@@ -68,6 +71,10 @@ public class WorldController {
     public void updateBuildings(float delta) {
         for (int i = 0; i < world.getTiles().getArray().length; i++) {
             if (world.getTiles().getArray()[i].getBuilding() != null) {
+                if (world.getTiles().getArray()[i].getBuilding().getBounds().contains(Cursor.worldX/32, Cursor.worldY/32) &&
+                        Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
+
+                }
                 world.getTiles().getArray()[i].getBuilding().update(delta);
             }
         }

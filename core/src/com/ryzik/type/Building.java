@@ -1,6 +1,7 @@
 package com.ryzik.type;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.ryzik.Vars;
 
 public class Building implements Entity, Draw {
@@ -9,10 +10,14 @@ public class Building implements Entity, Draw {
     private float health;
     private Block block;
     private Tile tile;
+    private Rectangle bounds;
 
     public Building(Block block) {
         this.block = block;
         health = block.getHealth();
+        bounds = new Rectangle();
+        bounds.width = block.getWidth();
+        bounds.height = block.getHeight();
     }
 
     @Override
@@ -57,6 +62,8 @@ public class Building implements Entity, Draw {
     public void setTile(Tile tile) {
         x = tile.getX();
         y = tile.getY();
+        bounds.x = x;
+        bounds.y = y;
         this.tile = tile;
     }
 
@@ -66,5 +73,9 @@ public class Building implements Entity, Draw {
 
     public void setHealth(float health) {
         this.health = health;
+    }
+
+    public Rectangle getBounds() {
+        return bounds;
     }
 }

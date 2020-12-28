@@ -2,6 +2,7 @@ package com.ryzik.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.ryzik.Cursor;
 import com.ryzik.MainActivity;
 import com.ryzik.Vars;
 import com.ryzik.content.Items;
@@ -84,6 +86,7 @@ public class UIRenderer implements Renderer {
     public void render(float delta) {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
+        drawCursorItem(batch);
         batch.end();
 
         gameStage.setScrollFocus(hotBar);
@@ -93,9 +96,6 @@ public class UIRenderer implements Renderer {
 
         camera.update();
         viewport.apply();
-
-        if (currentStage == inventoryStage) currentStage.setScrollFocus(inventoryHotBar);
-        else currentStage.unfocus(inventoryHotBar);
 
         if (currentStage == gameStage) currentStage.setScrollFocus(hotBar);
         else currentStage.unfocus(hotBar);
@@ -122,6 +122,12 @@ public class UIRenderer implements Renderer {
         inventoryTable.setSize(width,height);
 
         camera.position.set(width/2,height/2, 0);
+    }
+
+    public void drawCursorItem(SpriteBatch batch) {
+        if (Cursor.item != null) {
+            batch.draw(Cursor.item.getItem().getTexture(), Gdx.input.getX(), Gdx.input.getY());
+        }
     }
 
     //i make this for first time, maybe i after remake it =(
