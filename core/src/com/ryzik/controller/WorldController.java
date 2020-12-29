@@ -54,6 +54,10 @@ public class WorldController {
                             (int) world.getPlayer().getPosition().x + i,
                             (int) world.getPlayer().getPosition().y + j);
 
+                    if (tile.getBuilding() != null && world.getPlayer().getBounds().overlaps(tile.getBuilding().getBounds())) {
+                        world.getPlayer().getPosition().set(world.getPlayer().getOldPosition());
+                    }
+
                     if (world.getPlayer().getBounds().overlaps(tile.getBounds()) && tile.getBlock() != Blocks.air) {
                         world.getPlayer().getPosition().set(world.getPlayer().getOldPosition());
                     }
