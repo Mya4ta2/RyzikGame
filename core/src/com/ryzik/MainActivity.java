@@ -4,10 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.ryzik.content.Blocks;
-import com.ryzik.content.Floors;
-import com.ryzik.content.Items;
-import com.ryzik.content.Weapons;
+import com.ryzik.content.*;
 import com.ryzik.screen.GameScreen;
 import com.ryzik.screen.MenuScreen;
 
@@ -24,6 +21,7 @@ public class MainActivity extends Game {
         new Floors().load();
         new Items().load();
         new Weapons().load();
+        new MobTypes().load();
 
         gameScreen = new GameScreen(this);
         menuScreen = new MenuScreen(this);

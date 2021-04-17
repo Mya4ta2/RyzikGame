@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.ryzik.content.Blocks;
 import com.ryzik.content.Floors;
 import com.ryzik.content.Items;
+import com.ryzik.content.MobTypes;
 
 public class World {
     private Tiles tiles;
@@ -11,6 +12,7 @@ public class World {
     private String name;
 
     private Player player;
+    private Mob mob;
 
     private final int width, height;
 
@@ -28,6 +30,9 @@ public class World {
     public void test() {
         player = new Player();
         player.setPosition(new Vector2(width/2, height/2));
+
+        mob = new Mob(MobTypes.testEnemy);
+        mob.getPosition().set(new Vector2(width/2 + 5, height/2));
 
         Building furnace = new Building(Blocks.furnace);
         Building craftingTable = new Building(Blocks.craftingTable);
@@ -69,5 +74,9 @@ public class World {
 
     public String getName() {
         return name;
+    }
+
+    public Mob getMob() {
+        return mob;
     }
 }
