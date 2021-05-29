@@ -38,7 +38,7 @@ public class UIRenderer implements Renderer {
     private BitmapFont font;
     private Stage currentStage;
 
-    //resume stage //no, its pause stage, need remake =(
+    //resume stage
     private TextButton resumeButton;
     private TextButton settingsButton;
     private TextButton exitButton;

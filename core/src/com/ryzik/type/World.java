@@ -7,7 +7,8 @@ import com.ryzik.content.Items;
 import com.ryzik.content.MobTypes;
 
 public class World {
-    private Tiles tiles;
+    private final Tiles tiles;
+    private final Entitys entitys;
     private DroppedItems droppedItems;
     private String name;
 
@@ -22,6 +23,7 @@ public class World {
         this.height = height;
         tiles = new Tiles(width,height);
         droppedItems = new DroppedItems();
+        entitys = new Entitys();
 
         test();
     }
@@ -46,6 +48,10 @@ public class World {
         for (int i = 0; i < Items.items.size(); i++) {
             new DroppedItem(this, new ItemStack(Items.items.get(i),1),15 + i,15);
         }
+    }
+
+    public void addEntity(Entity entity) {
+        entitys.add(entity);
     }
 
     public Tiles getTiles() {
