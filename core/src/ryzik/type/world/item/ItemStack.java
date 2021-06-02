@@ -35,10 +35,6 @@ public class ItemStack {
         return itemType;
     }
 
-    public void setItemType(Item item) {
-        this.itemType = item;
-    }
-
     public int getAmount() {
         return amount;
     }

@@ -39,7 +39,7 @@ public class Weapon extends Mob {
 
     @Override
     public void attack(Building building) {
-        type.attack(this,building);
+        type.attack(this, building);
     }
 
     public void attack() {

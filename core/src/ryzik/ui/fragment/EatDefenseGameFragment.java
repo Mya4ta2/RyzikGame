@@ -36,7 +36,7 @@ public class EatDefenseGameFragment extends Fragment {
             }
         });
 
-        final InventoryActor inventoryActor = new InventoryActor(Vars.player.inventory);
+        final InventoryActor inventoryActor = new InventoryActor(Vars.player.inventory, 128);
         table.bottom().add(inventoryActor.getInventoryTable()).row();
         table.bottom().add(inventoryActor.getHotbarTable());
 
@@ -49,7 +49,8 @@ public class EatDefenseGameFragment extends Fragment {
 
         Vars.stage.setScrollFocus(inventoryActor.getHotbarTable().getChild(0));
 
-        rightUp.right().top().add(new HealthBar(1,false, Vars.skin, Vars.player));
+        HealthBar healthBar = new HealthBar(1,false, Vars.skin, Vars.player);
+        rightUp.right().top().add(healthBar);
         final TextActor fps = new TextActor();
         fps.setSize(128,64);
         Events.update.on(new Runnable() {
@@ -101,7 +102,7 @@ public class EatDefenseGameFragment extends Fragment {
             }
         });
 
-        final InventoryActor inventoryActor = new InventoryActor(Vars.player.inventory);
+        final InventoryActor inventoryActor = new InventoryActor(Vars.player.inventory, 64);
         table.bottom().add(inventoryActor.getInventoryTable()).row();
         table.bottom().add(inventoryActor.getHotbarTable());
 

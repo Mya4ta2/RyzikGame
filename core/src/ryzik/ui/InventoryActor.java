@@ -11,12 +11,14 @@ public class InventoryActor {
     private HotBar hotBar;
 
     private Table inventoryTable;
+    private float slotSize;
 
-    public InventoryActor(Inventory inventory) {
+    public InventoryActor(Inventory inventory, float slotSize) {
         this.inventory = inventory;
+        this.slotSize = slotSize;
         this.inventorySlots = new ItemSlotActor[inventory.getWidth()][inventory.getHeight()];
 
-        hotBar = new HotBar(inventory);
+        hotBar = new HotBar(inventory, slotSize);
         inventoryTable = new Table();
 
         fill();

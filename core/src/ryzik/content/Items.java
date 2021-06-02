@@ -7,7 +7,7 @@ import ryzik.type.world.item.weapon.RangedType;
 import ryzik.type.world.item.weapon.SwordType;
 
 public class Items implements ContentList {
-    public static Item air, stick, suicide, sword, gun;
+    public static Item air, stick, suicide, sword, gun, dyurandal;
 
     @Override
     public void load() {
@@ -37,6 +37,15 @@ public class Items implements ContentList {
                 reloadTime = 0.5f;
                 damage = 25;
                 discarding = 5;
+            }
+        };
+
+        dyurandal = new SwordType("dyurandal") {
+            {
+                reloadTime = 0.5f;
+                damage = 25;
+                discarding = 5;
+                height = 2;
             }
         };
 

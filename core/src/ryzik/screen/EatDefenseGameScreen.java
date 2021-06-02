@@ -47,10 +47,11 @@ public class EatDefenseGameScreen extends GameScreen {
             }
         });
 
-        Vars.player.inventory.getHotBar()[3].set(Items.stick,5);
+        Vars.player.inventory.getHotBar()[4].set(Items.sword, 1);
+        Vars.player.inventory.getHotBar()[3].set(Items.stick, 5);
         Vars.player.inventory.getHotBar()[2].set(Items.suicide, 5);
+        Vars.player.inventory.getHotBar()[0].set(Items.dyurandal, 1);
         //Vars.player.inventory.getHotBar()[1].set(Items.gun, 1);
-        Vars.player.inventory.getHotBar()[0].set(Items.sword, 1);
     }
 
     @Override

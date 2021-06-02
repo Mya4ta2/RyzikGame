@@ -59,8 +59,8 @@ public class ItemSlotActor extends Actor {
             Vars.font.draw(
                     batch,
                     String.valueOf(itemStack.getAmount()),
-                    getX() + 16 + itemStack.getItemType().texture.getWidth(),
-                    getY() + 24
+                    getX() + (getWidth()/2),
+                    getY() + (getHeight()/2)
             );
         }
 

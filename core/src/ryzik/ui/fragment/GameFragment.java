@@ -28,7 +28,7 @@ public class GameFragment extends Fragment{
             }
         });
 
-        final InventoryActor inventoryActor = new InventoryActor(Vars.player.inventory);
+        final InventoryActor inventoryActor = new InventoryActor(Vars.player.inventory, 64);
         table.bottom().add(inventoryActor.getInventoryTable()).row();
         table.bottom().add(inventoryActor.getHotbarTable());
 

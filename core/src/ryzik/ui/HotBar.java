@@ -27,8 +27,11 @@ public class HotBar extends Actor {
     private int selectedSlotIndex;
     private ItemSlotActor selectedSlot;
 
-    public HotBar(Inventory inventory) {
+    private float slotSize;
+
+    public HotBar(Inventory inventory, float slotSize) {
         this.inventory = inventory;
+        this.slotSize = slotSize;
         this.hotBarSlots = new ItemSlotActor[inventory.getWidth()];
 
         glyphLayout = new GlyphLayout();
@@ -59,19 +62,19 @@ public class HotBar extends Actor {
         table = new Table();
         slotsTable = new Table();
 
-        setWidth(hotBarSlots.length * 32);
-        setHeight(64);
+        setWidth(hotBarSlots.length * slotSize);
+        setHeight(slotSize);
         table.add(this).row();
 
         for (int x = 0; x < hotBarSlots.length; x++) {
             hotBarSlots[x] = new ItemSlotActor(Vars.atlas.find("itemslot"), Vars.atlas.find("activeItemslot"));
             hotBarSlots[x].itemStack = inventory.getHotBar()[x];
-            hotBarSlots[x].setSize(64,64);
+            hotBarSlots[x].setSize(slotSize,slotSize);
             slotsTable.add(hotBarSlots[x]);
             slotsTable.add(new Separator(0, 6));
         }
 
-        setSelectedSlot(0);
+        setSelectedSlot(1);
 
         table.add(slotsTable);
     }
@@ -108,7 +111,7 @@ public class HotBar extends Actor {
                 new Vector2(Vars.player.position.x,  Vars.player.position.y - 1)
         );
 
-        if (itemStack.empty()) itemStack.setItemType(Items.air);
+        if (itemStack.empty()) itemStack.set(Items.air, 0);
 
         Vars.world.addMob(item);
     }
@@ -136,12 +139,12 @@ public class HotBar extends Actor {
       //      Cursor.selectedItem.useItem();
         if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT) && !selectedSlot.itemStack.empty()) {
             selectedSlot.itemStack.rightMouseUseItem();
-            if (selectedSlot.itemStack.empty()) selectedSlot.itemStack.setItemType(Items.air);
+            if (selectedSlot.itemStack.empty()) selectedSlot.itemStack.set(Items.air, 0);
         }
 
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && selectedSlot.itemStack.isWeapon()) {
             Vars.player.currentWeapon.attack();
-            if (selectedSlot.itemStack.empty()) selectedSlot.itemStack.setItemType(Items.air);
+            if (selectedSlot.itemStack.empty()) selectedSlot.itemStack.set(Items.air, 0);
         }
 
         //table.validate();
