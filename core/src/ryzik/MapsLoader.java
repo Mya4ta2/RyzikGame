@@ -79,7 +79,7 @@ public class MapsLoader {
             ), Blocks.tree, Teams.gray);
         }
 
-        Building building = new WaveSpawner(Blocks.air, MobTypes.cockroach, 2);
+        Building building = new WaveSpawner(Blocks.waveSpawner, MobTypes.cockroach, 2);
         map.addBuilding(map.getTilemap().get(20, 20), building, Teams.red);
 
         map.getTilemap().get(4,3).block = Blocks.tree;

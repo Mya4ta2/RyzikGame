@@ -6,7 +6,7 @@ import ryzik.ctype.ContentList;
 import ryzik.type.world.block.Block;
 
 public class Blocks implements ContentList {
-    public static Block air, grass, stone, stoneBrick, tree, eat;
+    public static Block air, grass, stone, stoneBrick, tree, eat, waveSpawner;
 
     @Override
     public void load() {
@@ -34,6 +34,12 @@ public class Blocks implements ContentList {
         eat = new Block("eat") {
             {
                 health = 500;
+            }
+        };
+
+        waveSpawner = new Block("waveSpawner") {
+            {
+                health = 10;
             }
         };
     }
