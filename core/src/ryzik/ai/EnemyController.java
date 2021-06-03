@@ -1,9 +1,11 @@
 package ryzik.ai;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import ryzik.Vars;
 import ryzik.content.MobTypes;
 import ryzik.type.EatDefenseGameState;
+import ryzik.type.world.Building;
 import ryzik.type.world.mob.Mob;
 import ryzik.type.MobController;
 import ryzik.type.world.Tile;
@@ -14,13 +16,11 @@ import java.util.ArrayList;
 public class EnemyController extends MobController {
     private final Tilemap tilemap;
     private final PathFinder pathFinder;
-    private Mob target;
-    private Runnable onTargetMove;
+    private Building target;
 
     @Override
     public void init() {
-        onTargetMove.run();
-        target.onMove.on(onTargetMove);
+        updatePath();
     }
 
     public EnemyController(Mob mob) {
@@ -29,13 +29,7 @@ public class EnemyController extends MobController {
         tilemap = Vars.world.getTilemap();
         pathFinder = new PathFinder(tilemap);
 
-        target = Vars.player;
-        onTargetMove = new Runnable() {
-            @Override
-            public void run() {
-                updatePath();
-            }
-        };
+        target = ((EatDefenseGameState) Vars.gameState).eat;
 
         init();
     }
@@ -48,7 +42,7 @@ public class EnemyController extends MobController {
 
     @Override
     public void dispose() {
-        target.onMove.remove(onTargetMove);
+
     }
 
     public ArrayList<Tile> path;
@@ -58,7 +52,7 @@ public class EnemyController extends MobController {
     public void updatePath() {
         path = pathFinder.findPath(
                 tilemap.get((int) mob.position.x, (int) mob.position.y),
-                tilemap.get((int) target.position.x, (int) target.position.y)
+                tilemap.get((int) target.x, (int) target.y)
         );
 
         if (path == null) return;

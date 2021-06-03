@@ -74,7 +74,7 @@ public class PathFinder {
     public Tile getTile(Tile tile, int x, int y) {
         if (tilemap.inBounds(new Vector2(tile.x + x, tile.y + y))) {
             Tile tileOut = tilemap.get((int) tile.x + x, (int) tile.y + y);
-            if (tileOut.block == Blocks.air && tileOut.building == null) {
+            if (tileOut.block == Blocks.air) {
                 return tileOut;
             }
         }

@@ -34,24 +34,6 @@ public class MapsLoader {
         int homeposX = 25;
         int homeposY = 10;
 
-        for (int i = 0; i < 7; i++) {
-            for (int y = 0; y < 7; y++) {
-                map.createBuilding(map.getTilemap().get(homeposX + i,homeposY + y), Blocks.stoneBrick, Teams.gray);
-            }
-        }
-
-        for (int i = 1; i < 6; i++) {
-            for (int y = 1; y < 6; y++) {
-                map.getTilemap().get(homeposX + i,homeposY + y).building = null;
-            }
-        }
-
-        for (int i = 0; i < 7; i++) {
-            for (int y = 0; y < 7; y++) {
-                map.getTilemap().get(homeposX + i,homeposY + y).floor = Floors.stone;
-            }
-        }
-
         Player mob = new Player(MobTypes.ryzik);
         mob.team = Teams.orange;
         map.addMob(mob);
@@ -79,7 +61,7 @@ public class MapsLoader {
         }
 
         Building building = new WaveSpawner(Blocks.waveSpawner, MobTypes.cockroach, 2);
-        map.addBuilding(map.getTilemap().get(20, 20), building, Teams.red);
+        map.addBuilding(map.getTilemap().get(homeposX, homeposY), building, Teams.red);
 
         map.getTilemap().get(4,3).block = Blocks.tree;
 
