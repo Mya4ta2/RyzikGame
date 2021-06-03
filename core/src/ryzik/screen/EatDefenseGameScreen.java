@@ -3,12 +3,16 @@ package ryzik.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
 import ryzik.Draw;
 import ryzik.Vars;
 import ryzik.content.Blocks;
+import ryzik.content.Events;
 import ryzik.content.Items;
 import ryzik.type.EatDefenseGameState;
 import ryzik.type.world.Building;
+import ryzik.ui.dialog.Dialog;
+import ryzik.ui.dialog.EatDefenseGameOverDialog;
 
 public class EatDefenseGameScreen extends GameScreen {
     public EatDefenseGameState gameState;
@@ -16,7 +20,6 @@ public class EatDefenseGameScreen extends GameScreen {
     @Override
     public void show() {
         super.show();
-
         gameState = new EatDefenseGameState();
 
         Array<Building> eatBuildings = world.getBuildings(Blocks.eat);
@@ -52,11 +55,23 @@ public class EatDefenseGameScreen extends GameScreen {
         Vars.player.inventory.getHotBar()[2].set(Items.suicide, 5);
         Vars.player.inventory.getHotBar()[0].set(Items.dyurandal, 1);
         //Vars.player.inventory.getHotBar()[1].set(Items.gun, 1);
+
+        gameState.eat.onHealthChange.on(new Runnable() {
+            @Override
+            public void run() {
+                if (gameState.eat.health < 0) gameOver();
+            }
+        });
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
+
+        if (!gameState.gameOver) {
+            gameState.eat.applyDamage(1f);
+            gameState.secondsPlayed += Gdx.graphics.getDeltaTime();
+        }
     }
 
     @Override
@@ -82,5 +97,23 @@ public class EatDefenseGameScreen extends GameScreen {
     @Override
     public void dispose() {
         super.dispose();
+    }
+
+    public void gameOver() {
+        gameState.gameOver = true;
+
+        final Dialog dialog = new EatDefenseGameOverDialog(this);
+        dialog.setSize(Gdx.graphics.getWidth() - 32, Gdx.graphics.getHeight() - 32);
+        dialog.setPosition(16,16);
+
+        Events.resize.on(new Runnable() {
+            @Override
+            public void run() {
+                dialog.setSize(Gdx.graphics.getWidth() - 32, Gdx.graphics.getHeight() - 32);
+                dialog.setPosition(16,16);
+            }
+        });
+
+        dialog.show();
     }
 }

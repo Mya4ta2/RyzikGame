@@ -1,5 +1,6 @@
 package ryzik;
 
+import ryzik.content.Events;
 import ryzik.screen.GameScreen;
 import ryzik.screen.MenuScreen;
 
@@ -14,6 +15,7 @@ public class ScreenController {
 
     public void setMenu() {
         mainActivity.setScreen(menu);
+        Events.resize.fire();
     }
 
     public void startGame(GameScreen gameScreen) {
