@@ -3,6 +3,7 @@ package ryzik.ai;
 import com.badlogic.gdx.math.Vector2;
 import ryzik.Vars;
 import ryzik.content.MobTypes;
+import ryzik.type.EatDefenseGameState;
 import ryzik.type.world.mob.Mob;
 import ryzik.type.MobController;
 import ryzik.type.world.Tile;

@@ -58,7 +58,6 @@ public class MapsLoader {
         mob.position.set(38, 20);
         mob.inventory = new Inventory(5,5);
         mob.currentWeapon = new Weapon(Items.sword);
-        Vars.player = mob;
         mob.health = mob.type.getHealth();
 
         Mob mob1 = map.spawnMob(MobTypes.cockroach, Teams.red);

@@ -1,9 +1,11 @@
 package ryzik.type.world;
 
+import ryzik.Vars;
 import ryzik.type.Entity;
 import ryzik.type.world.block.Block;
 import ryzik.type.world.mob.Mob;
 import ryzik.type.world.mob.MobType;
+import ryzik.type.world.mob.Player;
 
 public class Map {
     private final String name;
@@ -26,11 +28,18 @@ public class Map {
 
         for (int i = 0; i < entitys.getArray().size(); i++) {
             world.getEntitys().add(entitys.getArray().get(i));
+
+            if (world.getEntitys().getArray().get(i) instanceof Player)
+                Vars.player = (Player) world.getEntitys().getArray().get(i);
         }
 
         for (int i = 0; i < mobs.getArray().size; i++) {
             world.getMobs().add(mobs.getArray().get(i));
         }
+
+        //TODO =)
+        Vars.mapsLoader.maps.clear();
+        Vars.mapsLoader.load();
 
         return world;
     }

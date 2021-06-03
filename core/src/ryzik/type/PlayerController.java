@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import ryzik.Cursor;
 import ryzik.Vars;
 import ryzik.type.world.mob.Mob;
+import ryzik.type.world.mob.Player;
 import ryzik.ui.Joystick;
 
 public class PlayerController extends MobController {
