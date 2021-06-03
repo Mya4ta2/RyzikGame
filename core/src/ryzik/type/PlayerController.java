@@ -44,7 +44,8 @@ public class PlayerController extends MobController {
     }
 
     private void updateDesktop() {
-        mob.currentWeapon.angle = Cursor.angle;
+        if (mob.currentWeapon != null)
+            mob.currentWeapon.angle = Cursor.angle;
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             mob.velocity.y += mob.type.getSpeed();

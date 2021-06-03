@@ -42,7 +42,8 @@ public class WorldController {
                 Vars.player.position.set(Vars.player.oldPosition);
             }
 
-            Vars.player.currentWeapon.bounds.overlaps(mob.bounds);
+            if (Vars.player.currentWeapon != null)
+                Vars.player.currentWeapon.bounds.overlaps(mob.bounds);
         }
 
         for (Tile tile : world.getTilemap().getArray()) {

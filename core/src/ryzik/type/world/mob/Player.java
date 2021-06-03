@@ -45,7 +45,8 @@ public class Player extends Mob {
     @Override
     public void draw() {
         super.draw();
-        currentWeapon.draw();
+        if (currentWeapon != null)
+            currentWeapon.draw();
     }
 
     @Override

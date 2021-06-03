@@ -96,6 +96,7 @@ public class HotBar extends Actor {
         selectedSlotIndex = index;
         selectedSlot.active = true;
         if (selectedSlot.itemStack.isWeapon()) Vars.player.currentWeapon = (Weapon) selectedSlot.itemStack.getItemMob();
+        else Vars.player.currentWeapon = null;
     }
 
     public void nextSlotSelect() {
