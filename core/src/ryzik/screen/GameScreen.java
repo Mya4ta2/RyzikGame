@@ -61,6 +61,8 @@ public abstract class GameScreen implements Screen {
         Draw.onDraw.fire();
         Draw.batch.end();
 
+        gameState.secondsPlayed += Gdx.graphics.getDeltaTime();
+
         //TODO убрать этот keyE подальше отсюдава
         if (!Vars.player.dead) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
