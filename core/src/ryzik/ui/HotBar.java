@@ -137,14 +137,17 @@ public class HotBar extends Actor {
     public void act(float delta) {
       //  if (Cursor.selectedItem != null && Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT))
       //      Cursor.selectedItem.useItem();
-        if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT) && !selectedSlot.itemStack.empty()) {
-            selectedSlot.itemStack.rightMouseUseItem();
-            if (selectedSlot.itemStack.empty()) selectedSlot.itemStack.set(Items.air, 0);
-        }
 
-        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && selectedSlot.itemStack.isWeapon()) {
-            Vars.player.currentWeapon.attack();
-            if (selectedSlot.itemStack.empty()) selectedSlot.itemStack.set(Items.air, 0);
+        if (Vars.desktop) {
+            if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT) && !selectedSlot.itemStack.empty()) {
+                selectedSlot.itemStack.rightMouseUseItem();
+                if (selectedSlot.itemStack.empty()) selectedSlot.itemStack.set(Items.air, 0);
+            }
+
+            if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && selectedSlot.itemStack.isWeapon()) {
+                Vars.player.currentWeapon.attack();
+                if (selectedSlot.itemStack.empty()) selectedSlot.itemStack.set(Items.air, 0);
+            }
         }
 
         //table.validate();

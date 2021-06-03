@@ -105,6 +105,12 @@ public class Mob implements Entity {
         }
     }
 
+    public void attack() {
+        if (currentWeapon != null && currentWeapon.reloaded) {
+            currentWeapon.attack();
+        }
+    }
+
     public void attack(Building building) {
         if (currentWeapon != null && currentWeapon.reloaded) {
             currentWeapon.attack(building);

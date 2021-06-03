@@ -4,13 +4,17 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 
+import ryzik.Cursor;
 import ryzik.Vars;
 import ryzik.type.world.mob.Mob;
 import ryzik.ui.Joystick;
 
 public class PlayerController extends MobController {
     private Joystick joystick;
+    private Joystick attackJoystick;
 
     public PlayerController(Mob mob) {
         super(mob);
@@ -30,9 +34,7 @@ public class PlayerController extends MobController {
     }
 
     private void updateAndroid() {
-        if (Vars.stage.getActors().get(0) instanceof Group) {
-            joystick = ((Group) Vars.stage.getActors().get(0)).findActor("joystick");
-        }
+        if (joystick == null && attackJoystick == null) initJoysticks();
 
         if (joystick != null)
             mob.velocity.add(
@@ -42,6 +44,8 @@ public class PlayerController extends MobController {
     }
 
     private void updateDesktop() {
+        mob.currentWeapon.angle = Cursor.angle;
+
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             mob.velocity.y += mob.type.getSpeed();
         }
@@ -56,6 +60,22 @@ public class PlayerController extends MobController {
 
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             mob.velocity.x -= mob.type.getSpeed();
+        }
+    }
+
+    private void initJoysticks() {
+        if (Vars.stage.getActors().get(0) instanceof Group) {
+            joystick = ((Group) Vars.stage.getActors().get(0)).findActor("joystick");
+            attackJoystick = ((Group) Vars.stage.getActors().get(0)).findActor("attackJoystick");
+
+            attackJoystick.addListener(new InputListener(){
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    if (mob.currentWeapon != null) mob.currentWeapon.angle = attackJoystick.getAngle();
+                    mob.attack();
+                    return super.touchDown(event, x, y, pointer, button);
+                }
+            });
         }
     }
 

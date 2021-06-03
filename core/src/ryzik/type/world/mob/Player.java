@@ -50,10 +50,6 @@ public class Player extends Mob {
 
     @Override
     public void update(float delta) {
-        if (currentWeapon != null && currentWeapon.type instanceof SwordType) {
-            currentWeapon.angle = Cursor.angle;
-        }
-
         super.update(delta);
     }
 }

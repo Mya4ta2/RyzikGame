@@ -3,11 +3,14 @@ package ryzik.ui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class Joystick extends Actor {
+import ryzik.Cursor;
+import ryzik.Vars;
 
+public class Joystick extends Actor {
     public static final float CUR_RADIUS = 20;
     private Texture circle;
     private Texture curJoystick;
@@ -33,6 +36,24 @@ public class Joystick extends Actor {
     public void resetCur() {
         curX = 0;
         curY = 0;
+    }
+
+    public float getAngle() {
+        float angle = Cursor.getAngle(
+                0,
+                0,
+                curX + getWidth()/2,
+                curY + getHeight()/2,
+                getWidth()/2,
+                getHeight()/2
+        );
+
+        angle = -angle;
+        angle *= MathUtils.radiansToDegrees;
+        angle += 30; // i no know what it`s number, but she make all work perfect
+        if (angle < 0) angle += 360;
+
+        return angle;
     }
 
     public void setTouched() {

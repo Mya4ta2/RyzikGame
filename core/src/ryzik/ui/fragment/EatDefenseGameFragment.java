@@ -72,6 +72,11 @@ public class EatDefenseGameFragment extends Fragment {
         joystick.setName("joystick");
         group.addActor(joystick);
 
+        Joystick attackJoystick = new Joystick(Vars.atlas.find("joystick"), Vars.atlas.find("joystickCur"));
+        attackJoystick.setName("attackJoystick");
+        attackJoystick.setPosition(300,300);
+        group.addActor(attackJoystick);
+
         group.addActor(leftUp);
         group.addActor(up);
         group.addActor(rightUp);
