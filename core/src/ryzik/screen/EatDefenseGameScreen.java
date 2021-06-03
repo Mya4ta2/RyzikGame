@@ -69,7 +69,6 @@ public class EatDefenseGameScreen extends GameScreen {
         super.render(delta);
 
         if (!gameState.gameOver) {
-            gameState.eat.applyDamage(1f);
             gameState.secondsPlayed += Gdx.graphics.getDeltaTime();
         }
     }

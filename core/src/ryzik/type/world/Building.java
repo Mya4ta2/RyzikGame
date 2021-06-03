@@ -11,7 +11,6 @@ import ryzik.type.world.bounds.BuildingBounds;
 import ryzik.type.world.bounds.MobBounds;
 import ryzik.type.world.mob.Mob;
 
-//TODO Building не моб =(
 public class Building implements Entity {
     public Block type;
     public int x, y;
