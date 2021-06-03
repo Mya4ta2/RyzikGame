@@ -7,6 +7,7 @@ import ryzik.Vars;
 import ryzik.content.Events;
 import ryzik.type.EatDefenseGameState;
 import ryzik.ui.*;
+import sun.tools.jconsole.Tab;
 
 public class EatDefenseGameFragment extends Fragment {
     @Override
@@ -20,6 +21,8 @@ public class EatDefenseGameFragment extends Fragment {
         final Table up = new Table();
         final Table leftUp = new Table();
         final Table table = new Table();
+        final Table joystickTable = new Table();
+        final Table attackJoystickTable = new Table();
 
         Events.resize.on(new Runnable() {
             @Override
@@ -33,6 +36,9 @@ public class EatDefenseGameFragment extends Fragment {
                 rightUp.setSize(Gdx.graphics.getWidth()/3f,64);
                 rightUp.setPosition(Gdx.graphics.getWidth()/3f + leftUp.getWidth(),Gdx.graphics.getHeight() - rightUp.getHeight());
                 table.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight() - rightUp.getHeight());
+
+                joystickTable.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                attackJoystickTable.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             }
         });
 
@@ -70,12 +76,21 @@ public class EatDefenseGameFragment extends Fragment {
         //TODO move textures to Vars.skin
         Joystick joystick = new Joystick(Vars.atlas.find("joystick"), Vars.atlas.find("joystickCur"));
         joystick.setName("joystick");
-        group.addActor(joystick);
+        joystick.setWidth(260);
 
         Joystick attackJoystick = new Joystick(Vars.atlas.find("joystick"), Vars.atlas.find("joystickCur"));
         attackJoystick.setName("attackJoystick");
-        attackJoystick.setPosition(300,300);
-        group.addActor(attackJoystick);
+        attackJoystick.setWidth(260);
+
+        joystickTable.left().bottom().add(new Separator(32, 32));
+        joystickTable.left().bottom().add(joystick).row();
+        joystickTable.left().bottom().add(new Separator(32, 32));
+        attackJoystickTable.right().bottom().add(attackJoystick);
+        attackJoystickTable.right().bottom().add(new Separator(32, 32)).row();
+        attackJoystickTable.right().bottom().add(new Separator(32, 32));
+
+        group.addActor(joystickTable);
+        group.addActor(attackJoystickTable);
 
         group.addActor(leftUp);
         group.addActor(up);
