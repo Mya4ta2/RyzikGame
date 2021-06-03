@@ -7,7 +7,6 @@ import ryzik.Vars;
 import ryzik.content.Events;
 import ryzik.type.EatDefenseGameState;
 import ryzik.ui.*;
-import sun.tools.jconsole.Tab;
 
 public class EatDefenseGameFragment extends Fragment {
     @Override

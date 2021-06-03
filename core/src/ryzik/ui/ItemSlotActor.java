@@ -23,13 +23,25 @@ public class ItemSlotActor extends Actor {
         addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                if (Cursor.selectedItem != null) {
-                    itemStack = Cursor.selectedItem;
-                    Cursor.selectedItem = null;
-                } else {
-                    if (itemStack != null && !itemStack.empty()) {
-                        Cursor.selectedItem = itemStack;
-                        itemStack = new ItemStack(Items.air,0);
+                if (Vars.mobile && active) {
+                    if (Cursor.selectedItem != null) {
+                        itemStack = Cursor.selectedItem;
+                        Cursor.selectedItem = null;
+                    } else {
+                        if (itemStack != null && !itemStack.empty()) {
+                            Cursor.selectedItem = itemStack;
+                            itemStack = new ItemStack(Items.air, 0);
+                        }
+                    }
+                } else if (Vars.desktop) {
+                    if (Cursor.selectedItem != null) {
+                        itemStack = Cursor.selectedItem;
+                        Cursor.selectedItem = null;
+                    } else {
+                        if (itemStack != null && !itemStack.empty()) {
+                            Cursor.selectedItem = itemStack;
+                            itemStack = new ItemStack(Items.air, 0);
+                        }
                     }
                 }
                 return super.touchDown(event, x, y, pointer, button);

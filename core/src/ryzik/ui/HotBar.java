@@ -66,12 +66,23 @@ public class HotBar extends Actor {
         setHeight(slotSize);
         table.add(this).row();
 
-        for (int x = 0; x < hotBarSlots.length; x++) {
-            hotBarSlots[x] = new ItemSlotActor(Vars.atlas.find("itemslot"), Vars.atlas.find("activeItemslot"));
-            hotBarSlots[x].itemStack = inventory.getHotBar()[x];
-            hotBarSlots[x].setSize(slotSize,slotSize);
-            slotsTable.add(hotBarSlots[x]);
+        for (int i = 0; i < hotBarSlots.length; i++) {
+            hotBarSlots[i] = new ItemSlotActor(Vars.atlas.find("itemslot"), Vars.atlas.find("activeItemslot"));
+            hotBarSlots[i].itemStack = inventory.getHotBar()[i];
+            hotBarSlots[i].setSize(slotSize,slotSize);
+            slotsTable.add(hotBarSlots[i]);
             slotsTable.add(new Separator(0, 6));
+
+            if (Vars.mobile) {
+                final int finalI = i;
+                hotBarSlots[i].addListener(new InputListener(){
+                    @Override
+                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        setSelectedSlot(finalI);
+                        return super.touchDown(event, x, y, pointer, button);
+                    }
+                });
+            }
         }
 
         setSelectedSlot(1);
