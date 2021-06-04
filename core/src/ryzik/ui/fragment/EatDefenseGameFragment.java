@@ -148,7 +148,7 @@ public class EatDefenseGameFragment extends Fragment {
 
         inventoryActor.getInventoryTable().setVisible(false);
 
-        EatHealthBar eatHealthBar = new EatHealthBar(((EatDefenseGameState)Vars.gameState).eat, Vars.skin);
+        EatHealthBar eatHealthBar = new EatHealthBar(Vars.eat, Vars.skin);
         up.center().add(eatHealthBar);
 
         group.addActor(leftUp);

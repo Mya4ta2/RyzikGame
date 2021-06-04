@@ -18,6 +18,7 @@ public class Vars {
     public static BitmapFont font;
     public static Skin skin;
     public static Stage stage;
+    public static Building eat;
     public static ScreenController screenController;
     public static MapsLoader mapsLoader;
     public static GameState gameState;

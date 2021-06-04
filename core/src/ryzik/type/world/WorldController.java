@@ -1,5 +1,6 @@
 package ryzik.type.world;
 
+import com.badlogic.gdx.math.Vector2;
 import ryzik.Vars;
 import ryzik.type.item.DroppedItem;
 import ryzik.type.world.mob.Mob;
@@ -40,6 +41,20 @@ public class WorldController {
                 }
 
                 Vars.player.position.set(Vars.player.oldPosition);
+            }
+
+            for (int x = 0; x < 5; x++) {
+                for (int y = 0; y < 5; y++) {
+                    if (world.getTilemap().inBounds(new Vector2((int) mob.position.x + x, (int) mob.position.y + y))) {
+                        Tile tile = world.getTilemap().get((int) mob.position.x + x, (int) mob.position.y + y);
+                        if (tile.building != null) {
+                            mob.bounds.overlaps(tile.building.bounds);
+
+                            if (mob.currentWeapon != null)
+                                mob.currentWeapon.bounds.overlaps(tile.building.bounds);
+                        }
+                    }
+                }
             }
 
             if (Vars.player.currentWeapon != null)

@@ -29,7 +29,7 @@ public class EnemyController extends MobController {
         tilemap = Vars.world.getTilemap();
         pathFinder = new PathFinder(tilemap);
 
-        target = ((EatDefenseGameState) Vars.gameState).eat;
+        target = Vars.eat;
 
         init();
     }

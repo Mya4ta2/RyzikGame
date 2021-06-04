@@ -75,7 +75,7 @@ public abstract class GameScreen implements Screen {
         Events.update.fire();
 
         uiRenderer.render(delta);
-        worldController.update(delta);
+        if (!gameState.gameOver) worldController.update(delta);
     }
 
     @Override

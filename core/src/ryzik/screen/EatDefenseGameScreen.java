@@ -15,8 +15,6 @@ import ryzik.ui.dialog.Dialog;
 import ryzik.ui.dialog.EatDefenseGameOverDialog;
 
 public class EatDefenseGameScreen extends GameScreen {
-    public EatDefenseGameState gameState;
-
     @Override
     public void show() {
         super.show();
@@ -24,7 +22,7 @@ public class EatDefenseGameScreen extends GameScreen {
 
         Array<Building> eatBuildings = world.getBuildings(Blocks.eat);
         if (eatBuildings.size <= 0) throw new RuntimeException();
-        else gameState.eat = eatBuildings.get(0);
+        else Vars.eat = eatBuildings.get(0);
         Vars.gameState = gameState;
 
         Group group = new Group();
@@ -56,10 +54,10 @@ public class EatDefenseGameScreen extends GameScreen {
         Vars.player.inventory.getHotBar()[0].set(Items.dyurandal, 1);
         //Vars.player.inventory.getHotBar()[1].set(Items.gun, 1);
 
-        gameState.eat.onHealthChange.on(new Runnable() {
+        Vars.eat.onHealthChange.on(new Runnable() {
             @Override
             public void run() {
-                if (gameState.eat.health < 0) gameOver();
+                if (Vars.eat.health < 0) gameOver();
             }
         });
     }
