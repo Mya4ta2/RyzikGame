@@ -36,7 +36,7 @@ public class WaveSpawner extends Building {
             public void run() {
                 Mob mob = Vars.world.spawnMob(spawnType, team);
                 mob.position.set(x, y);
-                mob.currentWeapon = new Weapon(Items.stick);
+                mob.currentWeapon = new Weapon(Items.cockroachHand);
                 mob.controller = new EnemyController(mob);
             }
         }, timeBetweenWaves, timeBetweenWaves);

@@ -14,8 +14,11 @@ public class EatDefenseGameOverDialog extends Dialog {
     private Table table;
 
     public EatDefenseGameOverDialog(EatDefenseGameScreen eatDefenseGameScreen) {
+        super();
         Group group = new Group();
         table = new Table();
+
+        closeButtonTable.setVisible(false);
 
         TextActor info = new TextActor("played: " + eatDefenseGameScreen.gameState.secondsPlayed);
 

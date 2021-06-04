@@ -34,11 +34,6 @@ public class MapsLoader {
         int homeposX = 25;
         int homeposY = 10;
 
-        Mob mob1 = map.spawnMob(MobTypes.cockroach, Teams.red);
-        //mob1.controller = new EnemyController(mob1);
-        mob1.position.set(20, 20);
-        mob1.currentWeapon = new Weapon(Items.sword);
-
         map.getTilemap().get(homeposX + 3, homeposY).building = null;
 
         map.createBuilding(map.getTilemap().get(homeposX + 3, homeposY + 3), Blocks.eat, Teams.orange);
@@ -52,7 +47,7 @@ public class MapsLoader {
             ), Blocks.tree, Teams.gray);
         }
 
-        Building building = new WaveSpawner(Blocks.waveSpawner, MobTypes.cockroach, 2);
+        Building building = new WaveSpawner(Blocks.waveSpawner, MobTypes.cockroach, 5);
         map.addBuilding(map.getTilemap().get(homeposX, homeposY), building, Teams.red);
 
         map.getTilemap().get(4,3).block = Blocks.tree;
