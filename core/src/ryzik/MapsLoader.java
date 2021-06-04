@@ -34,14 +34,6 @@ public class MapsLoader {
         int homeposX = 25;
         int homeposY = 10;
 
-        Player mob = new Player(MobTypes.ryzik);
-        mob.team = Teams.orange;
-        map.addMob(mob);
-        mob.position.set(38, 20);
-        mob.inventory = new Inventory(5,5);
-        mob.currentWeapon = new Weapon(Items.sword);
-        mob.health = mob.type.getHealth();
-
         Mob mob1 = map.spawnMob(MobTypes.cockroach, Teams.red);
         //mob1.controller = new EnemyController(mob1);
         mob1.position.set(20, 20);

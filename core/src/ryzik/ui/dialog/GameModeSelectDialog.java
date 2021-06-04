@@ -7,9 +7,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import ryzik.Vars;
 import ryzik.content.Events;
+import ryzik.content.Items;
+import ryzik.content.MobTypes;
+import ryzik.content.Teams;
 import ryzik.screen.EatDefenseGameScreen;
 import ryzik.screen.GameScreen;
+import ryzik.type.item.Inventory;
 import ryzik.type.world.Map;
+import ryzik.type.world.mob.Player;
+import ryzik.type.world.mob.Weapon;
 import ryzik.ui.BackgroundActor;
 
 public class GameModeSelectDialog extends Dialog {
@@ -27,6 +33,16 @@ public class GameModeSelectDialog extends Dialog {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 GameScreen gameScreen = new EatDefenseGameScreen();
                 gameScreen.world = map.createWorld();
+
+                Player mob = new Player(MobTypes.ryzik);
+                mob.team = Teams.orange;
+                map.addMob(mob);
+                mob.position.set(38, 20);
+                mob.inventory = new Inventory(5,5);
+                mob.currentWeapon = new Weapon(Items.sword);
+                mob.health = mob.type.getHealth();
+                gameScreen.world.addMob(mob);
+                Vars.player = mob;
                 Vars.screenController.startGame(gameScreen);
                 Events.resize.fire();
                 return super.touchDown(event, x, y, pointer, button);

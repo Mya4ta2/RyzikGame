@@ -28,9 +28,6 @@ public class Map {
 
         for (int i = 0; i < entitys.getArray().size(); i++) {
             world.getEntitys().add(entitys.getArray().get(i));
-
-            if (world.getEntitys().getArray().get(i) instanceof Player)
-                Vars.player = (Player) world.getEntitys().getArray().get(i);
         }
 
         for (int i = 0; i < mobs.getArray().size; i++) {
