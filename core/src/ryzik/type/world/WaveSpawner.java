@@ -4,9 +4,11 @@ import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.utils.Timer;
 import ryzik.Vars;
 import ryzik.ai.EnemyController;
+import ryzik.content.Items;
 import ryzik.type.world.block.Block;
 import ryzik.type.world.mob.Mob;
 import ryzik.type.world.mob.MobType;
+import ryzik.type.world.mob.Weapon;
 
 public class WaveSpawner extends Building {
     public MobType spawnType;
@@ -34,6 +36,7 @@ public class WaveSpawner extends Building {
             public void run() {
                 Mob mob = Vars.world.spawnMob(spawnType, team);
                 mob.position.set(x, y);
+                mob.currentWeapon = new Weapon(Items.stick);
                 mob.controller = new EnemyController(mob);
             }
         }, timeBetweenWaves, timeBetweenWaves);

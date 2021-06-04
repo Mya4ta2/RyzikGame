@@ -38,6 +38,11 @@ public class EnemyController extends MobController {
     public void update() {
         if (path != null)
             updateWalkPath();
+
+        mob.currentWeapon.angle = mob.position.angleDeg(new Vector2(target.x, target.y));
+
+        if (mob.position.dst(new Vector2(target.x, target.y)) < 1)
+            mob.attack();
     }
 
     @Override
