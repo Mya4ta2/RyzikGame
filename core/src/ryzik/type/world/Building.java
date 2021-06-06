@@ -47,4 +47,8 @@ public class Building implements Entity {
     public void destroy() {
 
     }
+
+    public void dispose() {
+
+    }
 }

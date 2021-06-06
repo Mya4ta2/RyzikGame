@@ -61,6 +61,15 @@ public class World {
         return buildings;
     }
 
+    public void disposeBuildings() {
+        for (int x = 0; x < tilemap.getWidth(); x++) {
+            for (int y = 0; y < tilemap.getHeight(); y++) {
+                if (tilemap.get(x,y).building != null)
+                    tilemap.get(x,y).building.dispose();
+            }
+        }
+    }
+
     public Mobs getMobs() {
         return mobs;
     }

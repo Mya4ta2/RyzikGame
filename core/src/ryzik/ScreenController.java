@@ -14,6 +14,8 @@ public class ScreenController {
     }
 
     public void setMenu() {
+        if (mainActivity.getScreen() instanceof GameScreen)
+            mainActivity.getScreen().dispose();
         mainActivity.setScreen(menu);
         Events.resize.fire();
     }

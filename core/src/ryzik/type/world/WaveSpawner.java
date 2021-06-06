@@ -45,4 +45,9 @@ public class WaveSpawner extends Building {
     public void stop() {
         timer.stop();
     }
+
+    @Override
+    public void dispose() {
+        timer.stop();
+    }
 }
