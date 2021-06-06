@@ -31,8 +31,8 @@ public class MapsLoader {
             }
         }
 
-        int homeposX = 25;
-        int homeposY = 10;
+        int homeposX = 35;
+        int homeposY = 25;
 
         map.getTilemap().get(homeposX + 3, homeposY).building = null;
 
@@ -48,7 +48,7 @@ public class MapsLoader {
         }
 
         Building building = new WaveSpawner(Blocks.waveSpawner, MobTypes.cockroach, 5);
-        map.addBuilding(map.getTilemap().get(homeposX, homeposY), building, Teams.red);
+        map.addBuilding(map.getTilemap().get(homeposX - 3, homeposY - 8), building, Teams.red);
 
         map.getTilemap().get(4,3).block = Blocks.tree;
 

@@ -37,7 +37,7 @@ public class GameModeSelectDialog extends Dialog {
                 Player mob = new Player(MobTypes.ryzik);
                 mob.team = Teams.orange;
                 map.addMob(mob);
-                mob.position.set(25, 13);
+                mob.position.set(35, 23);
                 mob.inventory = new Inventory(5,5);
                 mob.currentWeapon = new Weapon(Items.sword);
                 mob.health = mob.type.getHealth();
