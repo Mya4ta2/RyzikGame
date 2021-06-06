@@ -142,17 +142,18 @@ public class EatDefenseGameFragment extends Fragment {
         Vars.stage.setScrollFocus(inventoryActor.getHotbarTable().getChild(0));
 
         rightUp.right().top().add(new HealthBar(1,false, Vars.skin, Vars.player));
-        final TextActor fps = new TextActor();
-        fps.setSize(128,64);
-        Events.update.on(new Runnable() {
-            @Override
-            public void run() {
-                fps.setText(String.valueOf(Gdx.graphics.getFramesPerSecond()));
-            }
-        });
+//        final TextActor fps = new TextActor();
+//        fps.setSize(128,64);
+//        Events.update.on(new Runnable() {
+//            @Override
+//            public void run() {
+//                fps.setText(String.valueOf(Gdx.graphics.getFramesPerSecond()));
+//            }
+//        });
 
         final TextActor wave = new TextActor();
         wave.setSize(128,64);
+        wave.setCenterText(false);
         Events.update.on(new Runnable() {
             @Override
             public void run() {
@@ -164,8 +165,7 @@ public class EatDefenseGameFragment extends Fragment {
             }
         });
 
-        leftUp.left().top().add(fps).row();
-        leftUp.left().top().add(new Separator(0, 16));
+        //leftUp.left().top().add(fps).row();
         leftUp.left().top().add(wave);
 
         inventoryActor.getInventoryTable().setVisible(false);
