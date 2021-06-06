@@ -10,10 +10,13 @@ import ryzik.type.world.mob.Mob;
 import ryzik.type.world.mob.MobType;
 import ryzik.type.world.mob.Weapon;
 
+import java.util.Random;
+
 public class WaveSpawner extends Building {
     public MobType spawnType;
     public Timer timer;
     public float timeBetweenWaves;
+    public int wave;
 
     public WaveSpawner(Block type, MobType spawnType, float timeBetweenWaves) {
         super(type);
@@ -31,13 +34,17 @@ public class WaveSpawner extends Building {
 
     public void start() {
         timer = new Timer();
+        final Random random = new Random();
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                Mob mob = Vars.world.spawnMob(spawnType, team);
-                mob.position.set(x, y);
-                mob.currentWeapon = new Weapon(Items.cockroachHand);
-                mob.controller = new EnemyController(mob);
+                wave++;
+                for (int i = 0; i < wave/2; i++) {
+                    Mob mob = Vars.world.spawnMob(spawnType, team);
+                    mob.position.set(x + (random.nextInt(6)-3), y + (random.nextInt(6)-3));
+                    mob.currentWeapon = new Weapon(Items.cockroachHand);
+                    mob.controller = new EnemyController(mob);
+                }
             }
         }, timeBetweenWaves, timeBetweenWaves);
     }
