@@ -1,12 +1,19 @@
 package ryzik.ui.fragment;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Array;
 import ryzik.Vars;
+import ryzik.content.Blocks;
 import ryzik.content.Events;
 import ryzik.type.EatDefenseGameState;
+import ryzik.type.world.Building;
+import ryzik.type.world.WaveSpawner;
 import ryzik.ui.*;
+
+import java.sql.Time;
 
 public class EatDefenseGameFragment extends Fragment {
     @Override
@@ -144,7 +151,22 @@ public class EatDefenseGameFragment extends Fragment {
             }
         });
 
-        leftUp.left().top().add(fps);
+        final TextActor wave = new TextActor();
+        wave.setSize(128,64);
+        Events.update.on(new Runnable() {
+            @Override
+            public void run() {
+                Array<Building> building = Vars.world.getBuildings(Blocks.waveSpawner);
+                if (building.size > 0) {
+                    WaveSpawner waveSpawner = (WaveSpawner) building.get(0);
+                    wave.setText("wave " + (waveSpawner.wave + 1) + " in " + roundTime(waveSpawner.timeToNextWave));
+                }
+            }
+        });
+
+        leftUp.left().top().add(fps).row();
+        leftUp.left().top().add(new Separator(0, 16));
+        leftUp.left().top().add(wave);
 
         inventoryActor.getInventoryTable().setVisible(false);
 
@@ -158,5 +180,16 @@ public class EatDefenseGameFragment extends Fragment {
 
         CursorActor cursorActor = new CursorActor();
         group.addActor(cursorActor);
+    }
+
+    public String roundTime(float seconds) {
+        int minutes = 0;
+
+        while (seconds > 60) {
+            seconds = 0;
+            minutes++;
+        }
+
+        return minutes + ":" + (int) seconds;
     }
 }

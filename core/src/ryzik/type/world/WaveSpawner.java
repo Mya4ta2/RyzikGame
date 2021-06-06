@@ -16,6 +16,8 @@ public class WaveSpawner extends Building {
     public MobType spawnType;
     public Timer timer;
     public float timeBetweenWaves;
+    public float timerToNextWave;
+    public float timeToNextWave;
     public int wave;
 
     public WaveSpawner(Block type, MobType spawnType, float timeBetweenWaves) {
@@ -30,6 +32,11 @@ public class WaveSpawner extends Building {
         super.update(delta);
 
         if (timer == null) start();
+
+        timerToNextWave += delta;
+        if (timerToNextWave > timeBetweenWaves) timerToNextWave = 0;
+
+        timeToNextWave = Math.abs(timerToNextWave - timeBetweenWaves);
     }
 
     public void start() {
