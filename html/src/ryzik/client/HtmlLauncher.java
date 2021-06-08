@@ -1,4 +1,4 @@
-package com.mygdx.game.client;
+package ryzik.client;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;

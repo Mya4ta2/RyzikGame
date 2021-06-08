@@ -1,11 +1,9 @@
-package com.mygdx.game;
+package ryzik;
 
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-
-import ryzik.MainActivity;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override
