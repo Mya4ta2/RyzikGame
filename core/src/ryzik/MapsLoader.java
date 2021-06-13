@@ -3,6 +3,7 @@ package ryzik;
 import com.badlogic.gdx.utils.Array;
 import ryzik.ai.EnemyController;
 import ryzik.content.*;
+import ryzik.io.MapIO;
 import ryzik.type.item.Inventory;
 import ryzik.type.world.Building;
 import ryzik.type.world.Map;
@@ -53,5 +54,6 @@ public class MapsLoader {
         map.getTilemap().get(4,3).block = Blocks.tree;
 
         maps.add(map);
+        MapIO.save(map);
     }
 }
