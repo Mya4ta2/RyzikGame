@@ -4,9 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import ryzik.Draw;
 import ryzik.Vars;
+import ryzik.ctype.Content;
 import ryzik.type.MobController;
 
-public class MobType {
+public class MobType extends Content {
     private final String name;
 
     private Texture texture;

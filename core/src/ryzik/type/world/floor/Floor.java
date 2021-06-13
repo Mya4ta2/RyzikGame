@@ -2,8 +2,9 @@ package ryzik.type.world.floor;
 
 import com.badlogic.gdx.graphics.Texture;
 import ryzik.Vars;
+import ryzik.ctype.Content;
 
-public class Floor {
+public class Floor extends Content {
     public final String name;
     public Texture texture;
 
