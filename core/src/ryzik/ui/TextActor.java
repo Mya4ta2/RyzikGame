@@ -23,6 +23,7 @@ public class TextActor extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        if (text == null) text = "";
         glyphLayout.setText(Vars.font, text);
 
         if (centerText)

@@ -53,7 +53,7 @@ public class MapsLoader {
 
         map.getTilemap().get(4,3).block = Blocks.tree;
 
-        maps.add(map);
         MapIO.save(map);
+        maps.add(MapIO.read(map.getName()));
     }
 }

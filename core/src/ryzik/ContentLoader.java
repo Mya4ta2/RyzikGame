@@ -33,4 +33,8 @@ public class ContentLoader {
         mobTypes.load();
         teams.load();
     }
+
+    public <T extends Content> T getByID(short id) {
+        return (T) content.get(id);
+    }
 }
