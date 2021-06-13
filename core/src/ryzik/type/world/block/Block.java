@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import ryzik.Draw;
 import ryzik.Vars;
 import ryzik.ctype.Content;
+import ryzik.io.Writes;
 
 public class Block extends Content {
     public final String name;
