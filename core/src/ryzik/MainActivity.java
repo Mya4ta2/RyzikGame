@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import ryzik.content.Events;
+import ryzik.editor.WorldEditorScreen;
 import ryzik.screen.MenuScreen;
 import ryzik.type.Event;
 import ryzik.ui.UI;
@@ -48,7 +49,8 @@ public class MainActivity extends Game {
         Vars.mapsLoader.load();
 
         Vars.screenController = new ScreenController(this);
-        Vars.screenController.setMenu();
+         //Vars.screenController.setMenu();
+        setScreen(new WorldEditorScreen());
 
         Vars.applicationType = Gdx.app.getType();
         Vars.mobile = Vars.applicationType == Application.ApplicationType.Android;

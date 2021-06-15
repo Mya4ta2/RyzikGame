@@ -1,12 +1,15 @@
 package ryzik;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import ryzik.type.world.block.Block;
 import ryzik.type.world.item.ItemStack;
 
 public class Cursor {
     public static int x, y;
+    public static Block block;
     public static ItemStack selectedItem;
     public static float angle;
 
@@ -39,5 +42,11 @@ public class Cursor {
         float angle2 = (float) Math.atan2(point2Y - fixedY, point2X - fixedX);
 
         return angle1 - angle2;
+    }
+
+    public static Vector2 unProject(OrthographicCamera camera) {
+        float centeredX = x - camera.viewportWidth/2;
+        float centeredY = y - camera.viewportHeight/2;
+        return new Vector2(centeredX + camera.position.x, centeredY + camera.position.y);
     }
 }
