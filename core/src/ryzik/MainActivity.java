@@ -49,8 +49,8 @@ public class MainActivity extends Game {
         Vars.mapsLoader.load();
 
         Vars.screenController = new ScreenController(this);
-         //Vars.screenController.setMenu();
-        setScreen(new WorldEditorScreen());
+        Vars.screenController.setMenu();
+        //setScreen(new WorldEditorScreen());
 
         Vars.applicationType = Gdx.app.getType();
         Vars.mobile = Vars.applicationType == Application.ApplicationType.Android;

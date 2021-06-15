@@ -1,6 +1,7 @@
 package ryzik;
 
 import ryzik.content.Events;
+import ryzik.editor.WorldEditorScreen;
 import ryzik.screen.GameScreen;
 import ryzik.screen.MenuScreen;
 
@@ -22,5 +23,9 @@ public class ScreenController {
 
     public void startGame(GameScreen gameScreen) {
         mainActivity.setScreen(gameScreen);
+    }
+
+    public void openEditor(WorldEditorScreen editorScreen) {
+        mainActivity.setScreen(editorScreen);
     }
 }

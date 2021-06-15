@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import ryzik.Vars;
 import ryzik.content.Events;
+import ryzik.editor.WorldEditorScreen;
 import ryzik.ui.BackgroundActor;
 import ryzik.ui.dialog.Dialog;
 import ryzik.ui.Separator;
@@ -31,6 +32,7 @@ public class MenuFragment extends Fragment{
         });
 
         TextButton newGameButton = new TextButton("new game", Vars.skin);
+        TextButton worldEditorButton = new TextButton("editor", Vars.skin);
         TextButton exitButton = new TextButton("exit", Vars.skin);
 
         newGameButton.addListener(new InputListener() {
@@ -51,6 +53,14 @@ public class MenuFragment extends Fragment{
             }
         });
 
+        worldEditorButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Vars.screenController.openEditor(new WorldEditorScreen());
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
         exitButton.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -61,6 +71,8 @@ public class MenuFragment extends Fragment{
 
         leftTable.center().add(text).row();
         leftTable.center().add(newGameButton).row();
+        leftTable.center().add(new Separator(12)).row();
+        leftTable.center().add(worldEditorButton).row();
         leftTable.center().add(new Separator(12)).row();
         leftTable.center().add(exitButton).row();
 
