@@ -19,12 +19,7 @@ public class MapIO {
 
         Writes writes = new Writes(dataOutputStream);
 
-        writes.i(map.getTilemap().getWidth());
-        writes.i(map.getTilemap().getHeight());
-
-        for (Tile tile : map.getTilemap().getArray()) {
-            tile.write(writes);
-        }
+        map.write(writes);
 
         try {
             dataOutputStream.close();
@@ -40,15 +35,8 @@ public class MapIO {
         Reads reads = new Reads(dataInputStream);
 
         Map map = new Map(name);
-        int width = reads.i();
-        int height = reads.i();
 
-        Tilemap tilemap = new Tilemap(width,height);
-        map.setTilemap(tilemap);
-
-        for (Tile tile : tilemap.getArray()) {
-            tile.Read(reads);
-        }
+        map.read(reads);
 
         map.createBuilding(map.getTilemap().get(0, 0), Blocks.eat, Teams.orange); //temp
 

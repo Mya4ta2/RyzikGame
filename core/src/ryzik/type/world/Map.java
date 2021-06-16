@@ -1,6 +1,8 @@
 package ryzik.type.world;
 
 import ryzik.Vars;
+import ryzik.io.Reads;
+import ryzik.io.Writes;
 import ryzik.type.Entity;
 import ryzik.type.world.block.Block;
 import ryzik.type.world.mob.Mob;
@@ -75,6 +77,27 @@ public class Map {
         building.y = tile.y;
         addEntity(building);
         return building;
+    }
+
+    public void read(Reads reads) {
+        int width = reads.i();
+        int height = reads.i();
+
+        Tilemap tilemap = new Tilemap(width,height);
+        setTilemap(tilemap);
+
+        for (Tile tile : tilemap.getArray()) {
+            tile.Read(reads);
+        }
+    }
+
+    public void write(Writes writes) {
+        writes.i(getTilemap().getWidth());
+        writes.i(getTilemap().getHeight());
+
+        for (Tile tile : getTilemap().getArray()) {
+            tile.write(writes);
+        }
     }
 
     public Tilemap getTilemap() {
