@@ -27,12 +27,26 @@ public class Tile {
         writes.i(y);
         writes.s(block.id);
         writes.s(floor.id);
+
+        writes.s(building != null ? building.type.id : -1);
+
+        if (building != null) {
+            building.write(writes);
+        }
     }
 
-    public void Read(Reads reads) {
+    public void read(Reads reads) {
         x = reads.i();
         y = reads.i();
         block = Vars.content.getByID(reads.s());
         floor = Vars.content.getByID(reads.s());
+
+        // if building null, she contain -1
+        short buildingTypeID = reads.s();
+
+        if (buildingTypeID != -1) {
+            building = Vars.content.<Block>getByID(buildingTypeID).getBuilding();
+            building.read(reads);
+        }
     }
 }

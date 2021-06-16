@@ -29,8 +29,8 @@ public class ContentLoader {
         items.load();
         events.load();
         floors.load();
-        blocks.load();
         mobTypes.load();
+        blocks.load();
         teams.load();
     }
 

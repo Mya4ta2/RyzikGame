@@ -38,8 +38,6 @@ public class MapIO {
 
         map.read(reads);
 
-        map.createBuilding(map.getTilemap().get(0, 0), Blocks.eat, Teams.orange); //temp
-
         try {
             dataInputStream.close();
         } catch (IOException e) {

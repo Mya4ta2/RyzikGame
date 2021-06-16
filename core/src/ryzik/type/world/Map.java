@@ -87,7 +87,11 @@ public class Map {
         setTilemap(tilemap);
 
         for (Tile tile : tilemap.getArray()) {
-            tile.Read(reads);
+            tile.read(reads);
+
+            if (tile.building != null) {
+                addBuilding(tile, tile.building, tile.building.team);
+            }
         }
     }
 
