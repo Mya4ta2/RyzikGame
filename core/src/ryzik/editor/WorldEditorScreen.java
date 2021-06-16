@@ -3,6 +3,7 @@ package ryzik.editor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import ryzik.Cursor;
 import ryzik.Draw;
 import ryzik.Vars;
@@ -13,6 +14,7 @@ import ryzik.view.UIRenderer;
 import ryzik.view.WorldRenderer;
 
 public class WorldEditorScreen implements Screen {
+    public UIRenderer uiRenderer;
     public World world;
     public WorldRenderer worldRenderer;
     public WorldEditorController worldController;
@@ -32,6 +34,12 @@ public class WorldEditorScreen implements Screen {
 
         worldRenderer = new WorldRenderer(world);
         worldController = new WorldEditorController(world);
+        uiRenderer = new UIRenderer();
+        uiRenderer.init();
+
+        Group group = new Group();
+        Vars.ui.worldEditorFragment.build(group);
+        uiRenderer.stage.addActor(group);
     }
 
     @Override
@@ -41,12 +49,13 @@ public class WorldEditorScreen implements Screen {
         Draw.onDraw.fire();
         Draw.batch.end();
 
+        uiRenderer.render(delta);
         worldController.update();
     }
 
     @Override
     public void resize(int width, int height) {
-
+        uiRenderer.resize(width, height);
     }
 
     @Override
