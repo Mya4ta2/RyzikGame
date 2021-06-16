@@ -1,5 +1,6 @@
 package ryzik.content;
 
+import com.badlogic.gdx.utils.Array;
 import ryzik.Draw;
 import ryzik.Vars;
 import ryzik.ctype.ContentList;
@@ -8,15 +9,22 @@ import ryzik.type.world.block.Block;
 public class Blocks implements ContentList {
     public static Block air, grass, stone, stoneBrick, tree, eat, waveSpawner;
 
+    public static Array<Block> blocks;
+
     @Override
     public void load() {
+        blocks = new Array<>();
+
         air = new Block("air");
 
         grass = new Block("grass");
+        blocks.add(grass);
 
         stone = new Block("stone");
+        blocks.add(stone);
 
         stoneBrick = new Block("stoneBrick");
+        blocks.add(stoneBrick);
 
         tree = new Block("tree") {
             @Override
@@ -30,17 +38,20 @@ public class Blocks implements ContentList {
                 );
             }
         };
+        blocks.add(tree);
 
         eat = new Block("eat") {
             {
                 health = 500;
             }
         };
+        blocks.add(eat);
 
         waveSpawner = new Block("waveSpawner") {
             {
                 health = 10;
             }
         };
+        blocks.add(waveSpawner);
     }
 }
