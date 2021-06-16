@@ -27,6 +27,13 @@ public class WorldEditorResumeDialog extends Dialog {
             }
         });
 
+        saveButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                MapIO.save(editorScreen.world,"name");
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
 
         Group group = new Group();
         table = new Table();

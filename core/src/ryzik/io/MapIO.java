@@ -4,10 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import ryzik.content.Blocks;
 import ryzik.content.Teams;
-import ryzik.type.world.Building;
-import ryzik.type.world.Map;
-import ryzik.type.world.Tile;
-import ryzik.type.world.Tilemap;
+import ryzik.type.world.*;
 
 import java.io.*;
 
@@ -45,5 +42,21 @@ public class MapIO {
         }
 
         return map;
+    }
+
+    public static void save(World world, String name) {
+        FileHandle mapFile = Gdx.files.local(name + ".rsav");
+        if (!mapFile.exists()) mapFile.writeString(" ",  true);
+        DataOutputStream dataOutputStream = new DataOutputStream(mapFile.write(false));
+
+        Writes writes = new Writes(dataOutputStream);
+
+        world.write(writes);
+
+        try {
+            dataOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
