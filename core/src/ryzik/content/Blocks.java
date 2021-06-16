@@ -5,6 +5,7 @@ import ryzik.Draw;
 import ryzik.Vars;
 import ryzik.ctype.ContentList;
 import ryzik.type.world.block.Block;
+import ryzik.type.world.block.WaveSpawnerBlock;
 
 public class Blocks implements ContentList {
     public static Block air, grass, stone, stoneBrick, tree, eat, waveSpawner;
@@ -47,8 +48,10 @@ public class Blocks implements ContentList {
         };
         blocks.add(eat);
 
-        waveSpawner = new Block("waveSpawner") {
+        waveSpawner = new WaveSpawnerBlock("waveSpawner") {
             {
+                spawnType = MobTypes.cockroach;
+                timeBetweenWaves = 5;
                 health = 10;
             }
         };

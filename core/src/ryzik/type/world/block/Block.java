@@ -5,6 +5,7 @@ import ryzik.Draw;
 import ryzik.Vars;
 import ryzik.ctype.Content;
 import ryzik.io.Writes;
+import ryzik.type.world.Building;
 
 public class Block extends Content {
     public final String name;
@@ -26,5 +27,9 @@ public class Block extends Content {
                 Vars.TileSize,
                 Vars.TileSize
         );
+    }
+
+    public Building getBuilding() {
+        return new Building(this);
     }
 }
