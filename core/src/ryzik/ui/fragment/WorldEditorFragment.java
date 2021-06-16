@@ -21,7 +21,7 @@ public class WorldEditorFragment extends Fragment {
 
         ContentSelect contentSelect = new ContentSelect();
         contentSelect.setWidth(table.getWidth()/3);
-        table.center().add(contentSelect);
+        table.right().top().add(contentSelect);
 
         group.addActor(table);
     }

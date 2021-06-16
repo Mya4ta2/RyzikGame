@@ -10,15 +10,18 @@ import ryzik.Vars;
 
 public class ContentSelect extends Group {
     private BackgroundActor background;
+    private Table slotsTable;
     private Table table;
     private int separator;
 
     public ContentSelect() {
+        table = new Table();
+        slotsTable = new Table();
+
         background = new BackgroundActor(Vars.atlas.find("dialogBackground"));
         addActor(background);
 
-        table = new Table();
-        table.left().bottom();
+        table.center().add(slotsTable);
         addActor(table);
 
         setDefaultSize();
@@ -39,14 +42,19 @@ public class ContentSelect extends Group {
             tempContentSlots.add(contentSlot);
             if (tempContentSlots.size * contentSlot.getWidth() > getWidth()) {
                 tempContentSlots.clear();
-                table.row();
-                table.add(new Separator(separator, separator));
-                table.row();
+                slotsTable.row();
+                slotsTable.add(new Separator(separator, separator));
+                slotsTable.row();
             }
 
-            table.add(contentSlot);
-            table.add(new Separator(separator, separator));
+            slotsTable.add(contentSlot);
+            slotsTable.add(new Separator(separator, separator));
         }
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
     }
 
     public void setDefaultSize() {
@@ -60,14 +68,9 @@ public class ContentSelect extends Group {
     }
 
     @Override
-    protected void positionChanged() {
-        background.setPosition(getX(), getY());
-        table.setPosition(getX(), getY());
-    }
-
-    @Override
     protected void sizeChanged() {
         background.setSize(getWidth(), getHeight());
         table.setSize(getWidth(), getHeight());
+        slotsTable.setSize(getWidth(), getHeight());
     }
 }
