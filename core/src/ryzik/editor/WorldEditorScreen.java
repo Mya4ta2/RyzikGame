@@ -1,6 +1,7 @@
 package ryzik.editor;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -8,8 +9,11 @@ import ryzik.Cursor;
 import ryzik.Draw;
 import ryzik.Vars;
 import ryzik.content.Blocks;
+import ryzik.content.Events;
 import ryzik.content.Floors;
 import ryzik.type.world.World;
+import ryzik.ui.dialog.Dialog;
+import ryzik.ui.dialog.WorldEditorResumeDialog;
 import ryzik.view.UIRenderer;
 import ryzik.view.WorldRenderer;
 
@@ -48,6 +52,9 @@ public class WorldEditorScreen implements Screen {
         Draw.onDraw.fire();
         Draw.batch.end();
 
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
+            openResumeDialog();
+
         uiRenderer.render(delta);
         worldController.update();
     }
@@ -55,6 +62,23 @@ public class WorldEditorScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         uiRenderer.resize(width, height);
+    }
+
+    public void openResumeDialog() {
+        final Dialog dialog = new WorldEditorResumeDialog(this);
+
+        dialog.setSize(Gdx.graphics.getWidth() - 32, Gdx.graphics.getHeight() - 32);
+        dialog.setPosition(16,16);
+
+        Events.resize.on(new Runnable() {
+            @Override
+            public void run() {
+                dialog.setSize(Gdx.graphics.getWidth() - 32, Gdx.graphics.getHeight() - 32);
+                dialog.setPosition(16,16);
+            }
+        });
+
+        dialog.show();
     }
 
     @Override
