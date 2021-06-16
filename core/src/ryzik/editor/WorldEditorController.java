@@ -11,11 +11,13 @@ import ryzik.type.world.World;
 import ryzik.type.world.block.Block;
 
 public class WorldEditorController implements Controller {
+    public WorldEditorScreen worldEditorScreen;
     public World world;
     private float cameraSpeed;
 
-    public WorldEditorController(World world) {
+    public WorldEditorController(World world, WorldEditorScreen editorScreen) {
         this.world = world;
+        this.worldEditorScreen = editorScreen;
     }
 
     @Override
@@ -29,7 +31,11 @@ public class WorldEditorController implements Controller {
             if (Cursor.content instanceof Block) {
                 Vector2 pos = Cursor.unProject(Draw.camera);
 
-                world.getTilemap().get((int) pos.x / Vars.TileSize, (int) pos.y / Vars.TileSize).block = (Block) Cursor.content;
+                if (worldEditorScreen.uiRenderer.stage.hit(Cursor.x, Cursor.y,true) == null)
+                        world.getTilemap().get(
+                                (int) pos.x / Vars.TileSize,
+                                (int) pos.y / Vars.TileSize
+                        ).block = (Block) Cursor.content;
             }
         }
 

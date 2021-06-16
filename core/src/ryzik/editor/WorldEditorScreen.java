@@ -32,7 +32,7 @@ public class WorldEditorScreen implements Screen {
         Draw.camera.position.set(25 * Vars.TileSize, 25 * Vars.TileSize, 0);
 
         worldRenderer = new WorldRenderer(world);
-        worldController = new WorldEditorController(world);
+        worldController = new WorldEditorController(world, this);
         uiRenderer = new UIRenderer();
         uiRenderer.init();
 
