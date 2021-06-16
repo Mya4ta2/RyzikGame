@@ -32,6 +32,24 @@ public class WorldEditorController implements Controller {
                 world.getTilemap().get((int) pos.x / Vars.TileSize, (int) pos.y / Vars.TileSize).block = (Block) Cursor.content;
             }
         }
+
+        cameraSpeed = 1.5f;
+
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+            Draw.camera.position.add(0, cameraSpeed,0);
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            Draw.camera.position.add(0, -cameraSpeed,0);
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            Draw.camera.position.add(cameraSpeed, 0,0);
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            Draw.camera.position.add(-cameraSpeed, 0,0);
+        }
     }
 
     @Override
