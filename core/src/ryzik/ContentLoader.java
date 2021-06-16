@@ -32,9 +32,6 @@ public class ContentLoader {
         blocks.load();
         mobTypes.load();
         teams.load();
-
-        content.addAll(Blocks.blocks);
-        content.addAll(Floors.floors);
     }
 
     public <T extends Content> T getByID(short id) {

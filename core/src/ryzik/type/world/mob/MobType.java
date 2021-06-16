@@ -7,7 +7,7 @@ import ryzik.Vars;
 import ryzik.ctype.Content;
 import ryzik.type.MobController;
 
-public class MobType extends Content {
+public class MobType {
     private final String name;
 
     private Texture texture;

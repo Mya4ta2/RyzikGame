@@ -30,7 +30,6 @@ public class WorldEditorScreen implements Screen {
         }
 
         Draw.camera.position.set(25 * Vars.TileSize, 25 * Vars.TileSize, 0);
-        Cursor.block = Blocks.stoneBrick;
 
         worldRenderer = new WorldRenderer(world);
         worldController = new WorldEditorController(world);

@@ -4,12 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import ryzik.ctype.Content;
 import ryzik.type.world.block.Block;
 import ryzik.type.world.item.ItemStack;
 
 public class Cursor {
     public static int x, y;
-    public static Block block;
+    public static Content content;
     public static ItemStack selectedItem;
     public static float angle;
 
