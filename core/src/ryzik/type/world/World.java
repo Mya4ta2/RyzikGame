@@ -1,6 +1,7 @@
 package ryzik.type.world;
 
 import com.badlogic.gdx.utils.Array;
+import ryzik.content.Blocks;
 import ryzik.io.Reads;
 import ryzik.io.Writes;
 import ryzik.type.Entity;
@@ -32,6 +33,13 @@ public class World {
     public void addMob(Mob mob) {
         mobs.add(mob);
         entitys.add(mob);
+    }
+
+    public void updateRoundings() {
+        for (int i = 0; i < tilemap.getArray().length; i++) {
+            if (tilemap.getArray()[i].block != Blocks.air)
+                tilemap.getArray()[i].updateRounding(tilemap);
+        }
     }
 
     public void addEntity(Entity entity) {

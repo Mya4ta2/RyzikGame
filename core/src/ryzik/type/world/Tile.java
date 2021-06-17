@@ -5,6 +5,7 @@ import ryzik.content.Blocks;
 import ryzik.content.Floors;
 import ryzik.io.Reads;
 import ryzik.io.Writes;
+import ryzik.type.rounding.Rounding;
 import ryzik.type.world.block.Block;
 import ryzik.type.world.floor.Floor;
 
@@ -14,12 +15,19 @@ public class Tile {
     public Floor floor = Floors.air;
     public Building building;
 
+    public Rounding blockRounding;
+
     //for PathFinder.java
     public Tile previous;
 
     public Tile(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void updateRounding(Tilemap tilemap) {
+        blockRounding = new Rounding(block.roundingAtlas, tilemap, this);
+        blockRounding.update();
     }
 
     public void write(Writes writes) {
@@ -48,5 +56,9 @@ public class Tile {
             building = Vars.content.<Block>getByID(buildingTypeID).getBuilding();
             building.read(reads);
         }
+    }
+
+    public boolean air() {
+        return block == Blocks.air;
     }
 }

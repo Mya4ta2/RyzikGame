@@ -51,7 +51,13 @@ public class TilemapRenderer implements Renderer {
                             new Drawable() {
                                 @Override
                                 public void draw(SpriteBatch spriteBatch) {
-                                    tile.block.draw(tile.x, tile.y);
+                                    Draw.batch.draw(
+                                            tile.blockRounding.getCurrentTexture(),
+                                            tile.x * Vars.TileSize,
+                                            tile.y * Vars.TileSize,
+                                            Vars.TileSize,
+                                            Vars.TileSize
+                                    );
                                 }
                             }
                     );

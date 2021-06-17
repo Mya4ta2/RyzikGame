@@ -28,6 +28,10 @@ public class Tilemap {
         for (int i = 0; i < array.length; i++){
             array[i] = new Tile(i % width, i / width);
         }
+
+        for (Tile tile : array) {
+            tile.updateRounding(this);
+        }
     }
 
     public boolean inBounds(Vector2 position) {

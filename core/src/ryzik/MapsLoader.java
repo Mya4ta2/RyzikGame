@@ -48,6 +48,22 @@ public class MapsLoader {
             ), Blocks.tree, Teams.gray);
         }
 
+        for (int x = 0; x < 5; x++) {
+            for (int y = 0; y < 5; y++) {
+                map.getTilemap().get(x + 15,y + 15).block = Blocks.stoneBrick;
+            }
+        }
+
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                map.getTilemap().get(x + 16,y + 16).block = Blocks.air;
+            }
+        }
+
+        for (int y = 0; y < 5; y++) {
+            map.getTilemap().get(25,y + 15).block = Blocks.stoneBrick;
+        }
+
         Building building = new WaveSpawner(Blocks.waveSpawner, MobTypes.cockroach, 5);
         map.addBuilding(map.getTilemap().get(homeposX - 3, homeposY - 8), building, Teams.red);
 

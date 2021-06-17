@@ -18,6 +18,7 @@ public class WorldController {
 
     public void update(float delta) {
         world.updateEntitys(delta);
+        world.updateRoundings();
 
         processMobCollision();
     }
