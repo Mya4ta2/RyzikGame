@@ -30,7 +30,7 @@ public class WorldEditorResumeDialog extends Dialog {
         saveButton.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                MapIO.save(editorScreen.world,Vars.worldDir + "/" + "editorMap");
+                MapIO.save(editorScreen.world,"editorMap");
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
