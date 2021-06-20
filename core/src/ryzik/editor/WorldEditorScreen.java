@@ -5,6 +5,9 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import ryzik.Cursor;
 import ryzik.Draw;
 import ryzik.Vars;
@@ -12,6 +15,7 @@ import ryzik.content.Blocks;
 import ryzik.content.Events;
 import ryzik.content.Floors;
 import ryzik.type.world.World;
+import ryzik.ui.TextActor;
 import ryzik.ui.dialog.Dialog;
 import ryzik.ui.dialog.WorldEditorResumeDialog;
 import ryzik.view.UIRenderer;
@@ -22,6 +26,9 @@ public class WorldEditorScreen implements Screen {
     public World world;
     public WorldRenderer worldRenderer;
     public WorldEditorController worldController;
+
+    public int rounding;
+    public TextActor textActor;
 
     @Override
     public void show() {
@@ -40,6 +47,36 @@ public class WorldEditorScreen implements Screen {
         uiRenderer = new UIRenderer();
         uiRenderer.init();
 
+        textActor = new TextActor();
+        textActor.setPosition(200,200);
+        uiRenderer.stage.addActor(textActor);
+
+        TextButton textButton = new TextButton("rounding++", Vars.skin);
+        textButton.setPosition(200,100);
+        textButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                rounding += 1;
+                if (rounding > 8) rounding = 0;
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
+        uiRenderer.stage.addActor(textButton);
+
+        textButton = new TextButton("rounding--", Vars.skin);
+        textButton.setPosition(200,0);
+        textButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                rounding -= 1;
+                if (rounding < 0) rounding = 8;
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
+        uiRenderer.stage.addActor(textButton);
+
         Group group = new Group();
         Vars.ui.worldEditorFragment.build(group);
         uiRenderer.stage.addActor(group);
@@ -51,6 +88,8 @@ public class WorldEditorScreen implements Screen {
         worldRenderer.render(delta);
         Draw.onDraw.fire();
         Draw.batch.end();
+
+        textActor.setText(String.valueOf(rounding));
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
             openResumeDialog();
