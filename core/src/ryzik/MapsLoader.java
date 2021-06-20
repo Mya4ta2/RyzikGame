@@ -1,5 +1,7 @@
 package ryzik;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import ryzik.ai.EnemyController;
 import ryzik.content.*;
@@ -23,6 +25,21 @@ public class MapsLoader {
     }
 
     public void load() {
+        loadDefaultMap();
+
+        FileHandle worldDir = Gdx.files.local(Vars.worldDir);
+        FileHandle[] worlds = worldDir.list();
+
+        for (int i = 0; i < worlds.length; i++) {
+            if (worlds[i].nameWithoutExtension().equals("test map")) continue;
+            if (worlds[i].extension().equals("rsav")) {
+                Map map = MapIO.read(worlds[i].nameWithoutExtension());
+                maps.add(map);
+            }
+        }
+    }
+
+    public void loadDefaultMap() {
         Map map = new Map("test map");
         map.setTilemap(new Tilemap(70,50));
 

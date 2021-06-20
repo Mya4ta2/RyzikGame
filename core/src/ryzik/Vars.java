@@ -30,4 +30,6 @@ public class Vars {
 
     public static final int TileSize = 32;
     public static final int StackSize = 99;
+
+    public static String worldDir = "world";
 }
