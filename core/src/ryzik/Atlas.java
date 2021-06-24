@@ -15,17 +15,17 @@ public class Atlas {
         return new Texture(name);
     }
 
-    public RoundingAtlas getRoundingAtlas(String name) {
+    public RoundingAtlas getRoundingAtlas(String name, String dir) {
         RoundingAtlas roundingAtlas = new RoundingAtlas();
 
-        roundingAtlas.upLeft = find(name + "-upLeft");
-        roundingAtlas.up = find(name + "-up");
-        roundingAtlas.upRight = find(name + "-upRight");
-        roundingAtlas.left = find(name + "-left");
-        roundingAtlas.right = find(name + "-right");
-        roundingAtlas.downLeft = find(name + "-downLeft");
-        roundingAtlas.down = find(name + "-down");
-        roundingAtlas.downRight = find(name + "-downRight");
+        roundingAtlas.upLeft = find(dir + "/" + name + "-upLeft");
+        roundingAtlas.up = find(dir + "/" + name + "-up");
+        roundingAtlas.upRight = find(dir + "/" + name + "-upRight");
+        roundingAtlas.left = find(dir + "/" + name + "-left");
+        roundingAtlas.right = find(dir + "/" + name + "-right");
+        roundingAtlas.downLeft = find(dir + "/" + name + "-downLeft");
+        roundingAtlas.down = find(dir + "/" + name + "-down");
+        roundingAtlas.downRight = find(dir + "/" + name + "-downRight");
 
         return roundingAtlas;
     }

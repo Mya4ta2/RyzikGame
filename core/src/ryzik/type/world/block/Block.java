@@ -20,7 +20,7 @@ public class Block extends Content {
         this.name = name;
 
         texture = Vars.atlas.find("block/" + name);
-        roundingAtlas = Vars.atlas.getRoundingAtlas("block/" + name);
+        roundingAtlas = Vars.atlas.getRoundingAtlas(name, "block/" + name);
     }
 
     public void draw(int x, int y) {
