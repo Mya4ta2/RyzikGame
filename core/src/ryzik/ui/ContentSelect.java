@@ -1,12 +1,13 @@
 package ryzik.ui;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 import ryzik.Vars;
+import ryzik.ctype.Content;
+import ryzik.type.world.block.Block;
+import ryzik.type.world.floor.Floor;
 
 public class ContentSelect extends Group {
     private BackgroundActor background;
@@ -34,6 +35,8 @@ public class ContentSelect extends Group {
         Array<ContentSlot> tempContentSlots = new Array<>();
 
         for (int i = 0; i < Vars.content.content.size; i++) {
+            if (getContentName(Vars.content.content.get(i)).equals("air")) continue;
+
             ContentSlot contentSlot = new ContentSlot(
                     Vars.atlas.find("dialogBackground"),
                     Vars.content.content.get(i)
@@ -72,5 +75,14 @@ public class ContentSelect extends Group {
         background.setSize(getWidth(), getHeight());
         table.setSize(getWidth(), getHeight());
         slotsTable.setSize(getWidth(), getHeight());
+    }
+
+    private String getContentName(Content content) {
+        String name;
+        if (content instanceof Block) name = ((Block) content).name;
+        else if (content instanceof Floor) name = ((Floor) content).name;
+        else throw new RuntimeException();
+
+        return name;
     }
 }
