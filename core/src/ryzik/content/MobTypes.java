@@ -5,7 +5,7 @@ import ryzik.ctype.ContentList;
 import ryzik.type.world.mob.MobType;
 
 public class MobTypes implements ContentList {
-    public static MobType test, ryzik, cockroach;
+    public static MobType test, ryzik, cockroach, bloodCockroach, tarakeka;
 
     @Override
     public void load() {
@@ -30,6 +30,26 @@ public class MobTypes implements ContentList {
                 setWidth(0.5f);
                 setHeight(1);
                 setHealth(70);
+                setEnemy(true);
+                setSpeed(1);
+            }
+        };
+
+        bloodCockroach = new MobType("bloodCockroach") {
+            {
+                setWidth(0.75f);
+                setHeight(1.5f);
+                setHealth(130);
+                setEnemy(true);
+                setSpeed(1);
+            }
+        };
+
+        tarakeka = new MobType("tarakeka") {
+            {
+                setWidth(2f);
+                setHeight(3f);
+                setHealth(350);
                 setEnemy(true);
                 setSpeed(1);
             }

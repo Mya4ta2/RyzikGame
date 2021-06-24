@@ -43,7 +43,7 @@ public class Items implements ContentList {
         dyurandal = new SwordType("dyurandal") {
             {
                 reloadTime = 0.5f;
-                damage = 25;
+                damage = 5000;
                 discarding = 5;
                 height = 2;
             }
