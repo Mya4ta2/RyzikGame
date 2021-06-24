@@ -5,7 +5,7 @@ import ryzik.ctype.ContentList;
 import ryzik.type.world.floor.Floor;
 
 public class Floors implements ContentList {
-    public static Floor air, grass, stone;
+    public static Floor air, grass, stone, flowerGrass;
 
     public static Array<Floor> floors;
 
@@ -17,6 +17,9 @@ public class Floors implements ContentList {
 
         grass = new Floor("grass");
         floors.add(grass);
+
+        flowerGrass = new Floor("flowerGrass");
+        floors.add(flowerGrass);
 
         stone = new Floor("stone");
         floors.add(stone);
