@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Timer;
 import ryzik.Vars;
 import ryzik.ai.EnemyController;
 import ryzik.content.Items;
+import ryzik.content.MobTypes;
 import ryzik.type.world.block.Block;
 import ryzik.type.world.mob.Mob;
 import ryzik.type.world.mob.MobType;
@@ -41,19 +42,37 @@ public class WaveSpawner extends Building {
 
     public void start() {
         timer = new Timer();
-        final Random random = new Random();
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
                 wave++;
-                for (int i = 0; i < wave/2; i++) {
-                    Mob mob = Vars.world.spawnMob(spawnType, team);
-                    mob.position.set(x + (random.nextInt(6)-3), y + (random.nextInt(6)-3));
-                    mob.currentWeapon = new Weapon(Items.cockroachHand);
-                    mob.controller = new EnemyController(mob);
-                }
+                spawnWave(wave);
             }
         }, timeBetweenWaves, timeBetweenWaves);
+    }
+
+    public void spawnWave(int wave) {
+        Random random = new Random();
+
+        int d = wave;
+
+        while (d > 0) {
+            Mob mob;
+            if (d - 5 > 0) {
+                d -= 5;
+                mob = Vars.world.spawnMob(MobTypes.tarakeka, team);
+            } else if (d - 2 > 0) {
+                d -= 2;
+                mob = Vars.world.spawnMob(MobTypes.bloodCockroach, team);
+            } else {
+                d -= 1;
+                mob = Vars.world.spawnMob(MobTypes.cockroach, team);
+            }
+
+            mob.position.set(x + (random.nextInt(6) - 3), y + (random.nextInt(6) - 3));
+            mob.currentWeapon = new Weapon(Items.cockroachHand);
+            mob.controller = new EnemyController(mob);
+        }
     }
 
     public void stop() {
