@@ -8,7 +8,7 @@ import ryzik.type.world.block.Block;
 import ryzik.type.world.block.WaveSpawnerBlock;
 
 public class Blocks implements ContentList {
-    public static Block air, grass, stone, stoneBrick, tree, eat, waveSpawner;
+    public static Block air, grass, stone, stoneBrick, tree, rock, eat, waveSpawner;
 
     public static Array<Block> blocks;
 
@@ -40,6 +40,9 @@ public class Blocks implements ContentList {
             }
         };
         blocks.add(tree);
+
+        rock = new Block("rock");
+        blocks.add(rock);
 
         eat = new Block("eat") {
             {
