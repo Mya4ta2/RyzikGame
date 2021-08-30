@@ -1,5 +1,6 @@
 package ryzik;
 
+import com.badlogic.gdx.Game;
 import ryzik.content.Events;
 import ryzik.editor.WorldEditorScreen;
 import ryzik.screen.GameScreen;
@@ -7,10 +8,10 @@ import ryzik.screen.LoadingScreen;
 import ryzik.screen.MenuScreen;
 
 public class ScreenController {
-    private final MainActivity mainActivity;
+    private final Game mainActivity;
     private final MenuScreen menu;
 
-    public ScreenController(MainActivity mainActivity) {
+    public ScreenController(Game mainActivity) {
         this.mainActivity = mainActivity;
         menu = new MenuScreen();
     }
