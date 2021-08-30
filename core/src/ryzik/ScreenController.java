@@ -3,6 +3,7 @@ package ryzik;
 import ryzik.content.Events;
 import ryzik.editor.WorldEditorScreen;
 import ryzik.screen.GameScreen;
+import ryzik.screen.LoadingScreen;
 import ryzik.screen.MenuScreen;
 
 public class ScreenController {
