@@ -8,6 +8,7 @@ import ryzik.Vars;
 import ryzik.content.Events;
 import ryzik.editor.WorldEditorScreen;
 import ryzik.ui.BackgroundActor;
+import ryzik.ui.LinkTextActor;
 import ryzik.ui.dialog.Dialog;
 import ryzik.ui.Separator;
 import ryzik.ui.TextActor;
@@ -17,6 +18,7 @@ public class MenuFragment extends Fragment{
     @Override
     public void build(Group group) {
         final Table leftTable = new Table();
+        final Table rightTable = new Table();
         final BackgroundActor background = new BackgroundActor(Vars.atlas.find("menuBackground"));
         group.addActor(background);
 
@@ -28,6 +30,8 @@ public class MenuFragment extends Fragment{
             public void run() {
                 background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
                 leftTable.setSize(Gdx.graphics.getWidth()/2f, Gdx.graphics.getHeight());
+                rightTable.setSize(Gdx.graphics.getWidth()/2f, Gdx.graphics.getHeight());
+                rightTable.setPosition(Gdx.graphics.getWidth()/2f, 0);
             }
         });
 
@@ -76,6 +80,11 @@ public class MenuFragment extends Fragment{
         leftTable.center().add(new Separator(12)).row();
         leftTable.center().add(exitButton).row();
 
+        LinkTextActor linkTextActor = new LinkTextActor("by javapedik", "https://vk.com/javapedik");
+        linkTextActor.setSize(224,48);
+        rightTable.bottom().right().add(linkTextActor);
+
         group.addActor(leftTable);
+        group.addActor(rightTable);
     }
 }
