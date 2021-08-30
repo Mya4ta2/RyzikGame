@@ -80,7 +80,7 @@ public class MenuFragment extends Fragment{
         leftTable.center().add(new Separator(12)).row();
         leftTable.center().add(exitButton).row();
 
-        LinkTextActor linkTextActor = new LinkTextActor("by javapedik", "https://vk.com/javapedik");
+        LinkTextActor linkTextActor = new LinkTextActor("by javapedik", Vars.authorVKUrl);
         linkTextActor.setSize(224,48);
         rightTable.bottom().right().add(linkTextActor);
 

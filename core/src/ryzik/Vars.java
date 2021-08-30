@@ -32,4 +32,6 @@ public class Vars {
     public static final int StackSize = 99;
 
     public static String worldDir = "world";
+
+    public static String authorVKUrl = "https://vk.com/javapedik";
 }
