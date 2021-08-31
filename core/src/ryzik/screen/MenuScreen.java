@@ -2,14 +2,20 @@ package ryzik.screen;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import ryzik.Draw;
 import ryzik.Vars;
+import ryzik.view.MenuBackgroundRenderer;
 import ryzik.view.UIRenderer;
 
 public class MenuScreen implements Screen {
+    public MenuBackgroundRenderer backgroundRenderer;
     public UIRenderer uiRenderer;
 
     @Override
     public void show() {
+        backgroundRenderer = new MenuBackgroundRenderer();
+        backgroundRenderer.init();
+
         uiRenderer = new UIRenderer();
         uiRenderer.init();
         Vars.stage = uiRenderer.stage;
@@ -21,6 +27,13 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        backgroundRenderer.render(delta);
+
+        Draw.camera.position.set(36 * Vars.TileSize, 36 * Vars.TileSize, 0);
+        Draw.batch.begin();
+        Draw.onDraw.fire();
+        Draw.batch.end();
+
         uiRenderer.render(delta);
     }
 

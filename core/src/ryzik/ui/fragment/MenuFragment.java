@@ -19,8 +19,6 @@ public class MenuFragment extends Fragment{
     public void build(Group group) {
         final Table leftTable = new Table();
         final Table rightTable = new Table();
-        final BackgroundActor background = new BackgroundActor(Vars.atlas.find("menuBackground"));
-        group.addActor(background);
 
         TextActor text = new TextActor("ryzik");
         text.setSize(128,64);
@@ -28,7 +26,6 @@ public class MenuFragment extends Fragment{
         Events.resize.on(new Runnable() {
             @Override
             public void run() {
-                background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
                 leftTable.setSize(Gdx.graphics.getWidth()/2f, Gdx.graphics.getHeight());
                 rightTable.setSize(Gdx.graphics.getWidth()/2f, Gdx.graphics.getHeight());
                 rightTable.setPosition(Gdx.graphics.getWidth()/2f, 0);

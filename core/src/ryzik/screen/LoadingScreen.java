@@ -4,18 +4,24 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.utils.Timer;
+import ryzik.Draw;
 import ryzik.Vars;
+import ryzik.view.MenuBackgroundRenderer;
 import ryzik.view.UIRenderer;
 
 import java.util.Random;
 
 public class LoadingScreen implements Screen {
+    private MenuBackgroundRenderer backgroundRenderer;
     private UIRenderer renderer;
     private ProgressBar loadingBar;
     private Random random;
 
     @Override
     public void show() {
+        backgroundRenderer = new MenuBackgroundRenderer();
+        backgroundRenderer.init();
+
         renderer = new UIRenderer();
         renderer.init();
 
@@ -30,6 +36,13 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        backgroundRenderer.render(delta);
+
+        Draw.camera.position.set(36 * Vars.TileSize, 36 * Vars.TileSize, 0);
+        Draw.batch.begin();
+        Draw.onDraw.fire();
+        Draw.batch.end();
+
         renderer.render(delta);
 
         loadingBar.setValue(loadingBar.getValue()+Math.abs(random.nextInt(3) - 1));
