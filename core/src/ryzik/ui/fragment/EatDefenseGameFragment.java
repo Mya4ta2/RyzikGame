@@ -185,8 +185,10 @@ public class EatDefenseGameFragment extends Fragment {
     public String roundTime(float seconds) {
         int minutes = 0;
 
+        System.out.println(seconds);
+
         while (seconds > 60) {
-            seconds = 0;
+            seconds -= 60;
             minutes++;
         }
 

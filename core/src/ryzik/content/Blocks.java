@@ -54,7 +54,7 @@ public class Blocks implements ContentList {
         waveSpawner = new WaveSpawnerBlock("waveSpawner") {
             {
                 spawnType = MobTypes.cockroach;
-                timeBetweenWaves = 5;
+                timeBetweenWaves = 90;
                 health = 10;
             }
         };
