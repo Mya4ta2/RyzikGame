@@ -18,6 +18,7 @@ public class WorldEditorResumeDialog extends Dialog {
 
         TextButton resumeButton = new TextButton("resume", Vars.skin);
         TextButton saveButton = new TextButton("save", Vars.skin);
+        TextButton exitButton = new TextButton("exit", Vars.skin);
 
         resumeButton.addListener(new InputListener(){
             @Override
@@ -35,11 +36,20 @@ public class WorldEditorResumeDialog extends Dialog {
             }
         });
 
+        exitButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Vars.screenController.setMenu();
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
         Group group = new Group();
         table = new Table();
 
         table.center().add(resumeButton).row();
-        table.center().add(saveButton);
+        table.center().add(saveButton).row();
+        table.center().add(exitButton);
 
         group.addActor(table);
         add(group);
