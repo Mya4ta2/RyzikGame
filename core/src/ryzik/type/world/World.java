@@ -22,6 +22,12 @@ public class World {
         entitys = new Entitys();
     }
 
+    public World(Tilemap tilemap) {
+        this.tilemap = tilemap;
+        mobs = new Mobs();
+        entitys = new Entitys();
+    }
+
     public Mob spawnMob(MobType type, Team team) {
         Mob mob = new Mob(type);
         mob.team = team;

@@ -2,19 +2,20 @@ package ryzik.view;
 
 import ryzik.Vars;
 import ryzik.ctype.Renderer;
+import ryzik.type.world.World;
 
 public class MenuBackgroundRenderer implements Renderer {
-    private TilemapRenderer tilemapRenderer;
+    private WorldRenderer worldRenderer;
 
     @Override
     public void init() {
-        tilemapRenderer = new TilemapRenderer(Vars.mapsLoader.maps.get(0).createWorld().getTilemap());
-        tilemapRenderer.init();
+        worldRenderer = new WorldRenderer(new World(Vars.mapsLoader.maps.get(0).createWorld().getTilemap()));
+        worldRenderer.init();
     }
 
     @Override
     public void render(float delta) {
-        tilemapRenderer.render(delta);
+        worldRenderer.render(delta);
     }
 
     @Override
