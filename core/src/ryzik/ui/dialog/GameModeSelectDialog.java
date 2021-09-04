@@ -6,10 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import ryzik.Vars;
-import ryzik.content.Events;
-import ryzik.content.Items;
-import ryzik.content.MobTypes;
-import ryzik.content.Teams;
+import ryzik.content.*;
 import ryzik.screen.EatDefenseGameScreen;
 import ryzik.screen.GameScreen;
 import ryzik.type.item.Inventory;
@@ -17,6 +14,7 @@ import ryzik.type.world.Map;
 import ryzik.type.world.mob.Player;
 import ryzik.type.world.mob.Weapon;
 import ryzik.ui.BackgroundActor;
+import ryzik.ui.TextActor;
 
 public class GameModeSelectDialog extends Dialog {
     private Table table;
@@ -26,11 +24,13 @@ public class GameModeSelectDialog extends Dialog {
         this.map = map;
 
         table = new Table();
+        String error = "";
 
-        TextButton eatDefenceStartButton = new TextButton("eat defence", Vars.skin);
+        final TextButton eatDefenceStartButton = new TextButton("eat defence", Vars.skin);
         eatDefenceStartButton.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if (eatDefenceStartButton.isDisabled()) return false;
                 GameScreen gameScreen = new EatDefenseGameScreen();
                 gameScreen.world = map.createWorld();
 
@@ -49,8 +49,17 @@ public class GameModeSelectDialog extends Dialog {
             }
         });
 
+        if (map.getBuildings(Blocks.eat).size == 0) {
+            eatDefenceStartButton.setDisabled(true);
+            error = "this map not contain eat block!";
+        }
+
         table.center();
         table.add(eatDefenceStartButton).row();
+
+        TextActor textActor = new TextActor(error);
+        textActor.setSize(128,64);
+        table.add(textActor);
 
         Group group = new Group();
         group.addActor(table);

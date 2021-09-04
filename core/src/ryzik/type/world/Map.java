@@ -1,5 +1,6 @@
 package ryzik.type.world;
 
+import com.badlogic.gdx.utils.Array;
 import ryzik.Vars;
 import ryzik.io.Reads;
 import ryzik.io.Writes;
@@ -77,6 +78,17 @@ public class Map {
         building.y = tile.y;
         addEntity(building);
         return building;
+    }
+
+    public Array<Building> getBuildings(Block type) {
+        Array<Building> buildings = new Array<>();
+
+        for (int i = 0; i < tilemap.getArray().length; i++) {
+            if (tilemap.getArray()[i].building != null && tilemap.getArray()[i].building.type == type)
+                buildings.add(tilemap.getArray()[i].building);
+        }
+
+        return buildings;
     }
 
     public void read(Reads reads) {
