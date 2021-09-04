@@ -51,16 +51,7 @@ public class TilemapRenderer implements Renderer {
                             new Drawable() {
                                 @Override
                                 public void draw(SpriteBatch spriteBatch) {
-                                    if (tile.block != Blocks.stoneBrick)
-                                        tile.block.draw(tile.x, tile.y);
-                                    else
-                                    Draw.batch.draw(
-                                            tile.blockRounding.getCurrentTexture(),
-                                            tile.x * Vars.TileSize,
-                                            tile.y * Vars.TileSize,
-                                            Vars.TileSize,
-                                            Vars.TileSize
-                                    );
+                                    tile.block.draw(tile.x, tile.y);
                                 }
                             }
                     );
