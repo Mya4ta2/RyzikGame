@@ -7,8 +7,10 @@ import com.badlogic.gdx.math.Vector2;
 import ryzik.Cursor;
 import ryzik.Draw;
 import ryzik.Vars;
+import ryzik.content.Teams;
 import ryzik.ctype.Controller;
 import ryzik.type.rounding.RoundingAtlas;
+import ryzik.type.world.Building;
 import ryzik.type.world.Tile;
 import ryzik.type.world.World;
 import ryzik.type.world.block.Block;
@@ -51,10 +53,14 @@ public class WorldEditorController implements Controller {
                 Vector2 pos = Cursor.unProject(Draw.camera);
 
                 if (worldEditorScreen.uiRenderer.stage.hit(Cursor.x, Cursor.y,true) == null)
-                        world.getTilemap().get(
-                                (int) pos.x / Vars.TileSize,
-                                (int) pos.y / Vars.TileSize
-                        ).block = (Block) Cursor.content;
+                    world.createBuilding(
+                            world.getTilemap().get(
+                                    (int) pos.x / Vars.TileSize,
+                                    (int) pos.y / Vars.TileSize
+                            ),
+                            (Block) Cursor.content,
+                            Teams.orange
+                    );
 
                 world.getTilemap().get(
                         (int) pos.x / Vars.TileSize,
