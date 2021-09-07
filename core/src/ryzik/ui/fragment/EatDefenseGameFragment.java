@@ -63,16 +63,21 @@ public class EatDefenseGameFragment extends Fragment {
 
         HealthBar healthBar = new HealthBar(1,false, Vars.skin, Vars.player);
         rightUp.right().top().add(healthBar);
-        final TextActor fps = new TextActor();
-        fps.setSize(128,64);
+        final TextActor wave = new TextActor();
+        wave.setSize(128,64);
+        wave.setCenterText(false);
         Events.update.on(new Runnable() {
             @Override
             public void run() {
-                fps.setText(String.valueOf(Gdx.graphics.getFramesPerSecond()));
+                Array<Building> building = Vars.world.getBuildings(Blocks.waveSpawner);
+                if (building.size > 0) {
+                    WaveSpawner waveSpawner = (WaveSpawner) building.get(0);
+                    wave.setText("wave " + (waveSpawner.wave + 1) + " in " + roundTime(waveSpawner.timeToNextWave));
+                }
             }
         });
 
-        leftUp.left().top().add(fps);
+        leftUp.left().top().add(wave);
 
         inventoryActor.getInventoryTable().setVisible(false);
 
