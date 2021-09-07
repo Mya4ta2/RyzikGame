@@ -91,7 +91,7 @@ public class WorldEditorScreen implements Screen {
 
         textActor.setText(String.valueOf(rounding));
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) || Gdx.input.isKeyJustPressed(Input.Keys.BACK))
             openResumeDialog();
 
         uiRenderer.render(delta);
