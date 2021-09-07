@@ -1,6 +1,9 @@
 package ryzik;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import ryzik.content.Events;
 import ryzik.editor.WorldEditorScreen;
 import ryzik.screen.GameScreen;
@@ -19,15 +22,21 @@ public class ScreenController {
     public void setMenu() {
         if (mainActivity.getScreen() instanceof GameScreen)
             mainActivity.getScreen().dispose();
-        mainActivity.setScreen(menu);
+        setScreen(menu);
         Events.resize.fire();
     }
 
+    public void setScreen(Screen screen) {
+        Gdx.input.setCatchKey(Input.Keys.BACK, false);
+
+        mainActivity.setScreen(screen);
+    }
+
     public void startGame(GameScreen gameScreen) {
-        mainActivity.setScreen(gameScreen);
+        setScreen(gameScreen);
     }
 
     public void openEditor(WorldEditorScreen editorScreen) {
-        mainActivity.setScreen(editorScreen);
+        setScreen(editorScreen);
     }
 }
