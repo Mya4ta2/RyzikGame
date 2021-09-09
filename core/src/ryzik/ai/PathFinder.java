@@ -1,5 +1,6 @@
 package ryzik.ai;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import ryzik.content.Blocks;
 import ryzik.type.world.Tile;
@@ -9,12 +10,14 @@ import java.util.ArrayList;
 
 public class PathFinder {
     private final Tilemap tilemap;
+    private Tile goalTile;
 
     public PathFinder(Tilemap tilemap) {
         this.tilemap = tilemap;
     }
 
     public ArrayList<Tile> findPath(Tile start, Tile goal) {
+        goalTile = goal;
         ArrayList<Tile> reachable = new ArrayList<>();
         ArrayList<Tile> explored = new ArrayList<>();
 
@@ -74,7 +77,8 @@ public class PathFinder {
     public Tile getTile(Tile tile, int x, int y) {
         if (tilemap.inBounds(new Vector2(tile.x + x, tile.y + y))) {
             Tile tileOut = tilemap.get((int) tile.x + x, (int) tile.y + y);
-            if (tileOut.block == Blocks.air) {
+            if (tileOut.equals(goalTile)) return tileOut;
+            if (tileOut.block == Blocks.air && tileOut.building == null) {
                 return tileOut;
             }
         }
