@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import ryzik.Cursor;
 import ryzik.Draw;
 import ryzik.Vars;
@@ -15,11 +18,13 @@ import ryzik.type.world.Tile;
 import ryzik.type.world.World;
 import ryzik.type.world.block.Block;
 import ryzik.type.world.floor.Floor;
+import ryzik.ui.Joystick;
 
 public class WorldEditorController implements Controller {
     public WorldEditorScreen worldEditorScreen;
     public World world;
     private float cameraSpeed;
+    private Joystick joystick;
 
     public WorldEditorController(World world, WorldEditorScreen editorScreen) {
         this.world = world;
@@ -48,6 +53,8 @@ public class WorldEditorController implements Controller {
 
     @Override
     public void update() {
+        if (Vars.mobile && joystick == null) initJoystick();
+
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             if (Cursor.content instanceof Block) {
                 Vector2 pos = Cursor.unProject(Draw.camera);
@@ -82,20 +89,36 @@ public class WorldEditorController implements Controller {
 
         cameraSpeed = 1.5f;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            Draw.camera.position.add(0, cameraSpeed,0);
-        }
+        if (Vars.desktop) {
+            if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+                Draw.camera.position.add(0, cameraSpeed,0);
+            }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            Draw.camera.position.add(0, -cameraSpeed,0);
-        }
+            if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+                Draw.camera.position.add(0, -cameraSpeed,0);
+            }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            Draw.camera.position.add(cameraSpeed, 0,0);
-        }
+            if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+                Draw.camera.position.add(cameraSpeed, 0,0);
+            }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            Draw.camera.position.add(-cameraSpeed, 0,0);
+            if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+                Draw.camera.position.add(-cameraSpeed, 0,0);
+            }
+        } else if (Vars.mobile) {
+            Vector2 normalizedCursorPos = joystick.getCurPosition().nor();
+
+            Draw.camera.position.add(
+                    normalizedCursorPos.x * cameraSpeed,
+                    normalizedCursorPos.y * cameraSpeed,
+                    0
+            );
+        }
+    }
+
+    public void initJoystick() {
+        if (Vars.stage.getActors().get(0) instanceof Group) {
+            joystick = ((Group) Vars.stage.getActors().get(0)).findActor("joystick");
         }
     }
 
