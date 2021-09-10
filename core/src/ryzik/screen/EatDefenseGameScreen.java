@@ -1,6 +1,7 @@
 package ryzik.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
@@ -13,6 +14,8 @@ import ryzik.type.EatDefenseGameState;
 import ryzik.type.world.Building;
 import ryzik.ui.dialog.Dialog;
 import ryzik.ui.dialog.EatDefenseGameOverDialog;
+import ryzik.ui.dialog.EatDefenseResumeDialog;
+import ryzik.ui.dialog.WorldEditorResumeDialog;
 
 public class EatDefenseGameScreen extends GameScreen {
     @Override
@@ -66,6 +69,9 @@ public class EatDefenseGameScreen extends GameScreen {
     public void render(float delta) {
         super.render(delta);
 
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) || Gdx.input.isKeyJustPressed(Input.Keys.BACK))
+            openResumeDialog();
+
         if (!gameState.gameOver) {
             gameState.secondsPlayed += Gdx.graphics.getDeltaTime();
         }
@@ -100,6 +106,23 @@ public class EatDefenseGameScreen extends GameScreen {
         gameState.gameOver = true;
 
         final Dialog dialog = new EatDefenseGameOverDialog(this);
+        dialog.setSize(Gdx.graphics.getWidth() - 32, Gdx.graphics.getHeight() - 32);
+        dialog.setPosition(16,16);
+
+        Events.resize.on(new Runnable() {
+            @Override
+            public void run() {
+                dialog.setSize(Gdx.graphics.getWidth() - 32, Gdx.graphics.getHeight() - 32);
+                dialog.setPosition(16,16);
+            }
+        });
+
+        dialog.show();
+    }
+
+    public void openResumeDialog() {
+        final Dialog dialog = new EatDefenseResumeDialog();
+
         dialog.setSize(Gdx.graphics.getWidth() - 32, Gdx.graphics.getHeight() - 32);
         dialog.setPosition(16,16);
 

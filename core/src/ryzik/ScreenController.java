@@ -34,6 +34,8 @@ public class ScreenController {
 
     public void startGame(GameScreen gameScreen) {
         setScreen(gameScreen);
+
+        Gdx.input.setCatchKey(Input.Keys.BACK, true);
     }
 
     public void openEditor(WorldEditorScreen editorScreen) {
