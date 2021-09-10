@@ -24,6 +24,7 @@ public class ScreenController {
             mainActivity.getScreen().dispose();
         setScreen(menu);
         Events.resize.fire();
+        Cursor.selectedItem = null;
     }
 
     public void setScreen(Screen screen) {

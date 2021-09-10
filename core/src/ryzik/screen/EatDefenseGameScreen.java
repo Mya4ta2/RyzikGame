@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
+import ryzik.Cursor;
 import ryzik.Draw;
 import ryzik.Vars;
 import ryzik.content.Blocks;
@@ -104,7 +105,12 @@ public class EatDefenseGameScreen extends GameScreen {
 
     public void gameOver() {
         gameState.gameOver = true;
+        Cursor.selectedItem = null;
 
+        openGameOverDialog();
+    }
+
+    public void openGameOverDialog() {
         final Dialog dialog = new EatDefenseGameOverDialog(this);
         dialog.setSize(Gdx.graphics.getWidth() - 32, Gdx.graphics.getHeight() - 32);
         dialog.setPosition(16,16);
